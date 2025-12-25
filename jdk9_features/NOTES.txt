@@ -1,0 +1,7 @@
+Source: https://www.geeksforgeeks.org/java/java-9-features-with-examples/#1-improved-javadoc
+==============================================================================================
+
+1. Improved Javadoc
+Java 9 update came with updated Java documentation. We no longer need to use Google to find the right documentation. 
+The new Javadoc came with search rights in the API documentation itself. Moreover, the Javadoc output was HTML5 compliant. 
+Every Javadoc page includes information on which JDK module the class or interface comes from.
