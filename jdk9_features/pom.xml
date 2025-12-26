@@ -6,8 +6,6 @@
   <name>Java 9 Features with Examples</name>
   <description>Java 9 Features with Examples</description>
   <properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>21</java.version>
 	</properties>
 </project>
