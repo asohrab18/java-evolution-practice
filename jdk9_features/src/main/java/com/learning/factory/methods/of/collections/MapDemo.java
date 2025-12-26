@@ -10,11 +10,12 @@ public class MapDemo {
 		// This is mutable Map.
 		Map<Integer, String> mutableMap = new HashMap<>();
 		mutableMap.put(1, "APPLE");
-		mutableMap.put(1, "APPLE");
+		mutableMap.put(1, "PINEAPPLE");
 		mutableMap.put(2, "BANANA");
 		mutableMap.put(3, "COCONUT");
-		mutableMap.put(4, null);
-		mutableMap.put(5, null);
+		mutableMap.put(4, "COCONUT");
+		mutableMap.put(5, "");
+		mutableMap.put(6, "");
 		mutableMap.put(null, null);
 		mutableMap.put(null, null);
 

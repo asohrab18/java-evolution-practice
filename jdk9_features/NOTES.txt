@@ -46,3 +46,14 @@ Other properties are as same as in case of List.
 
 __________________________________________________________________________________________________________________________________________________________________
 
+MAP:
+
+We can use of() method to create immutable Map but of() method does not allow duplicate key, null key, null value. 
+In Map.of() method, duplicate key gives java.lang.IllegalArgumentException and null key or null value gives java.lang.NullPointerException.
+
+Map<Integer, String> immutableMap = Map.of(1, "APPLE", 2, "BANANA", 3, "COCONUT", 4, "COCONUT", 5, "", 6, "");
+
+We know that it is immutable Map and we cannot add any kind of key, value (entry) in this. Even null key or value insertion is also not acceptable. 
+If we try to do so then UnsupportedOperationException occurs.
+		
+__________________________________________________________________________________________________________________________________________________________________		
