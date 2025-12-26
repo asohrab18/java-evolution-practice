@@ -5,9 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class SetDemo {
-
-	public static void main(String[] args) {
-		// This is mutable Set.
+	public static void checkConvensionalMethod() {
 		Set<String> mutableSet = new HashSet<>();
 		mutableSet.add("APPLE");
 		mutableSet.add("APPLE");
@@ -32,7 +30,9 @@ public class SetDemo {
 		} catch (UnsupportedOperationException e) {
 			System.out.println("null insertion is not allowed in unmodifiable set.");
 		}
+	}
 
+	public static void checkJava9Of() {
 		System.out.println(
 				"\n============== In JDK-9, We can use of() method to create immutable Set. Returned Set is not HashSet. =================");
 
@@ -40,7 +40,8 @@ public class SetDemo {
 		System.out.println("immutableEmptySet: " + immutableEmptySet);
 
 		Set<String> immutableSet = Set.of("APPLE", "BANANA", "COCONUT", "");
-		// In Set.of() method, duplicate element gives java.lang.IllegalArgumentException. 
+		// In Set.of() method, duplicate element gives
+		// java.lang.IllegalArgumentException.
 		// null gives java.lang.NullPointerException.
 
 		System.out.println("immutableSet: " + immutableSet);
@@ -57,6 +58,11 @@ public class SetDemo {
 			System.out.println("null insertion is not allowed in immutable set.");
 		}
 
+	}
+
+	public static void main(String[] args) {
+		checkConvensionalMethod();
+		checkJava9Of();
 	}
 
 }

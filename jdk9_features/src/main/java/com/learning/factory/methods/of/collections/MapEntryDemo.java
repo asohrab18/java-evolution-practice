@@ -28,7 +28,7 @@ public class MapEntryDemo {
 		}
 	}
 
-	public static void checkJava9Of() {
+	public static void checkJava9OfEntries() {
 		System.out.println("\nUsing Java-9 ofEntries() method:\n");
 		Map<Integer, String> immutableMap = Map.ofEntries(Map.entry(1, "Apple"), Map.entry(2, "Banana"),
 				Map.entry(3, "Coconut"), Map.entry(4, "Coconut"), Map.entry(0, ""));
@@ -57,7 +57,7 @@ public class MapEntryDemo {
 
 	public static void main(String[] args) {
 		checkConvensionalMethod();
-		checkJava9Of();
+		checkJava9OfEntries();
 
 	}
 

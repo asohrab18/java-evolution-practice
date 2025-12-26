@@ -6,8 +6,7 @@ import java.util.Map;
 
 public class MapDemo {
 
-	public static void main(String[] args) {
-		// This is mutable Map.
+	public static void checkConvensionalMethod() {
 		Map<Integer, String> mutableMap = new HashMap<>();
 		mutableMap.put(1, "APPLE");
 		mutableMap.put(1, "PINEAPPLE");
@@ -39,7 +38,9 @@ public class MapDemo {
 		} catch (UnsupportedOperationException e) {
 			System.out.println("null value insertion is not allowed in unmodifiable map.");
 		}
-		
+	}
+
+	public static void checkJava9Of() {
 		System.out.println(
 				"\n============== In JDK-9, We can use of() method to create immutable Map. Returned Map is not HashMap. =================");
 
@@ -68,6 +69,11 @@ public class MapDemo {
 		} catch (UnsupportedOperationException e) {
 			System.out.println("null value insertion is not allowed in immutable map.");
 		}
+	}
+
+	public static void main(String[] args) {
+		checkConvensionalMethod();
+		checkJava9Of();
 	}
 
 }

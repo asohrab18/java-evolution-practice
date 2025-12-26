@@ -6,8 +6,7 @@ import java.util.List;
 
 public class ListDemo {
 
-	public static void main(String[] args) {
-		// This is mutable List.
+	public static void checkConvensionalMethod() {
 		List<String> mutableList = new ArrayList<>();
 		mutableList.add("APPLE");
 		mutableList.add("BANANA");
@@ -32,7 +31,9 @@ public class ListDemo {
 		} catch (UnsupportedOperationException e) {
 			System.out.println("null insertion is not allowed in unmodifiable list.");
 		}
+	}
 
+	public static void checkJava9Of() {
 		System.out.println(
 				"\n============== In JDK-9, We can use of() method to create immutable List. Returned list is not ArrayList. =================");
 
@@ -55,6 +56,11 @@ public class ListDemo {
 			System.out.println("null insertion is not allowed in immutable list.");
 		}
 
+	}
+
+	public static void main(String[] args) {
+		checkConvensionalMethod();
+		checkJava9Of();
 	}
 
 }
