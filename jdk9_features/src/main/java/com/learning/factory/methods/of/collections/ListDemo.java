@@ -12,6 +12,10 @@ public class ListDemo {
 		mutableList.add("APPLE");
 		mutableList.add("BANANA");
 		mutableList.add("COCONUT");
+		mutableList.add("COCONUT");
+		mutableList.add("");
+		mutableList.add("");
+		mutableList.add(null);
 		mutableList.add(null);
 
 		System.out.println("mutableList: " + mutableList);
@@ -31,8 +35,6 @@ public class ListDemo {
 
 		System.out.println(
 				"\n============== In JDK-9, We can use of() method to create immutable List. Returned list is not ArrayList. =================");
-		// In JDK-9, We can use of() method to create immutable List. Returned list is
-		// not ArrayList.
 
 		List<String> immutableEmptyList = List.of();
 		System.out.println("immutableEmptyList: " + immutableEmptyList);

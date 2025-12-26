@@ -2,6 +2,28 @@ Source: https://www.geeksforgeeks.org/java/java-9-features-with-examples/#1-impr
 ==============================================================================================
 
 1. Improved Javadoc
+
 Java 9 update came with updated Java documentation. We no longer need to use Google to find the right documentation. 
 The new Javadoc came with search rights in the API documentation itself. Moreover, the Javadoc output was HTML5 compliant. 
-Every Javadoc page includes information on which JDK module the class or interface comes from.
+Every Javadoc page includes the information that the class or interface comes from which JDK module.
+
+
+2. Factory methods for collections(like List, Map, Set and Map.Entry)
+
+List<String> mutableList = new ArrayList<>();
+
+We know that it is mutable List and we can add any value in this. E.g. null, "", duplicate values, any String value etc.
+ 
+ 
+List<String> unmodifiableList = Collections.unmodifiableList(mutableList);
+
+We know that it is immutable/unmodifiable List and we cannot add any kind of value in this. Even null insertion is also not acceptable. 
+If we try to do so then UnsupportedOperationException occurs.
+
+In JDK-9, We can use of() method to create immutable List. Returned list is not ArrayList. But of() method does not allow null value. 
+If we use null in of(null) method then it gives java.lang.NullPointerException.
+
+List<String> immutableList = List.of("APPLE", "BANANA", "COCONUT", "COCONUT", "", "");
+
+We know that it is immutable List and we cannot add any kind of value in this. Even null insertion is also not acceptable. 
+If we try to do so then UnsupportedOperationException occurs.
