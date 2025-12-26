@@ -13,6 +13,8 @@ public class SetDemo {
 		mutableSet.add("APPLE");
 		mutableSet.add("BANANA");
 		mutableSet.add("COCONUT");
+		mutableSet.add("");
+		mutableSet.add("");
 		mutableSet.add(null);
 		mutableSet.add(null);
 
@@ -38,9 +40,8 @@ public class SetDemo {
 		System.out.println("immutableEmptySet: " + immutableEmptySet);
 
 		Set<String> immutableSet = Set.of("APPLE", "BANANA", "COCONUT", "");
-		// In Set.of() method, duplicate element gives
-		// java.lang.IllegalArgumentException. null gives
-		// java.lang.NullPointerException.
+		// In Set.of() method, duplicate element gives java.lang.IllegalArgumentException. 
+		// null gives java.lang.NullPointerException.
 
 		System.out.println("immutableSet: " + immutableSet);
 

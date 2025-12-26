@@ -10,6 +10,8 @@ Every Javadoc page includes the information that the class or interface comes fr
 
 2. Factory methods for collections(like List, Map, Set and Map.Entry)
 
+LIST:
+
 List<String> mutableList = new ArrayList<>();
 
 We know that it is mutable List and we can add any value in this. E.g. null, "", duplicate values, any String value etc.
@@ -20,6 +22,7 @@ List<String> unmodifiableList = Collections.unmodifiableList(mutableList);
 We know that it is immutable/unmodifiable List and we cannot add any kind of value in this. Even null insertion is also not acceptable. 
 If we try to do so then UnsupportedOperationException occurs.
 
+=================================================================================================================================================
 In JDK-9, We can use of() method to create immutable List. Returned list is not ArrayList. But of() method does not allow null value. 
 If we use null in of(null) method then it gives java.lang.NullPointerException.
 
@@ -27,3 +30,19 @@ List<String> immutableList = List.of("APPLE", "BANANA", "COCONUT", "COCONUT", ""
 
 We know that it is immutable List and we cannot add any kind of value in this. Even null insertion is also not acceptable. 
 If we try to do so then UnsupportedOperationException occurs.
+__________________________________________________________________________________________________________________________________________________________________
+
+SET:
+
+We can use of() method to create immutable Set but of() method does not allow null value and duplicate elements. 
+If we use null in of(null) method then it gives java.lang.NullPointerException.
+If we use duplicate elements in of("APPLE", "APPLE") method then it gives java.lang.IllegalArgumentException.
+
+Set<String> immutableSet = Set.of("APPLE", "BANANA", "COCONUT", "");
+
+We know that it is immutable Set and we cannot add any kind of value in this. Even null insertion is also not acceptable. 
+If we try to do so then UnsupportedOperationException occurs. 
+Other properties are as same as in case of List.
+
+__________________________________________________________________________________________________________________________________________________________________
+
