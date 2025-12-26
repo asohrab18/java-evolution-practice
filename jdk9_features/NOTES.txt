@@ -69,7 +69,8 @@ entry.setValue(null); //java.lang.UnsupportedOperationException
 entry.setValue(""); //java.lang.UnsupportedOperationException
 
 
-We can use ofEntries() method to create immutable Map but of() method does not allow duplicate key, null key, null value. 
+
+Using Java-9, we can use ofEntries() method to create immutable Map but ofEntries() method does not allow duplicate key, null key, null value. 
 In Map.ofEntries() method, duplicate key gives java.lang.IllegalArgumentException and null key or null value gives java.lang.NullPointerException.
 
 
