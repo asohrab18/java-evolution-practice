@@ -57,3 +57,30 @@ We know that it is immutable Map and we cannot add any kind of key, value (entry
 If we try to do so then UnsupportedOperationException occurs.
 		
 __________________________________________________________________________________________________________________________________________________________________		
+
+Map.Entry:
+
+Map.Entry<Integer, String> entry = Map.entry(1, "Apple");
+
+Map.Entry is immutable so it cannot be modified by any kind of value.
+
+entry.setValue("BANANA"); //java.lang.UnsupportedOperationException
+entry.setValue(null); //java.lang.UnsupportedOperationException
+entry.setValue(""); //java.lang.UnsupportedOperationException
+
+
+We can use ofEntries() method to create immutable Map but of() method does not allow duplicate key, null key, null value. 
+In Map.ofEntries() method, duplicate key gives java.lang.IllegalArgumentException and null key or null value gives java.lang.NullPointerException.
+
+
+Map<Integer, String> immutableMap = Map.ofEntries(
+Map.entry(1, "Apple"), 
+Map.entry(2, "Banana"),
+Map.entry(3, "Coconut"), 
+Map.entry(4, "Coconut"), 
+Map.entry(0, ""));
+
+We know that it is immutable Map and we cannot add any kind of key, value (entry) in this. Even null key or value insertion is also not acceptable. 
+If we try to do so then UnsupportedOperationException occurs.
+
+__________________________________________________________________________________________________________________________________________________________________	
