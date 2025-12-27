@@ -84,4 +84,20 @@ Map.entry(0, ""));
 We know that it is immutable Map and we cannot add any kind of key, value (entry) in this. Even null key or value insertion is also not acceptable. 
 If we try to do so then UnsupportedOperationException occurs.
 
-__________________________________________________________________________________________________________________________________________________________________	
+__________________________________________________________________________________________________________________________________________________________________
+
+
+3. JShell: The Interactive Java REPL
+Oracle Corp. has introduced a new tool called “jshell”. It stands for Java Shell and also known as REPL (Read Evaluate Print Loop). 
+You can launch jshell from the console and directly start typing and executing Java code. 
+
+__________________________________________________________________________________________________________________________________________________________________
+
+4. Private Methods in Interfaces
+From Java SE 9 on-wards, we can write private and private static methods too in an interface using ‘private’ keyword.
+private methods were added only to share common code between: default methods and static methods inside the same interface.
+
+__________________________________________________________________________________________________________________________________________________________________
+
+
+
