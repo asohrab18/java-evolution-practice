@@ -1,6 +1,7 @@
 package com.learning.functionalInterfaces;
 
-@FunctionalInterface
+/** If interface has only one Single Abstract Method (SAM) then @FunctionalInterface annotation is optional. */
+//@FunctionalInterface
 public interface TaxCalculator {
 	double calculate(double amount);
 }
