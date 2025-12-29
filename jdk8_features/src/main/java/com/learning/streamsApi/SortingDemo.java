@@ -2,11 +2,11 @@ package com.learning.streamsApi;
 
 import java.util.Comparator;
 import java.util.List;
-
 import com.learning.model.Employee;
 import com.learning.model.EmployeeDto;
 
 public class SortingDemo {
+
 	private static List<Employee> employees = EmployeeDto.findEmployees();
 
 	static void sortEmployees(String field, String order) {
@@ -39,12 +39,21 @@ public class SortingDemo {
 		} else if (field.equals("salary")) {
 			if (order.equalsIgnoreCase("DESC")) {
 				// DESCENDING ORDER
-				comparator = (e1, e2) -> (e1.getSalary() > e2.getSalary()) ? -1
-						: (e1.getSalary() < e2.getSalary()) ? 1 : 0;
+				comparator = (e1, e2) -> (e1.getSalary() > e2.getSalary()) ? -1 : (e1.getSalary() < e2.getSalary()) ? 1 : 0;
 			} else {
 				// ASCENDING ORDER
-				comparator = (e1, e2) -> (e1.getSalary() > e2.getSalary()) ? 1
-						: (e1.getSalary() < e2.getSalary()) ? -1 : 0;
+				comparator = (e1, e2) -> (e1.getSalary() > e2.getSalary()) ? 1 : (e1.getSalary() < e2.getSalary()) ? -1 : 0;
+			}
+		} else if (field.equals("active")) {
+			if (order.equalsIgnoreCase("DESC")) {
+				// DESCENDING ORDER (First display all true and then false)
+				comparator = (e1, e2) -> Boolean.valueOf(e2.isActive()).compareTo(Boolean.valueOf(e1.isActive()));
+				// Method-2: comparator = (e1, e2) -> Boolean.compare(e2.isActive(), e1.isActive());
+
+			} else {
+				// ASCENDING ORDER (First display all false and then true)
+				comparator = (e1, e2) -> Boolean.valueOf(e1.isActive()).compareTo(Boolean.valueOf(e2.isActive()));
+				// Method-2: comparator = (e1, e2) -> Boolean.compare(e1.isActive(), e2.isActive());
 			}
 		}
 
@@ -52,6 +61,6 @@ public class SortingDemo {
 	}
 
 	public static void main(String[] args) {
-		sortEmployees("salary", "DESC");
+		sortEmployees("active", "DESC");
 	}
 }
