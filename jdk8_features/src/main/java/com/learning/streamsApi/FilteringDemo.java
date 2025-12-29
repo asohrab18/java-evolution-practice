@@ -7,14 +7,50 @@ import com.learning.model.EmployeeDto;
 
 public class FilteringDemo {
 
-	public static void main(String[] args) {
-		List<Employee> employees = EmployeeDto.findEmployees();
+	private static List<Employee> employees = EmployeeDto.findEmployees();
 
-		//1. Print all employees
+	static void printEmployees() {
 		employees.stream().forEach(e -> System.out.println(e));
-		
-		//2. Print employees with salary > 50000 and isActive = true
+	}
 
+	static void printActiveEmployees() {
+		employees.stream().filter(e -> e.isActive()).forEach(e -> System.out.println(e));
+	}
+
+	static void printInactiveEmployees() {
+		employees.stream().filter(e -> !e.isActive()).forEach(e -> System.out.println(e));
+	}
+
+	static void printEmployeesWithSalaryGreaterThanInput(double input) {
+		employees.stream().filter(e -> e.getSalary() > input).forEach(e -> System.out.println(e));
+	}
+
+	static void printActiveEmployeesWithSalaryGreaterThanInput(double input) {
+		employees.stream().filter(e -> e.isActive()).filter(e -> e.getSalary() > input)
+				.forEach(e -> System.out.println(e));
+	}
+
+	static void printEmployeesWithSalaryLessThanInput(double input) {
+		employees.stream().filter(e -> e.getSalary() < input).forEach(e -> System.out.println(e));
+	}
+
+	static void printActiveEmployeesWithSalaryLessThanInput(double input) {
+		employees.stream().filter(e -> e.isActive()).filter(e -> e.getSalary() < input)
+				.forEach(e -> System.out.println(e));
+	}
+
+	static void printActiveEmployeesFromGivenDepartmentWithSalaryGreaterThanInput(String department, double input) {
+		employees.stream().filter(e -> e.isActive()).filter(e -> e.getDept().equalsIgnoreCase(department))
+				.filter(e -> e.getSalary() > input).forEach(e -> System.out.println(e));
+	}
+
+	static void printActiveEmployeesFromGivenDepartmentWithSalaryLessThanInput(String department, double input) {
+		employees.stream().filter(e -> e.isActive()).filter(e -> e.getDept().equalsIgnoreCase(department))
+				.filter(e -> e.getSalary() < input).forEach(e -> System.out.println(e));
+	}
+
+	public static void main(String[] args) {
+		printEmployees();
 	}
 
 }
