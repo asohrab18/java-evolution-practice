@@ -1,6 +1,6 @@
 package com.learning.lambdaExpressions;
 
-import com.learning.functionalInterfaces.TaxCalculator;
+import com.learning.functionalInterfaces.customized.TaxCalculator;
 
 public class MainTaxCalculator {
 

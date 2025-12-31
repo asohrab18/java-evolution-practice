@@ -1,4 +1,4 @@
-package com.learning.functionalInterfaces;
+package com.learning.functionalInterfaces.customized;
 
 /** If interface has only one Single Abstract Method (SAM) then @FunctionalInterface annotation is optional. */
 //@FunctionalInterface

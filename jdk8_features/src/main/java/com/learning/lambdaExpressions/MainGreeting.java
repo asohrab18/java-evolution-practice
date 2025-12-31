@@ -1,6 +1,6 @@
 package com.learning.lambdaExpressions;
 
-import com.learning.functionalInterfaces.Greeting;
+import com.learning.functionalInterfaces.customized.Greeting;
 
 public class MainGreeting {
 
