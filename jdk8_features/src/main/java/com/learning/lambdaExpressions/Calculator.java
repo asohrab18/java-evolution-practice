@@ -3,6 +3,7 @@ package com.learning.lambdaExpressions;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.IntFunction;
+import java.util.function.IntPredicate;
 
 public class Calculator {
 
@@ -34,6 +35,13 @@ public class Calculator {
 
 		Integer length = stringLengthCountFunc.apply("AB");
 		System.out.println("length = " + length);
+
+		IntPredicate evenPredicate = i -> i % 2 == 0;
+		int num = 7;
+		boolean even = evenPredicate.test(num);
+		String evenOdd = even ? "EVEN" : "ODD";
+		System.out.println(num + " is " + evenOdd);
+
 	}
 
 }
