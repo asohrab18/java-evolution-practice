@@ -19,3 +19,12 @@ ________________________________________________________________________________
 Consumer Functional Interface:
 ==============================
 It takes one input and returns nothing. It is used for side-effects (printing, logging, updating, saving, etc.)
+
+__________________________________________________________________________________________________________________
+
+Supplier Functional Interface:
+==============================
+
+It is used for lazy object creation, default values, factory methods.
+
+__________________________________________________________________________________________________________________
