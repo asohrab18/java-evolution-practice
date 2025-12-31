@@ -1,24 +1,25 @@
 package com.learning.functionalInterfaces.consumers;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 public class ConsumerDemo {
 
-	static Consumer<String> smsConsumer = s -> {
-		if (s == null || s.isEmpty() || s.isBlank()) {
-			System.out.println("Message not found.");
-		} else {
-			System.out.println("Message sent successfully as: " + s);
-		}
-	};
+	static Consumer<String> printConsumer = s -> System.out.println(s);
 
-	public static void sendMessage(String message) {
-		smsConsumer.accept(message);
+	public static void printMessage(String message) {
+		printConsumer.accept(message);
+	}
+
+	public static void printItems() {
+		List<String> fruits = List.of("Apple", "Banana", "Coconut", "Guava");
+		fruits.forEach(printConsumer);
+
 	}
 
 	public static void main(String[] args) {
-		String message = "Hello World!";
-		sendMessage(message);
+		printMessage("Hello World!");
+		printItems();
 	}
 
 }

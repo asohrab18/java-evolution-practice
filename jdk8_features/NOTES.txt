@@ -13,3 +13,9 @@ If an interface has only one Single Abstract Method (SAM) then it is called Func
 @FunctionalInterface annotation is optional. 
 
 Lambda Expression is used to give implementation of single abstract method of Functional Interface.
+
+__________________________________________________________________________________________________________________
+
+Consumer Functional Interface:
+==============================
+It takes one input and returns nothing. It is used for side-effects (printing, logging, updating, saving, etc.)
