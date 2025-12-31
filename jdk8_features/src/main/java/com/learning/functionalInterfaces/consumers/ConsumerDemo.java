@@ -12,14 +12,22 @@ public class ConsumerDemo {
 	}
 
 	public static void printItems() {
+		System.out.println("\nConsumer used to print List items:");
 		List<String> fruits = List.of("Apple", "Banana", "Coconut", "Guava");
 		fruits.forEach(printConsumer);
 
 	}
 
+	public static void useInStream() {
+		System.out.println("\nConsumer used in Stream:");
+		List<String> fruits = List.of("Apple", "Banana", "Coconut", "Guava");
+		fruits.stream().filter(s -> s.length() < 6).forEach(printConsumer);
+	}
+
 	public static void main(String[] args) {
-		printMessage("Hello World!");
+		printMessage("Hi");
 		printItems();
+		useInStream();
 	}
 
 }

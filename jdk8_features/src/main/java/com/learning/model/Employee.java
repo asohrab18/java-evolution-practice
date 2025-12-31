@@ -39,6 +39,26 @@ public class Employee {
 		return active;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	@Override
 	public String toString() {
 		return "id = " + id + ", name = " + name + ", dept = " + dept + ", salary = " + salary + ", active = " + active
