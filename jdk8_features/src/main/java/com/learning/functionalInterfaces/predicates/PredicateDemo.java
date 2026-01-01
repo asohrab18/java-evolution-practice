@@ -1,6 +1,9 @@
 package com.learning.functionalInterfaces.predicates;
 
 import java.util.List;
+import java.util.function.DoublePredicate;
+import java.util.function.IntPredicate;
+import java.util.function.LongPredicate;
 import java.util.function.Predicate;
 
 import com.learning.model.Employee;
@@ -16,6 +19,10 @@ public class PredicateDemo {
 	static Predicate<String> permanentPredicate = Predicate.isEqual("PERMANENT");
 	static Predicate<Employee> adultPredicate = e -> e.getAge() >= 18;
 	static Predicate<Employee> minorPredicate = adultPredicate.negate();
+
+	static DoublePredicate positiveDoublePredicate = i -> i > 0d;
+	static IntPredicate positiveIntPredicate = i -> i > 0;
+	static LongPredicate oddLongPredicate = i -> i % 2 != 0l;
 
 	static Predicate<String> emptyStringPredicate = s -> {
 		if (s == null || s.isEmpty() || s.isBlank()) {
@@ -50,6 +57,17 @@ public class PredicateDemo {
 
 		boolean permanent = permanentPredicate.test(input);
 		System.out.println("input = '" + input + "' is PERMANENT? Ans: " + permanent);
+
+		double numd = 1234.56d;
+		boolean positiveD = positiveDoublePredicate.test(numd);
+		System.out.println(numd + " is positive number? Ans: " + positiveD);
+
+		boolean positive = positiveIntPredicate.test(num);
+		System.out.println(num + " is positive number? Ans: " + positive);
+
+		long numL = 123l;
+		boolean oddL = oddLongPredicate.test(numL);
+		System.out.println(numL + " is odd number? Ans: " + oddL);
 	}
 
 	public static void usePredicateWithStream() {
