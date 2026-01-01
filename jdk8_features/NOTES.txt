@@ -28,3 +28,9 @@ Supplier Functional Interface:
 It is used for lazy object creation, default values, factory methods.
 
 __________________________________________________________________________________________________________________
+
+Predicate Functional Interface:
+===============================
+
+It is used for filtering, conditions, validation, Streams.
+__________________________________________________________________________________________________________________

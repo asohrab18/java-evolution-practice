@@ -14,7 +14,7 @@ import com.learning.model.Employee;
 public class SupplierDemo {
 	static Supplier<String> loggerSupplier = () -> "\n======================= New method starts ======================";
 	static Supplier<String> greetingSupplier = () -> "Hello World!";
-	static Supplier<Employee> employeeSupplier = () -> new Employee(123, "Marry", "HR", 123456d, true);
+	static Supplier<Employee> employeeSupplier = () -> new Employee(123, "Marry", 32, "HR", 123456d, true);
 	static Supplier<LocalDateTime> dateTimeSupplier = () -> LocalDateTime.now();
 	static Supplier<Integer> randomNumberSupplier = () -> new Random().nextInt(100);
 	static Supplier<List<String>> plansStatusSupplier = () -> List.of("ACTIVE", "INACTIVE", "EXPIRED", "PREPAID", "POSTPAID");
