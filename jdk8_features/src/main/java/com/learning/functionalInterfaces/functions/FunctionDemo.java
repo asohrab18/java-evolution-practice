@@ -1,5 +1,7 @@
 package com.learning.functionalInterfaces.functions;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Function;
 
 public class FunctionDemo {
@@ -9,6 +11,13 @@ public class FunctionDemo {
 			return 0;
 		}
 		return s.length();
+	};
+
+	static Function<String, String> stringWithLengthFunction = s -> {
+		if (s == null) {
+			return "Length of " + s + " = 0";
+		}
+		return "Length of '" + s + "' = " + s.length();
 	};
 
 	static Function<String, String> trimFunction = s -> {
@@ -85,8 +94,21 @@ public class FunctionDemo {
 
 	}
 
+	public static void testFunctionsUsingStream() {
+		System.out.println("Tested Function using Stream:");
+		List<String> data = new ArrayList<>();
+		data.add(null);
+		data.add("C");
+		data.add("SQL");
+		data.add("Java");
+		data.add("Dotnet");
+
+		data.stream().map(stringWithLengthFunction).forEach(s -> System.out.println(s));
+	}
+
 	public static void main(String[] args) {
 		testFunctions();
+		testFunctionsUsingStream();
 	}
 
 }
