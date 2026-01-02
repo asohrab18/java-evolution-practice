@@ -34,3 +34,23 @@ Predicate Functional Interface:
 
 It is used for filtering, conditions, validation, Streams.
 __________________________________________________________________________________________________________________
+
+Function Functional Interface:
+==============================
+
+It takes one input and produces one output.
+
+Point [1]: Integer squareAndThenCube = squareFunction.andThen(cubeFunction).apply(num);
+
+Here, andThen method works from left to right. It means squareFunction is executed first and returns the result.
+After that cubeFunction is executed on the above result.
+
+
+Point [2]: Integer cubeAndThenSquare = squareFunction.compose(cubeFunction).apply(num); 
+ 
+Here, compose method works from right to left. It means cubeFunction is executed first and returns the result.
+After that squareFunction is executed on the above result.
+
+Point [3]: Function.identity() – Returns the Input as-is. Useful in Streams.
+
+__________________________________________________________________________________________________________________
