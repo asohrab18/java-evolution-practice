@@ -12,6 +12,9 @@ import java.util.function.IntToLongFunction;
 import java.util.function.LongFunction;
 import java.util.function.LongToDoubleFunction;
 import java.util.function.LongToIntFunction;
+import java.util.function.ToDoubleFunction;
+import java.util.function.ToIntFunction;
+import java.util.function.ToLongFunction;
 
 public class FunctionDemo {
 
@@ -192,6 +195,62 @@ public class FunctionDemo {
 		return rank;
 	};
 
+	static ToDoubleFunction<String> gradeSalaryFunction = grade -> {
+		double salary = 0d;
+		if (grade == null || grade.isEmpty() || grade.isBlank()) {
+			return salary;
+		}
+		grade = grade.trim();
+		if (grade.equalsIgnoreCase("A")) {
+			salary = 300000.90d;
+		} else if (grade.equalsIgnoreCase("B")) {
+			salary = 200000.85d;
+		} else if (grade.equalsIgnoreCase("C")) {
+			salary = 150000.65d;
+		} else if (grade.equalsIgnoreCase("D")) {
+			salary = 100000.45d;
+		}
+		return salary;
+	};
+
+	static ToIntFunction<String> genderCodeFunction = gender -> {
+		int code = 0;
+		if (gender == null || gender.isEmpty() || gender.isBlank()) {
+			return code;
+		}
+		gender = gender.trim();
+		if (gender.equalsIgnoreCase("Female")) {
+			code = 1;
+		} else if (gender.equalsIgnoreCase("Male")) {
+			code = 2;
+		} else if (gender.equalsIgnoreCase("Transgender")) {
+			code = 3;
+		}
+		return code;
+	};
+
+	static ToLongFunction<String> employeeIdFunction = name -> {
+		long employeeId = 0l;
+		if (name == null || name.isEmpty() || name.isBlank()) {
+			return employeeId;
+		}
+		name = name.trim();
+		if (name.equalsIgnoreCase("ADAM")) {
+			employeeId = 1000000000l;
+		} else if (name.equalsIgnoreCase("JESICA")) {
+			employeeId = 2000000000l;
+		} else if (name.equalsIgnoreCase("KELVIN")) {
+			employeeId = 3000000000l;
+		} else if (name.equalsIgnoreCase("MARCO")) {
+			employeeId = 4000000000l;
+		} else if (name.equalsIgnoreCase("NICK")) {
+			employeeId = 5000000000l;
+		} else if (name.equalsIgnoreCase("PATRICK")) {
+			employeeId = 6000000000l;
+		}
+		return employeeId;
+	};
+
 	public static void testFunctions() {
 		String input = "ABCD";
 		Integer strLength = strLengthFunction.apply(input);
@@ -257,6 +316,18 @@ public class FunctionDemo {
 
 		int rankOfId = rankOfIdFunction.applyAsInt(candidateId);
 		System.out.println("Rank = " + rankOfId + "\n");
+
+		String grade = "B";
+		double gradeSalary = gradeSalaryFunction.applyAsDouble(grade);
+		System.out.println("Grade = " + grade + "\nSalary = " + gradeSalary + "\n");
+
+		String gender = "Male";
+		int genderCode = genderCodeFunction.applyAsInt(gender);
+		System.out.println("Gender: " + gender + "\nCode = " + genderCode + "\n");
+
+		String name = "MARCO";
+		long employeeId = employeeIdFunction.applyAsLong(name);
+		System.out.println("Name: " + name + "\nEmployee Id: " + employeeId + "\n");
 	}
 
 	public static void testFunctionsUsingStream() {
