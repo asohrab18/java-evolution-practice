@@ -9,10 +9,11 @@ public class Employee {
 	private boolean active;
 
 	public Employee() {
+		System.out.println("Called no-argument constructor of Employee class.");
 	}
 
 	public Employee(int id, String name, int age, String dept, double salary, boolean active) {
-		super();
+		System.out.println("Called arguments constructor of Employee class.");
 		this.id = id;
 		this.name = name;
 		this.age = age;
@@ -74,6 +75,5 @@ public class Employee {
 		return "id = " + id + ", name = " + name + ", age = " + age + ", dept = " + dept + ", salary = " + salary
 				+ ", active = " + active + "\n";
 	}
-	
-	
+
 }

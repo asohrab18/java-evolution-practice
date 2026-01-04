@@ -66,10 +66,19 @@ or its similar type is already available.
 Advantage: Code re-usability.
 
 Restriction: The referred method must have:
-* Number of arguments = same
-* Types of arguments = same as of the actual method of Interface.
+* Number of arguments => same
+* Types of arguments => same as of the actual method of Interface.
 
 No need to worry about return type, modifier and name of referred method.
+
+[2] Constructor reference: When functional interface (FI) has such an abstract 
+method which returns an Object (or any Class Type) and the implementation of 
+this method is not required then we use constructor reference.
+
+Restriction: The referred constructor must have:
+* Number of arguments => same
+* Types of arguments => same as of the method of Functional Interface.
+
 __________________________________________________________________________________________________________________
 
 

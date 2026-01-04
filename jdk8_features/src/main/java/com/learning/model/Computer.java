@@ -1,6 +1,6 @@
-package com.learning.doublecolon.operator;
+package com.learning.model;
 
-public class Test {
+public class Computer {
 
 	public static void show() {
 		for (int i = 1; i <= 5; i++) {

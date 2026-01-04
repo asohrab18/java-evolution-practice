@@ -1,22 +1,22 @@
 package com.learning.doublecolon.operator;
 
 import java.util.function.IntUnaryOperator;
-
 import com.learning.functionalInterfaces.customized.Greeting;
 import com.learning.model.EmployeeDto;
+import com.learning.model.Computer;
 
 public class MethodReferenceDemo {
 
-	static Runnable firstRunnable = Test::show;
+	static Runnable firstRunnable = Computer::show;
 
-	static Test test = new Test();
-	static Runnable secondRunnable = test::display;
+	static Computer comp = new Computer();
+	static Runnable secondRunnable = comp::display;
 
 	static Runnable thirdRunnable = EmployeeDto::printEmployees;
 
 	static Greeting greeting = EmployeeDto::printEmployees;
 
-	static IntUnaryOperator factorialOperator = Test::getFactorial;
+	static IntUnaryOperator factorialOperator = Computer::getFactorial;
 
 	public static void testEmployees() {
 		Thread t = new Thread(thirdRunnable);
