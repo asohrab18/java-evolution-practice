@@ -1,4 +1,4 @@
-package com.learning.lambdaExpressions;
+package com.learning;
 
 public class RunnableByLambda {
 

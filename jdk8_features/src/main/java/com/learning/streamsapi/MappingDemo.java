@@ -1,7 +1,6 @@
-package com.learning.streamsApi;
+package com.learning.streamsapi;
 
 import java.util.List;
-
 import com.learning.model.Employee;
 import com.learning.model.EmployeeDto;
 

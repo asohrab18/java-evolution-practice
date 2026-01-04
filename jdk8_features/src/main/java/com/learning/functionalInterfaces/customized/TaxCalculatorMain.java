@@ -1,8 +1,6 @@
-package com.learning.lambdaExpressions;
+package com.learning.functionalInterfaces.customized;
 
-import com.learning.functionalInterfaces.customized.TaxCalculator;
-
-public class MainTaxCalculator {
+public class TaxCalculatorMain {
 
 	public static void main(String[] args) {
 		TaxCalculator gstCalc = amount -> amount * 18 / 100;
