@@ -54,3 +54,23 @@ After that squareFunction is executed on the above result.
 Point [3]: Function.identity() – Returns the Input as-is. Useful in Streams.
 
 __________________________________________________________________________________________________________________
+
+Double Colon Operator (::)
+==========================
+It is used for method and constructor reference.
+Method and constructor reference are alternative to "Lambda Expressions".
+
+[1] Method reference: It is used when implementation of abstract method of Interface 
+or its similar type is already available.
+
+Advantage: Code re-usability.
+
+Restriction: The referred method must have:
+* Number of arguments = same
+* Types of arguments = same as of the actual method of Interface.
+
+No need to worry about return type, modifier and name of referred method.
+__________________________________________________________________________________________________________________
+
+
+ 
