@@ -1,5 +1,7 @@
 package com.learning.doublecolon.operator;
 
+import java.util.function.IntUnaryOperator;
+
 import com.learning.functionalInterfaces.customized.Greeting;
 import com.learning.model.EmployeeDto;
 
@@ -13,6 +15,8 @@ public class MethodReferenceDemo {
 	static Runnable thirdRunnable = EmployeeDto::printEmployees;
 
 	static Greeting greeting = EmployeeDto::printEmployees;
+
+	static IntUnaryOperator factorialOperator = Test::getFactorial;
 
 	public static void testEmployees() {
 		Thread t = new Thread(thirdRunnable);
@@ -45,11 +49,17 @@ public class MethodReferenceDemo {
 		greeting.perform();
 	}
 
+	public static void testFactorial() {
+		int num = 5;
+		int factorial = factorialOperator.applyAsInt(num);
+		System.out.println("Number = " + num + "\nFactorial = " + factorial + "\n");
+	}
+
 	public static void main(String[] args) {
 		testShow();
 		testDisplay();
 		testEmployees();
 		testGreeting();
+		testFactorial();
 	}
-
 }

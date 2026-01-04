@@ -13,4 +13,19 @@ public class Test {
 			System.out.println(i + ": Welcome to display()");
 		}
 	}
+
+	public static int getFactorial(int num) {
+		System.out.println("\nIn Class: com.learning.doublecolon.operator.Test, Method: getFactorial");
+		if (num < 0) {
+			return 0;
+		}
+		int fact = 1;
+		if (num == 0) {
+			return fact;
+		}
+		for (int i = num; i > 0; i--) {
+			fact = fact * i;
+		}
+		return fact;
+	}
 }
