@@ -81,5 +81,31 @@ Restriction: The referred constructor must have:
 
 __________________________________________________________________________________________________________________
 
+Some Basic Information:
+=======================
 
+Point [1]:
+Package: java.lang
+public final class System extends Object {}
+
+System class has static field:
+static PrintStream out;
+
+Point [2]:
+Package: java.io
+public class PrintStream extends FilterOutputStream implements Appendable, Closeable {}
+
+PrintStream class has method: 
+
+public void println(String x) {
+    if (getClass() == PrintStream.class) {
+         writeln(String.valueOf(x));
+    } else {
+          synchronized (this) {
+              print(x);
+              newLine();
+          }
+    }
+}
+_______________________________________________________________________________________________________
  

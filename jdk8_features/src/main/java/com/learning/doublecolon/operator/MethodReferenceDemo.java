@@ -1,9 +1,11 @@
 package com.learning.doublecolon.operator;
 
+import java.util.List;
 import java.util.function.IntUnaryOperator;
+
 import com.learning.functionalInterfaces.customized.Greeting;
-import com.learning.model.EmployeeDto;
 import com.learning.model.Computer;
+import com.learning.model.EmployeeDto;
 
 public class MethodReferenceDemo {
 
@@ -55,11 +57,18 @@ public class MethodReferenceDemo {
 		System.out.println("Number = " + num + "\nFactorial = " + factorial + "\n");
 	}
 
+	public static void testUsingStream() {
+		List<Integer> nums = List.of(1, 2, 3, 4, 5);
+
+		nums.stream().forEach(System.out::println);
+	}
+
 	public static void main(String[] args) {
 		testShow();
 		testDisplay();
 		testEmployees();
 		testGreeting();
 		testFactorial();
+		testUsingStream();
 	}
 }
