@@ -1,4 +1,4 @@
-package com.learning.streamsapi;
+package com.learning.streams;
 
 import java.util.List;
 import java.util.Map;
