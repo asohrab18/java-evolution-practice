@@ -1,6 +1,8 @@
 package com.learning.streams;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StreamDemo {
@@ -62,7 +64,7 @@ public class StreamDemo {
 
 		Stream<Integer> numbersStream2 = numbers2.stream();
 		boolean allEven = numbersStream2.allMatch(i -> i % 2 == 0);
-		
+
 		System.out.println("Numbers2 = " + numbers2);
 		System.out.println("Are all numbers Even? ANS: " + allEven);
 		System.out.println("=========================================");
@@ -74,7 +76,7 @@ public class StreamDemo {
 		System.out.println("Do all names start with A? ANS: " + allNamesStartWithA);
 		System.out.println("=========================================");
 	}
-	
+
 	public static void testAnyMatch() {
 		List<Integer> numbers1 = List.of(1, 3, 5, 7, 9, 10);
 		List<Integer> numbers2 = List.of(2, 4, 6, 8, 10, 12);
@@ -82,11 +84,11 @@ public class StreamDemo {
 
 		Stream<Integer> numbersStream = numbers1.stream();
 		boolean anyEven = numbersStream.anyMatch(i -> i % 2 == 0);
-		
+
 		System.out.println("Numbers1 = " + numbers1);
 		System.out.println("Is there any even number? ANS: " + anyEven);
 		System.out.println("=========================================");
-		
+
 		Stream<Integer> numbersStream2 = numbers2.stream();
 		boolean anyOdd = numbersStream2.anyMatch(i -> i % 2 != 0);
 		System.out.println("Numbers2 = " + numbers2);
@@ -101,10 +103,25 @@ public class StreamDemo {
 		System.out.println("=========================================");
 	}
 
+	public static void testCollect() {
+		List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+		List<Integer> evenNumbers = numbers.stream().filter(n -> n % 2 == 0).collect(Collectors.toList());
+		System.out.println("Numbers: " + numbers);
+		System.out.println("Even numbers: " + evenNumbers);
+		System.out.println("=========================================");
+
+		List<Integer> numbers2 = List.of(1, 2, 3, 1, 2, 3, 1, 2, 3);
+		Set<Integer> uniqueNumbers = numbers2.stream().collect(Collectors.toSet());
+		System.out.println("Numbers: " + numbers2);
+		System.out.println("unique numbers: " + uniqueNumbers);
+		System.out.println("=========================================");
+	}
+
 	public static void main(String[] args) {
 		createStream();
 		testAllMatch();
 		testAnyMatch();
+		testCollect();
 	}
 
 }
