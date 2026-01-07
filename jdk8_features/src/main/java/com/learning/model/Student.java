@@ -6,11 +6,9 @@ public class Student {
 	private int age;
 
 	public Student() {
-		System.out.println("Called no-argument constructor of Student class.");
 	}
 
 	public Student(String name, int age) {
-		System.out.println("Called arguments constructor of Student class.");
 		this.name = name;
 		this.age = age;
 	}
