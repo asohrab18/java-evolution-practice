@@ -209,6 +209,14 @@ public class CollectorsDemo {
 		System.out.println(personsNameMap);
 		System.out.println("------------------------------------------------------------");
 
+		Function<Student, String> adultsMinorFunction = s -> s.getAge() >= 18 ? "ADULTS" : "MINORS";
+		Function<Student, String> nameAgeFunction = s -> s.getName() + " is " + s.getAge() + " years old.";
+
+		Map<String, List<String>> studentsMap = students.stream().collect(
+				Collectors.groupingBy(adultsMinorFunction, Collectors.mapping(nameAgeFunction, Collectors.toList())));
+
+		System.out.println(studentsMap);
+		System.out.println("------------------------------------------------------------");
 	}
 
 	public static void main(String[] args) {
