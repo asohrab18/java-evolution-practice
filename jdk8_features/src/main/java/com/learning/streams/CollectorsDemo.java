@@ -1,8 +1,10 @@
 package com.learning.streams;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -168,6 +170,45 @@ public class CollectorsDemo {
 		Map<Character, List<String>> namesMap = names.stream().collect(Collectors.groupingBy(charFunction));
 		System.out.println(namesMap);
 		System.out.println("------------------------------------------------------------");
+
+		Function<Student, String> ageStatusFunction = s -> s.getAge() >= 18 ? "ADULTS" : "MINORS";
+		Map<String, List<Student>> maturityMap = students.stream().collect(Collectors.groupingBy(ageStatusFunction));
+		System.out.println(maturityMap);
+		System.out.println("------------------------------------------------------------");
+	}
+
+	static void testGroupingBy_V2() {
+		System.out.println("\n\n===================== testGroupingBy_V2() =====================");
+		Map<String, List<Person>> personsMap = persons.stream()
+				.collect(Collectors.groupingBy(Person::getCountry, Collectors.toList()));
+
+		System.out.println(personsMap);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, Long> personsCountingMap = persons.stream()
+				.collect(Collectors.groupingBy(Person::getCountry, Collectors.counting()));
+
+		System.out.println(personsCountingMap);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, Double> employeesSalaryMap = employees.stream()
+				.collect(Collectors.groupingBy(Employee::getDept, Collectors.summingDouble(Employee::getSalary)));
+
+		System.out.println(employeesSalaryMap);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, Optional<Employee>> employeesHighestSalaryMap = employees.stream().collect(
+				Collectors.groupingBy(Employee::getDept, Collectors.maxBy(Comparator.comparing(Employee::getSalary))));
+
+		System.out.println(employeesHighestSalaryMap);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, List<String>> personsNameMap = persons.stream().collect(
+				Collectors.groupingBy(Person::getCountry, Collectors.mapping(Person::getName, Collectors.toList())));
+
+		System.out.println(personsNameMap);
+		System.out.println("------------------------------------------------------------");
+
 	}
 
 	public static void main(String[] args) {
@@ -177,5 +218,6 @@ public class CollectorsDemo {
 		testCollectingAndThen();
 		testCounting();
 		testGroupingBy_V1();
+		testGroupingBy_V2();
 	}
 }
