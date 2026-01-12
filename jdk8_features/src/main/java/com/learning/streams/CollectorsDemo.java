@@ -2,13 +2,19 @@ package com.learning.streams;
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import com.learning.model.Candidate;
+import com.learning.model.CandidateDto;
 import com.learning.model.Employee;
 import com.learning.model.EmployeeDto;
 import com.learning.model.Person;
@@ -21,6 +27,7 @@ public class CollectorsDemo {
 	private static List<Employee> employees = EmployeeDto.findEmployees();
 	private static List<Student> students = StudentDto.findStudents();
 	private static List<Person> persons = PersonDto.findPersons();
+	private static List<Candidate> candidates = CandidateDto.findCandidates();
 
 	/**
 	 * This collector converts each element to a double and computes the arithmetic
@@ -219,6 +226,52 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	static void testGroupingBy_V3() {
+		System.out.println("\n\n===================== testGroupingBy_V3() =====================");
+		Map<String, List<Candidate>> candidatesMap = candidates.stream()
+				.collect(Collectors.groupingBy(Candidate::getDepartment, HashMap::new, Collectors.toList()));
+
+		System.out.println(candidatesMap);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, Long> candidatesCountMap = candidates.stream()
+				.collect(Collectors.groupingBy(Candidate::getDepartment, LinkedHashMap::new, Collectors.counting()));
+
+		System.out.println(candidatesCountMap);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, Double> employeesMap = employees.stream().collect(
+				Collectors.groupingBy(Employee::getDept, TreeMap::new, Collectors.summingDouble(Employee::getSalary)));
+
+		System.out.println(employeesMap);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, Double> employeesAverageSalaryMap = employees.stream().collect(Collectors
+				.groupingBy(Employee::getDept, TreeMap::new, Collectors.averagingDouble(Employee::getSalary)));
+
+		System.out.println(employeesAverageSalaryMap);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, List<String>> employeesNamesMap = employees.stream().collect(Collectors.groupingBy(
+				Employee::getDept, TreeMap::new, Collectors.mapping(Employee::getName, Collectors.toList())));
+
+		System.out.println(employeesNamesMap);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, DoubleSummaryStatistics> employeesSummaryMap = employees.stream().collect(Collectors
+				.groupingBy(Employee::getDept, TreeMap::new, Collectors.summarizingDouble(Employee::getSalary)));
+
+		System.out.println(employeesSummaryMap);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, Employee> highestPaidByDept = employees.stream()
+				.collect(Collectors.groupingBy(Employee::getDept, TreeMap::new, Collectors.collectingAndThen(
+						Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary)), Optional::get)));
+
+		System.out.println(highestPaidByDept);
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		testAveragingDouble();
 		testAveragingInt();
@@ -227,5 +280,6 @@ public class CollectorsDemo {
 		testCounting();
 		testGroupingBy_V1();
 		testGroupingBy_V2();
+		testGroupingBy_V3();
 	}
 }

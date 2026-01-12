@@ -70,7 +70,7 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "id = " + id + ", name = " + name + ", age = " + age + ", dept = " + dept + ", salary = " + salary
-				+ ", active = " + active + "\n";
+		return "{id = " + id + ", name = " + name + ", age = " + age + ", dept = " + dept + ", salary = " + salary
+				+ ", active = " + active + "}";
 	}
 }
