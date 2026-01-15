@@ -10,9 +10,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
 import com.learning.model.Candidate;
 import com.learning.model.CandidateDto;
 import com.learning.model.Employee;
@@ -28,6 +28,13 @@ public class CollectorsDemo {
 	private static List<Student> students = StudentDto.findStudents();
 	private static List<Person> persons = PersonDto.findPersons();
 	private static List<Candidate> candidates = CandidateDto.findCandidates();
+	private static List<Integer> numbers = List.of(1, 2, 3);
+	private static List<Double> prices = List.of(100.18d, 200.86d, 300.56d);
+	private static List<Long> numbersL = List.of(123456L, 2765432L, 3982376L);
+	private static List<String> names = List.of("Ali", "Aman", "Bilal", "Simond", "Salman");
+
+	private static List<String> words = List.of("Apple", "Coconut", "Pear", "Blanket", "Dates", "Guava", "Picture",
+			"Mango", "Orange", "Bat", "Ball", "Cat", "Banana");
 
 	/**
 	 * This collector converts each element to a double and computes the arithmetic
@@ -35,7 +42,6 @@ public class CollectorsDemo {
 	 */
 	static void testAveragingDouble() {
 		System.out.println("===================== testAveragingDouble() =====================");
-		List<Integer> numbers = List.of(1, 2, 3);
 		System.out.println("Numbers = " + numbers);
 		Double average = numbers.stream().collect(Collectors.averagingDouble(n -> n));
 		System.out.println("Average = " + average);
@@ -55,9 +61,7 @@ public class CollectorsDemo {
 		System.out.println("Average Age = " + averageAge);
 		System.out.println("------------------------------------------------------------");
 
-		List<Integer> prices = List.of(100, 200, 300);
 		System.out.println("Prices = " + prices);
-
 		Double averagePrice = prices.stream().collect(Collectors.averagingDouble(p -> p));
 		System.out.println("Average Price = " + averagePrice);
 
@@ -68,7 +72,6 @@ public class CollectorsDemo {
 
 	static void testAveragingInt() {
 		System.out.println("\n\n===================== testAveragingInt() =====================");
-		List<Integer> numbers = List.of(1, 2, 3);
 		System.out.println("Numbers = " + numbers);
 
 		Double average = numbers.stream().collect(Collectors.averagingInt(n -> n));
@@ -85,10 +88,9 @@ public class CollectorsDemo {
 
 	static void testAveragingLong() {
 		System.out.println("\n\n===================== testAveragingLong() =====================");
-		List<Long> numbers = List.of(123456L, 2765432L, 3982376L);
-		System.out.println("Numbers = " + numbers);
+		System.out.println("Numbers = " + numbersL);
 
-		Double average = numbers.stream().collect(Collectors.averagingLong(n -> n));
+		Double average = numbersL.stream().collect(Collectors.averagingLong(n -> n));
 		System.out.println("Average = " + average);
 		System.out.println("------------------------------------------------------------");
 	}
@@ -113,7 +115,7 @@ public class CollectorsDemo {
 		}
 		System.out.println("------------------------------------------------------------");
 
-		List<Integer> numbers = List.of(5, 5, 5, 1, 1, 1, 4, 4, 4, 2, 2, 2, 3, 3);
+		numbers = List.of(5, 5, 5, 1, 1, 1, 4, 4, 4, 2, 2, 2, 3, 3);
 		System.out.println("Numbers = " + numbers);
 
 		int howManyUniqueNumbers = numbers.stream()
@@ -156,14 +158,11 @@ public class CollectorsDemo {
 		System.out.println(personsMap);
 		System.out.println("------------------------------------------------------------");
 
-		List<String> words = List.of("Apple", "Coconut", "Pear", "Blanket", "Dates", "Guava", "Picture", "Mango",
-				"Orange", "Bat", "Ball", "Cat", "Banana");
-
 		Map<Integer, List<String>> wordsMap = words.stream().collect(Collectors.groupingBy(String::length));
 		System.out.println(wordsMap);
 		System.out.println("------------------------------------------------------------");
 
-		List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+		numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 		System.out.println("Numbers: " + numbers);
 		Function<Integer, String> evenOddFunction = i -> i % 2 == 0 ? "EVEN" : "ODD";
 
@@ -172,7 +171,6 @@ public class CollectorsDemo {
 		System.out.println(evenOddMap);
 		System.out.println("------------------------------------------------------------");
 
-		List<String> names = List.of("Ali", "Aman", "Bilal", "Simond", "Salman");
 		Function<String, Character> charFunction = s -> s.charAt(0);
 		Map<Character, List<String>> namesMap = names.stream().collect(Collectors.groupingBy(charFunction));
 		System.out.println(namesMap);
@@ -272,6 +270,21 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	/**
+	 * groupingByConcurrent collector is mainly used with parallel streams to
+	 * perform thread-safe grouping.
+	 */
+	static void testGroupingByConcurrent_V1() {
+		System.out.println("\n\n===================== testGroupingByConcurrent_V1() =====================");
+		System.out.println("Words = " + words);
+
+		ConcurrentMap<Integer, List<String>> wordsGroupMap = words.parallelStream()
+				.collect(Collectors.groupingByConcurrent(String::length));
+		
+		wordsGroupMap.forEach((len, words) -> System.out.println(len + " -> " + words));
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		testAveragingDouble();
 		testAveragingInt();
@@ -281,5 +294,6 @@ public class CollectorsDemo {
 		testGroupingBy_V1();
 		testGroupingBy_V2();
 		testGroupingBy_V3();
+		testGroupingByConcurrent_V1();
 	}
 }
