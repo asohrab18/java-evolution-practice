@@ -13,6 +13,8 @@ import java.util.TreeMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import com.learning.model.Candidate;
 import com.learning.model.CandidateDto;
 import com.learning.model.Employee;
@@ -280,8 +282,37 @@ public class CollectorsDemo {
 
 		ConcurrentMap<Integer, List<String>> wordsGroupMap = words.parallelStream()
 				.collect(Collectors.groupingByConcurrent(String::length));
-		
+
 		wordsGroupMap.forEach((len, words) -> System.out.println(len + " -> " + words));
+		System.out.println("------------------------------------------------------------");
+
+		ConcurrentMap<String, List<Candidate>> candidatesGroupMap = candidates.parallelStream()
+				.collect(Collectors.groupingByConcurrent(Candidate::getDepartment));
+
+		candidatesGroupMap.forEach((dept, members) -> System.out.println(dept + " -> " + members));
+		
+		System.out.println("\n----------Difference Between groupingBy and groupingByConcurrent below: ----------------\n");
+		// groupingBy → returns Map<K, List<T>>
+		// NOT thread-safe
+		Map<String, List<Candidate>> map1 = candidates.stream()
+				.collect(Collectors.groupingBy(Candidate::getDepartment));
+
+		System.out.println("map1 = " + map1);
+		System.out.println("------------------------------------------------------------");
+
+		// groupingByConcurrent → returns ConcurrentMap<K, List<T>>
+		// Thread-safe, best with parallel streams
+		ConcurrentMap<String, List<Candidate>> map2 = candidates.parallelStream()
+				.collect(Collectors.groupingByConcurrent(Candidate::getDepartment));
+
+		System.out.println("map2 = " + map2);
+		
+		System.out.println("\n---------------- Verify Concurrent Behavior with Parallel Stream below: -------------");
+		ConcurrentMap<Integer, List<Integer>> result = IntStream.range(1, 20).parallel().boxed()
+				.collect(Collectors.groupingByConcurrent(n -> n % 2));
+
+		System.out.println("Even -> " + result.get(0));
+		System.out.println("Odd  -> " + result.get(1));
 		System.out.println("------------------------------------------------------------");
 	}
 
