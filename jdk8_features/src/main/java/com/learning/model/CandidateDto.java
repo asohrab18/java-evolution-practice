@@ -11,10 +11,13 @@ public class CandidateDto {
 		Candidate c4 = new Candidate("Denis", "Human Resource");
 		Candidate c5 = new Candidate("Elizabeth", "Information Technology");
 		Candidate c6 = new Candidate("Fedrick", "Information Technology");
-		Candidate c7 = new Candidate("Gagan", "Science");
-		Candidate c8 = new Candidate("Henry", "Science");
+		Candidate c7 = new Candidate("Gagan", "Information Technology");
+		Candidate c8 = new Candidate("Hamid", "Science");
+		Candidate c9 = new Candidate("Henry", "Science");
+		Candidate c10 = new Candidate("Ilyas", "Science");
+		Candidate c11 = new Candidate("Jack", "Science");
 
-		return List.of(c1, c2, c3, c4, c5, c6, c7, c8);
+		return List.of(c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11);
 	}
 
 	public static void printCandidates() {

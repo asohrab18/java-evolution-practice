@@ -290,8 +290,9 @@ public class CollectorsDemo {
 				.collect(Collectors.groupingByConcurrent(Candidate::getDepartment));
 
 		candidatesGroupMap.forEach((dept, members) -> System.out.println(dept + " -> " + members));
-		
-		System.out.println("\n----------Difference Between groupingBy and groupingByConcurrent below: ----------------\n");
+
+		System.out.println(
+				"\n----------Difference Between groupingBy and groupingByConcurrent below: ----------------\n");
 		// groupingBy → returns Map<K, List<T>>
 		// NOT thread-safe
 		Map<String, List<Candidate>> map1 = candidates.stream()
@@ -306,13 +307,51 @@ public class CollectorsDemo {
 				.collect(Collectors.groupingByConcurrent(Candidate::getDepartment));
 
 		System.out.println("map2 = " + map2);
-		
+
 		System.out.println("\n---------------- Verify Concurrent Behavior with Parallel Stream below: -------------");
 		ConcurrentMap<Integer, List<Integer>> result = IntStream.range(1, 20).parallel().boxed()
 				.collect(Collectors.groupingByConcurrent(n -> n % 2));
 
 		System.out.println("Even -> " + result.get(0));
 		System.out.println("Odd  -> " + result.get(1));
+		System.out.println("------------------------------------------------------------");
+	}
+
+	static void testGroupingByConcurrent_V2() {
+		System.out.println("\n\n===================== testGroupingByConcurrent_V2() =====================");
+		ConcurrentMap<String, Long> candidatesMap = candidates.parallelStream()
+				.collect(Collectors.groupingByConcurrent(Candidate::getDepartment, Collectors.counting()));
+
+		System.out.println(candidatesMap);
+		System.out.println("------------------------------------------------------------");
+
+		ConcurrentMap<String, List<String>> candidatesNamesMap = candidates.parallelStream()
+				.collect(Collectors.groupingByConcurrent(Candidate::getDepartment,
+						Collectors.mapping(Candidate::getName, Collectors.toList())));
+
+		System.out.println(candidatesNamesMap);
+		System.out.println("------------------------------------------------------------");
+
+		ConcurrentMap<String, Double> totalSalaryMap = employees.parallelStream().collect(
+				Collectors.groupingByConcurrent(Employee::getDept, Collectors.summingDouble(Employee::getSalary)));
+
+		System.out.println(totalSalaryMap);
+		System.out.println("------------------------------------------------------------");
+
+		ConcurrentMap<String, Double> averageSalaryMap = employees.parallelStream().collect(
+				Collectors.groupingByConcurrent(Employee::getDept, Collectors.averagingDouble(Employee::getSalary)));
+
+		System.out.println(averageSalaryMap);
+		System.out.println("------------------------------------------------------------");
+
+		ConcurrentMap<String, Optional<Employee>> maxSalaryMap = employees.parallelStream().collect(Collectors
+				.groupingByConcurrent(Employee::getDept, Collectors.maxBy(Comparator.comparing(Employee::getSalary))));
+
+		maxSalaryMap.forEach((dept, empOpt) -> {
+			Employee emp = empOpt.orElse(new Employee());
+			System.out.println(
+					"In " + dept + " department, " + emp.getName() + " has maximum Salary = " + emp.getSalary());
+		});
 		System.out.println("------------------------------------------------------------");
 	}
 
@@ -326,5 +365,6 @@ public class CollectorsDemo {
 		testGroupingBy_V2();
 		testGroupingBy_V3();
 		testGroupingByConcurrent_V1();
+		testGroupingByConcurrent_V2();
 	}
 }
