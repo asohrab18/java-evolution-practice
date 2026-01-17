@@ -15,7 +15,6 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
 import com.learning.model.Candidate;
 import com.learning.model.CandidateDto;
 import com.learning.model.Employee;
@@ -384,6 +383,21 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	static void testJoining() {
+		System.out.println("\n\n===================== testJoining_V1() =====================");
+		String joined = names.stream().collect(Collectors.joining());
+		System.out.println(joined);
+		System.out.println("------------------------------------------------------------");
+
+		String joinedWithDelimeter = names.stream().collect(Collectors.joining(", "));
+		System.out.println(joinedWithDelimeter);
+		System.out.println("------------------------------------------------------------");
+
+		String joinedWithPrefixSuffix = names.stream().collect(Collectors.joining(", ", "<students>", "</students>"));
+		System.out.println(joinedWithPrefixSuffix);
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		testAveragingDouble();
 		testAveragingInt();
@@ -396,5 +410,6 @@ public class CollectorsDemo {
 		testGroupingByConcurrent_V1();
 		testGroupingByConcurrent_V2();
 		testGroupingByConcurrent_V3();
+		testJoining();
 	}
 }
