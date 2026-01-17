@@ -15,6 +15,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
 import com.learning.model.Candidate;
 import com.learning.model.CandidateDto;
 import com.learning.model.Employee;
@@ -384,7 +385,7 @@ public class CollectorsDemo {
 	}
 
 	static void testJoining() {
-		System.out.println("\n\n===================== testJoining_V1() =====================");
+		System.out.println("\n\n===================== testJoining() =====================");
 		String joined = names.stream().collect(Collectors.joining());
 		System.out.println(joined);
 		System.out.println("------------------------------------------------------------");
@@ -395,6 +396,25 @@ public class CollectorsDemo {
 
 		String joinedWithPrefixSuffix = names.stream().collect(Collectors.joining(", ", "<students>", "</students>"));
 		System.out.println(joinedWithPrefixSuffix);
+		System.out.println("------------------------------------------------------------");
+	}
+
+	static void testMapping() {
+		System.out.println("\n\n===================== testMapping() =====================");
+		List<String> data = words.stream().collect(Collectors.mapping(String::toUpperCase, Collectors.toList()));
+		System.out.println(data);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, List<String>> employeesMap = employees.stream().collect(
+				Collectors.groupingBy(Employee::getDept, Collectors.mapping(Employee::getName, Collectors.toList())));
+
+		System.out.println(employeesMap);
+		System.out.println("------------------------------------------------------------");
+
+		Map<Integer, Set<String>> wordLengthMap = words.stream().collect(
+				Collectors.groupingBy(String::length, Collectors.mapping(String::toUpperCase, Collectors.toSet())));
+
+		System.out.println(wordLengthMap);
 		System.out.println("------------------------------------------------------------");
 	}
 
@@ -411,5 +431,6 @@ public class CollectorsDemo {
 		testGroupingByConcurrent_V2();
 		testGroupingByConcurrent_V3();
 		testJoining();
+		testMapping();
 	}
 }
