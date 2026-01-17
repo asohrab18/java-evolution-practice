@@ -32,6 +32,7 @@ public class CollectorsDemo {
 	private static List<Person> persons = PersonDto.findPersons();
 	private static List<Candidate> candidates = CandidateDto.findCandidates();
 	private static List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+	private static List<Integer> duplicateNumbers = List.of(5, 5, 5, 1, 1, 1, 4, 4, 4, 2, 2, 2, 3, 3);
 	private static List<Double> prices = List.of(100.18d, 200.86d, 300.56d);
 	private static List<Long> numbersL = List.of(123456L, 2765432L, 3982376L);
 	private static List<String> names = List.of("Ali", "Aman", "Bilal", "Simond", "Salman");
@@ -118,10 +119,9 @@ public class CollectorsDemo {
 		}
 		System.out.println("------------------------------------------------------------");
 
-		numbers = List.of(5, 5, 5, 1, 1, 1, 4, 4, 4, 2, 2, 2, 3, 3);
-		System.out.println("Numbers = " + numbers);
+		System.out.println("Duplicate Numbers = " + duplicateNumbers);
 
-		int howManyUniqueNumbers = numbers.stream()
+		int howManyUniqueNumbers = duplicateNumbers.stream()
 				.collect(Collectors.collectingAndThen(Collectors.toSet(), Set::size));
 
 		System.out.println("How many unique Numbers are available?\nANS: " + howManyUniqueNumbers);
@@ -418,6 +418,14 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	static void testMaxBy() {
+		System.out.println("\n\n===================== testMaxBy() =====================");
+		System.out.println("Numbers = " + numbers);
+		Optional<Integer> maxNumberOpt = numbers.stream().collect(Collectors.maxBy(Comparator.naturalOrder()));
+		maxNumberOpt.ifPresent(System.out::println);
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		testAveragingDouble();
 		testAveragingInt();
@@ -432,5 +440,6 @@ public class CollectorsDemo {
 		testGroupingByConcurrent_V3();
 		testJoining();
 		testMapping();
+		testMaxBy();
 	}
 }
