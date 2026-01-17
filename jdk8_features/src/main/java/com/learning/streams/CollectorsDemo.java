@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -30,13 +31,13 @@ public class CollectorsDemo {
 	private static List<Student> students = StudentDto.findStudents();
 	private static List<Person> persons = PersonDto.findPersons();
 	private static List<Candidate> candidates = CandidateDto.findCandidates();
-	private static List<Integer> numbers = List.of(1, 2, 3);
+	private static List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 	private static List<Double> prices = List.of(100.18d, 200.86d, 300.56d);
 	private static List<Long> numbersL = List.of(123456L, 2765432L, 3982376L);
 	private static List<String> names = List.of("Ali", "Aman", "Bilal", "Simond", "Salman");
 
 	private static List<String> words = List.of("Apple", "Coconut", "Pear", "Blanket", "Dates", "Guava", "Picture",
-			"Mango", "Orange", "Bat", "Ball", "Cat", "Banana");
+			"Mango", "Orange", "Bat", "Ball", "Cat", "Cat", "Cat", "Banana");
 
 	/**
 	 * This collector converts each element to a double and computes the arithmetic
@@ -164,7 +165,6 @@ public class CollectorsDemo {
 		System.out.println(wordsMap);
 		System.out.println("------------------------------------------------------------");
 
-		numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 		System.out.println("Numbers: " + numbers);
 		Function<Integer, String> evenOddFunction = i -> i % 2 == 0 ? "EVEN" : "ODD";
 
@@ -355,6 +355,35 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	static void testGroupingByConcurrent_V3() {
+		System.out.println("\n\n===================== testGroupingByConcurrent_V3() =====================");
+		ConcurrentMap<String, Long> candidatesMap = candidates.parallelStream().collect(
+				Collectors.groupingByConcurrent(Candidate::getDepartment, ConcurrentHashMap::new, Collectors.counting())
+
+		);
+
+		System.out.println(candidatesMap);
+		System.out.println("------------------------------------------------------------");
+
+		ConcurrentMap<String, List<Integer>> evenOddMap = numbers.parallelStream().collect(Collectors
+				.groupingByConcurrent(n -> n % 2 == 0 ? "EVEN" : "ODD", ConcurrentHashMap::new, Collectors.toList()));
+
+		System.out.println(evenOddMap);
+		System.out.println("------------------------------------------------------------");
+
+		ConcurrentMap<String, Double> avgSalaryMap = employees.parallelStream().collect(Collectors.groupingByConcurrent(
+				Employee::getDept, ConcurrentHashMap::new, Collectors.averagingDouble(Employee::getSalary)));
+
+		System.out.println(avgSalaryMap);
+		System.out.println("------------------------------------------------------------");
+
+		ConcurrentMap<Integer, Set<String>> wordsMap = words.parallelStream()
+				.collect(Collectors.groupingByConcurrent(String::length, ConcurrentHashMap::new, Collectors.toSet()));
+
+		System.out.println(wordsMap);
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		testAveragingDouble();
 		testAveragingInt();
@@ -366,5 +395,6 @@ public class CollectorsDemo {
 		testGroupingBy_V3();
 		testGroupingByConcurrent_V1();
 		testGroupingByConcurrent_V2();
+		testGroupingByConcurrent_V3();
 	}
 }

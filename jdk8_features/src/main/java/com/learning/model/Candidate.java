@@ -30,7 +30,7 @@ public class Candidate {
 
 	@Override
 	public String toString() {
-		return "{Name: " + name + " from Department: " + department + "}";
+		return "'" + name + " from " + department + " department'";
 	}
 
 }
