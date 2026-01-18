@@ -1,5 +1,6 @@
 package com.learning.streams;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
@@ -15,11 +16,12 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
 import com.learning.model.Candidate;
 import com.learning.model.CandidateDto;
 import com.learning.model.Employee;
 import com.learning.model.EmployeeDto;
+import com.learning.model.Order;
+import com.learning.model.OrderDto;
 import com.learning.model.Person;
 import com.learning.model.PersonDto;
 import com.learning.model.Student;
@@ -31,8 +33,12 @@ public class CollectorsDemo {
 	private static List<Student> students = StudentDto.findStudents();
 	private static List<Person> persons = PersonDto.findPersons();
 	private static List<Candidate> candidates = CandidateDto.findCandidates();
+	private static List<Order> orders = OrderDto.findOrders();
 	private static List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 	private static List<Integer> duplicateNumbers = List.of(5, 5, 5, 1, 1, 1, 4, 4, 4, 2, 2, 2, 3, 3);
+	
+	private static List<Integer> numbersIncludingNull = Arrays.asList(1, 2, null, 3, 4, 5, 6, null, 7, 8, 9, null, 10);
+	
 	private static List<Double> prices = List.of(100.18d, 200.86d, 300.56d);
 	private static List<Long> numbersL = List.of(123456L, 2765432L, 3982376L);
 	private static List<String> names = List.of("Ali", "Aman", "Bilal", "Simond", "Salman");
@@ -424,6 +430,38 @@ public class CollectorsDemo {
 		Optional<Integer> maxNumberOpt = numbers.stream().collect(Collectors.maxBy(Comparator.naturalOrder()));
 		maxNumberOpt.ifPresent(System.out::println);
 		System.out.println("------------------------------------------------------------");
+
+		Optional<Integer> maxNumberOpt2 = numbers.stream().collect(Collectors.maxBy(Comparator.reverseOrder()));
+		maxNumberOpt2.ifPresent(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		System.out.println("Numbers Including Null = " + numbersIncludingNull);
+
+		numbersIncludingNull.sort(Comparator.nullsFirst(Comparator.naturalOrder()));
+
+		System.out.println("Numbers with Null First = " + numbersIncludingNull);
+
+		numbersIncludingNull.sort(Comparator.nullsLast(Comparator.naturalOrder()));
+		System.out.println("Numbers with Null Last = " + numbersIncludingNull);
+		System.out.println("------------------------------------------------------------");
+
+		Optional<Employee> employeeOpt = employees.stream()
+				.collect(Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary)));
+
+		employeeOpt.ifPresent(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Optional<Order> latestOrderOpt = orders.stream()
+				.collect(Collectors.maxBy(Comparator.comparing(Order::getOrderDate)));
+
+		latestOrderOpt.ifPresent(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, Optional<Employee>> employeeOptionalMap = employees.stream().collect(Collectors
+				.groupingBy(Employee::getDept, Collectors.maxBy(Comparator.comparingDouble(Employee::getSalary))));
+
+		employeeOptionalMap.forEach((department, optionalEmployee) -> System.out
+				.println(department + "" + optionalEmployee.orElse(new Employee())));
 	}
 
 	public static void main(String[] args) {
