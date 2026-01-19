@@ -493,6 +493,47 @@ public class CollectorsDemo {
 
 		employeeOptionalMap.forEach((department, optionalEmployee) -> System.out
 				.println(department + "" + optionalEmployee.orElse(new Employee())));
+
+		System.out.println("------------------------------------------------------------");
+	}
+
+	static void testPartitioningBy_V1() {
+		System.out.println("\n\n===================== testPartitioningBy_V1() =====================");
+		System.out.println("Numbers = " + numbers);
+
+		Map<Boolean, List<Integer>> numbersMap = numbers.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0));
+
+		System.out.println("numbersMap = " + numbersMap);
+		System.out.println("Odd Numbers = " + numbersMap.get(false));
+		System.out.println("Even Numbers = " + numbersMap.get(true));
+		System.out.println("------------------------------------------------------------");
+
+		System.out.println("names = " + names);
+		Map<Boolean, List<String>> namesMap = names.stream().collect(Collectors.partitioningBy(s -> s.length() > 4));
+
+		System.out.println("namesMap = " + namesMap);
+		System.out.println("Names with less than or equal to 4 characters = " + namesMap.get(false));
+		System.out.println("Names with greater than 4 characters = " + namesMap.get(true));
+		System.out.println("------------------------------------------------------------");
+
+		double salary = 15000d;
+		Map<Boolean, List<Employee>> employeesMap = employees.stream()
+				.collect(Collectors.partitioningBy(emp -> emp.getSalary() >= salary));
+
+		List<Employee> employeesWithHigherSalary = employeesMap.get(true);
+		List<Employee> employeesWithLowerSalary = employeesMap.get(false);
+
+		Function<Employee, String> nameFunction = e -> e.getName();
+
+		List<String> names = employeesWithHigherSalary.stream()
+				.collect(Collectors.mapping(nameFunction, Collectors.toList()));
+
+		List<String> otherNames = employeesWithLowerSalary.stream()
+				.collect(Collectors.mapping(nameFunction, Collectors.toList()));
+
+		System.out.println("Employees With Salary >= " + salary + " : " + names);
+		System.out.println("Employees With Salary < " + salary + " : " + otherNames);
+		System.out.println("------------------------------------------------------------");
 	}
 
 	public static void main(String[] args) {
@@ -511,5 +552,6 @@ public class CollectorsDemo {
 		testMapping();
 		testMaxBy();
 		testMinBy();
+		testPartitioningBy_V1();
 	}
 }
