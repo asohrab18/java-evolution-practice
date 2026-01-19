@@ -463,21 +463,52 @@ public class CollectorsDemo {
 		employeeOptionalMap.forEach((department, optionalEmployee) -> System.out
 				.println(department + "" + optionalEmployee.orElse(new Employee())));
 	}
+	
+	static void testMinBy() {
+		System.out.println("\n\n===================== testMinBy() =====================");
+		System.out.println("Numbers = " + numbers);
+		Optional<Integer> minNumberOpt = numbers.stream().collect(Collectors.minBy(Comparator.naturalOrder()));
+		minNumberOpt.ifPresent(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Optional<Integer> minNumberOpt2 = numbers.stream().collect(Collectors.minBy(Comparator.reverseOrder()));
+		minNumberOpt2.ifPresent(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Optional<Employee> employeeOpt = employees.stream()
+				.collect(Collectors.minBy(Comparator.comparingDouble(Employee::getSalary)));
+
+		employeeOpt.ifPresent(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Optional<Order> oldOrderOpt = orders.stream()
+				.collect(Collectors.minBy(Comparator.comparing(Order::getOrderDate)));
+
+		oldOrderOpt.ifPresent(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, Optional<Employee>> employeeOptionalMap = employees.stream().collect(Collectors
+				.groupingBy(Employee::getDept, Collectors.minBy(Comparator.comparingDouble(Employee::getSalary))));
+
+		employeeOptionalMap.forEach((department, optionalEmployee) -> System.out
+				.println(department + "" + optionalEmployee.orElse(new Employee())));
+	}
 
 	public static void main(String[] args) {
-		testAveragingDouble();
-		testAveragingInt();
-		testAveragingLong();
-		testCollectingAndThen();
-		testCounting();
-		testGroupingBy_V1();
-		testGroupingBy_V2();
-		testGroupingBy_V3();
-		testGroupingByConcurrent_V1();
-		testGroupingByConcurrent_V2();
-		testGroupingByConcurrent_V3();
-		testJoining();
-		testMapping();
-		testMaxBy();
+//		testAveragingDouble();
+//		testAveragingInt();
+//		testAveragingLong();
+//		testCollectingAndThen();
+//		testCounting();
+//		testGroupingBy_V1();
+//		testGroupingBy_V2();
+//		testGroupingBy_V3();
+//		testGroupingByConcurrent_V1();
+//		testGroupingByConcurrent_V2();
+//		testGroupingByConcurrent_V3();
+//		testJoining();
+//		testMapping();
+//		testMaxBy();
+		testMinBy();
 	}
 }
