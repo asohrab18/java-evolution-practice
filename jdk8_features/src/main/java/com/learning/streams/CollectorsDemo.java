@@ -16,6 +16,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
 import com.learning.model.Candidate;
 import com.learning.model.CandidateDto;
 import com.learning.model.Employee;
@@ -36,9 +37,9 @@ public class CollectorsDemo {
 	private static List<Order> orders = OrderDto.findOrders();
 	private static List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 	private static List<Integer> duplicateNumbers = List.of(5, 5, 5, 1, 1, 1, 4, 4, 4, 2, 2, 2, 3, 3);
-	
+
 	private static List<Integer> numbersIncludingNull = Arrays.asList(1, 2, null, 3, 4, 5, 6, null, 7, 8, 9, null, 10);
-	
+
 	private static List<Double> prices = List.of(100.18d, 200.86d, 300.56d);
 	private static List<Long> numbersL = List.of(123456L, 2765432L, 3982376L);
 	private static List<String> names = List.of("Ali", "Aman", "Bilal", "Simond", "Salman");
@@ -463,7 +464,7 @@ public class CollectorsDemo {
 		employeeOptionalMap.forEach((department, optionalEmployee) -> System.out
 				.println(department + "" + optionalEmployee.orElse(new Employee())));
 	}
-	
+
 	static void testMinBy() {
 		System.out.println("\n\n===================== testMinBy() =====================");
 		System.out.println("Numbers = " + numbers);
@@ -495,20 +496,20 @@ public class CollectorsDemo {
 	}
 
 	public static void main(String[] args) {
-//		testAveragingDouble();
-//		testAveragingInt();
-//		testAveragingLong();
-//		testCollectingAndThen();
-//		testCounting();
-//		testGroupingBy_V1();
-//		testGroupingBy_V2();
-//		testGroupingBy_V3();
-//		testGroupingByConcurrent_V1();
-//		testGroupingByConcurrent_V2();
-//		testGroupingByConcurrent_V3();
-//		testJoining();
-//		testMapping();
-//		testMaxBy();
+		testAveragingDouble();
+		testAveragingInt();
+		testAveragingLong();
+		testCollectingAndThen();
+		testCounting();
+		testGroupingBy_V1();
+		testGroupingBy_V2();
+		testGroupingBy_V3();
+		testGroupingByConcurrent_V1();
+		testGroupingByConcurrent_V2();
+		testGroupingByConcurrent_V3();
+		testJoining();
+		testMapping();
+		testMaxBy();
 		testMinBy();
 	}
 }
