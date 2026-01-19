@@ -35,7 +35,7 @@ public class CollectorsDemo {
 	private static List<Person> persons = PersonDto.findPersons();
 	private static List<Candidate> candidates = CandidateDto.findCandidates();
 	private static List<Order> orders = OrderDto.findOrders();
-	private static List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+	private static List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
 	private static List<Integer> duplicateNumbers = List.of(5, 5, 5, 1, 1, 1, 4, 4, 4, 2, 2, 2, 3, 3);
 
 	private static List<Integer> numbersIncludingNull = Arrays.asList(1, 2, null, 3, 4, 5, 6, null, 7, 8, 9, null, 10);
@@ -536,6 +536,38 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	static void testPartitioningBy_V2() {
+		System.out.println("\n\n===================== testPartitioningBy_V2() =====================");
+		System.out.println("Numbers = " + numbers);
+
+		Map<Boolean, Long> numbersMap = numbers.stream()
+				.collect(Collectors.partitioningBy(n -> n % 2 == 0, Collectors.counting()));
+
+		System.out.println("Total available Odd Numbers = " + numbersMap.get(false));
+		System.out.println("Total available Even Numbers = " + numbersMap.get(true));
+		System.out.println("------------------------------------------------------------");
+
+		System.out.println("names = " + names);
+		Map<Boolean, String> namesMap = names.stream()
+				.collect(Collectors.partitioningBy(s -> s.length() > 4, Collectors.joining(", ")));
+
+		System.out.println("Names with less than or equal to 4 characters = " + namesMap.get(false));
+		System.out.println("Names with greater than 4 characters = " + namesMap.get(true));
+		System.out.println("------------------------------------------------------------");
+
+		double salary = 15000d;
+
+		Map<Boolean, List<String>> employeesMap = employees.stream().collect(Collectors.partitioningBy(
+				emp -> emp.getSalary() >= salary, Collectors.mapping(Employee::getName, Collectors.toList())));
+
+		List<String> employeesWithHigherSalary = employeesMap.get(true);
+		List<String> employeesWithLowerSalary = employeesMap.get(false);
+
+		System.out.println("Employees With Salary >= " + salary + " : " + employeesWithHigherSalary);
+		System.out.println("Employees With Salary < " + salary + " : " + employeesWithLowerSalary);
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		testAveragingDouble();
 		testAveragingInt();
@@ -553,5 +585,6 @@ public class CollectorsDemo {
 		testMaxBy();
 		testMinBy();
 		testPartitioningBy_V1();
+		testPartitioningBy_V2();
 	}
 }
