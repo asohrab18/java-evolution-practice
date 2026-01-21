@@ -17,6 +17,7 @@ import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
 import com.learning.model.Candidate;
 import com.learning.model.CandidateDto;
 import com.learning.model.Employee;
@@ -585,6 +586,22 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	static void testReducing_V2() {
+		System.out.println("\n\n===================== testReducing_V2() =====================");
+		BinaryOperator<String> longStringBo = (s1, s2) -> s1.length() >= s2.length() ? s1 : s2;
+		String longestString = words.stream().collect(Collectors.reducing("", longStringBo));
+
+		System.out.println("Longest String is '" + longestString + "'\n");
+		System.out.println("------------------------------------------------------------");
+
+		BinaryOperator<Employee> highestSalaryBo = (emp1, emp2) -> emp1.getSalary() >= emp2.getSalary() ? emp1 : emp2;
+		Employee highestSalaryEmployee = employees.stream()
+				.collect(Collectors.reducing(new Employee(), highestSalaryBo));
+
+		System.out.println("Highest salary employee is: " + highestSalaryEmployee + "\n");
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		testAveragingDouble();
 		testAveragingInt();
@@ -604,5 +621,6 @@ public class CollectorsDemo {
 		testPartitioningBy_V1();
 		testPartitioningBy_V2();
 		testReducing_V1();
+		testReducing_V2();
 	}
 }
