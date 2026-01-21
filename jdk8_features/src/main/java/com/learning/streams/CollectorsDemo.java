@@ -5,8 +5,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.HashMap;
+import java.util.IntSummaryStatistics;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.LongSummaryStatistics;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -616,6 +618,32 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	static void testSummarizingDouble() {
+		System.out.println("\n\n===================== testSummarizingDouble() =====================");
+		DoubleSummaryStatistics employeesSalaryStatistics = employees.stream()
+				.collect(Collectors.summarizingDouble(Employee::getSalary));
+
+		System.out.println(employeesSalaryStatistics);
+		System.out.println("------------------------------------------------------------");
+	}
+
+	static void testSummarizingInt() {
+		System.out.println("\n\n===================== testSummarizingInt() =====================");
+		IntSummaryStatistics employessAgeStatistics = employees.stream()
+				.collect(Collectors.summarizingInt(Employee::getAge));
+
+		System.out.println(employessAgeStatistics);
+		System.out.println("------------------------------------------------------------");
+	}
+
+	static void testSummarizingLong() {
+		System.out.println("\n\n===================== testSummarizingLong() =====================");
+		LongSummaryStatistics numbersSummaryStatistics = numbersL.stream()
+				.collect(Collectors.summarizingLong(num -> num));
+		System.out.println(numbersSummaryStatistics);
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		testAveragingDouble();
 		testAveragingInt();
@@ -637,5 +665,8 @@ public class CollectorsDemo {
 		testReducing_V1();
 		testReducing_V2();
 		testReducing_V3();
+		testSummarizingDouble();
+		testSummarizingInt();
+		testSummarizingLong();
 	}
 }
