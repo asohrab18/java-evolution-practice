@@ -602,6 +602,20 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	static void testReducing_V3() {
+		System.out.println("\n\n===================== testReducing_V3() =====================");
+
+		BinaryOperator<Integer> ageBo = (a1, a2) -> a1 >= a2 ? a1 : a2;
+		Integer age = students.stream().collect(Collectors.reducing(0, Student::getAge, ageBo));
+		System.out.println("Oldest Student's age is: " + age + "\n");
+		System.out.println("------------------------------------------------------------");
+
+		BinaryOperator<Double> salaryBo = (sal1, sal2) -> sal1 >= sal2 ? sal1 : sal2;
+		Double maxSalary = employees.stream().collect(Collectors.reducing(0d, Employee::getSalary, salaryBo));
+		System.out.println("Highest salary of an employee is: " + maxSalary + "\n");
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		testAveragingDouble();
 		testAveragingInt();
@@ -622,5 +636,6 @@ public class CollectorsDemo {
 		testPartitioningBy_V2();
 		testReducing_V1();
 		testReducing_V2();
+		testReducing_V3();
 	}
 }

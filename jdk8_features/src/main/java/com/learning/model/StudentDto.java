@@ -8,7 +8,7 @@ public class StudentDto {
 		Student s1 = new Student("Adam", 48);
 		Student s2 = new Student("Baby", 20);
 		Student s3 = new Student("Celina", 36);
-		Student s4 = new Student("Denis", 15);
+		Student s4 = new Student("Denis", 55);
 		Student s5 = new Student("Eliza", 13);
 
 		return List.of(s1, s2, s3, s4, s5);
