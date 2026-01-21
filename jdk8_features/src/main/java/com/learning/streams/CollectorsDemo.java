@@ -13,10 +13,10 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
 import com.learning.model.Candidate;
 import com.learning.model.CandidateDto;
 import com.learning.model.Employee;
@@ -45,7 +45,7 @@ public class CollectorsDemo {
 	private static List<String> names = List.of("Ali", "Aman", "Bilal", "Simond", "Salman");
 
 	private static List<String> words = List.of("Apple", "Coconut", "Pear", "Blanket", "Dates", "Guava", "Picture",
-			"Mango", "Orange", "Bat", "Ball", "Cat", "Cat", "Cat", "Banana");
+			"Mango", "Orange", "Bat", "Ball", "Cat", "Cat", "Cat", "Banana", "Microservices");
 
 	/**
 	 * This collector converts each element to a double and computes the arithmetic
@@ -568,6 +568,23 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	static void testReducing_V1() {
+		System.out.println("\n\n===================== testReducing_V1() =====================");
+		System.out.println("words = " + words + "\n");
+
+		BinaryOperator<String> longStringBo = (s1, s2) -> s1.length() >= s2.length() ? s1 : s2;
+		Optional<String> longestStringOpt = words.stream().collect(Collectors.reducing(longStringBo));
+
+		System.out.println("Longest String is '" + longestStringOpt.get() + "'\n");
+		System.out.println("------------------------------------------------------------");
+
+		BinaryOperator<Employee> highestSalaryBo = (emp1, emp2) -> emp1.getSalary() >= emp2.getSalary() ? emp1 : emp2;
+		Optional<Employee> highestSalaryOpt = employees.stream().collect(Collectors.reducing(highestSalaryBo));
+
+		System.out.println("Highest salary employee is: " + highestSalaryOpt.get() + "\n");
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		testAveragingDouble();
 		testAveragingInt();
@@ -586,5 +603,6 @@ public class CollectorsDemo {
 		testMinBy();
 		testPartitioningBy_V1();
 		testPartitioningBy_V2();
+		testReducing_V1();
 	}
 }
