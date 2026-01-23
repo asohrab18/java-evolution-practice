@@ -1,18 +1,23 @@
 package com.learning.streams;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.IntSummaryStatistics;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.LongSummaryStatistics;
 import java.util.Map;
 import java.util.Optional;
+import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.BinaryOperator;
@@ -674,6 +679,34 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	static void testToCollection() {
+		System.out.println("\n\n===================== testToCollection() =====================");
+		List<String> fruits = List.of("Apple", "Banana", "Coconut", "Mango");
+		ArrayList<String> fruitsArrayList = fruits.stream().collect(Collectors.toCollection(ArrayList::new));
+		System.out.println("fruitsArrayList = " + fruitsArrayList);
+		System.out.println("------------------------------------------------------------");
+
+		List<Integer> ranks = List.of(10, 20, 30, 40, 50);
+		LinkedList<Integer> ranksLinkedList = ranks.stream().collect(Collectors.toCollection(LinkedList::new));
+		System.out.println("ranksLinkedList = " + ranksLinkedList);
+		System.out.println("------------------------------------------------------------");
+
+		List<String> alphabets = List.of("A", "A", "B", "C", "C", "D");
+		HashSet<String> alphabetsHashSet = alphabets.stream().collect(Collectors.toCollection(HashSet::new));
+		System.out.println("alphabetsHashSet = " + alphabetsHashSet);
+		System.out.println("------------------------------------------------------------");
+
+		List<Integer> rollNumbers = List.of(5, 2, 4, 3, 1, 1, 1, 2, 3, 4, 6, 8, 9, 10, 10);
+		TreeSet<Integer> rollNumbersTreeSet = rollNumbers.stream().collect(Collectors.toCollection(TreeSet::new));
+		System.out.println("rollNumbersTreeSet = " + rollNumbersTreeSet);
+		System.out.println("------------------------------------------------------------");
+
+		List<Integer> nums = List.of(40, 10, 30);
+		PriorityQueue<Integer> numsPriorityQueue = nums.stream().collect(Collectors.toCollection(PriorityQueue::new));
+		System.out.println("numsPriorityQueue = " + numsPriorityQueue);
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		testAveragingDouble();
 		testAveragingInt();
@@ -701,5 +734,6 @@ public class CollectorsDemo {
 		testSummingDouble();
 		testSummingInt();
 		testSummingLong();
+		testToCollection();
 	}
 }
