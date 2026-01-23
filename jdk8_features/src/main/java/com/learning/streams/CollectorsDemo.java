@@ -644,6 +644,36 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	static void testSummingDouble() {
+		System.out.println("\n\n===================== testSummingDouble() =====================");
+		Double totalSalaryOfEmployees = employees.stream().collect(Collectors.summingDouble(Employee::getSalary));
+		System.out.println("Total Salary of all employees = " + totalSalaryOfEmployees);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, Double> employeesSalaryMap = employees.stream()
+				.collect(Collectors.groupingBy(Employee::getDept, Collectors.summingDouble(Employee::getSalary)));
+
+		employeesSalaryMap.forEach((dept, totalSalary) -> System.out.println(dept + ": " + totalSalary));
+
+		System.out.println("------------------------------------------------------------");
+	}
+
+	static void testSummingInt() {
+		System.out.println("\n\n===================== testSummingInt() =====================");
+		System.out.println("numbers = " + numbers);
+		Integer sum = numbers.stream().collect(Collectors.summingInt(n -> n));
+		System.out.println("Total Sum = " + sum);
+		System.out.println("------------------------------------------------------------");
+	}
+
+	static void testSummingLong() {
+		System.out.println("\n\n===================== testSummingLong() =====================");
+		System.out.println("numbers = " + numbersL);
+		Long sum = numbersL.stream().collect(Collectors.summingLong(n -> n));
+		System.out.println("Total Sum = " + sum);
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		testAveragingDouble();
 		testAveragingInt();
@@ -668,5 +698,8 @@ public class CollectorsDemo {
 		testSummarizingDouble();
 		testSummarizingInt();
 		testSummarizingLong();
+		testSummingDouble();
+		testSummingInt();
+		testSummingLong();
 	}
 }
