@@ -707,6 +707,30 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	static void testToList() {
+		System.out.println("\n\n===================== testToList() =====================");
+		List<String> immutableFruits = List.of("Apple", "Banana", "Coconut", "Mango");
+		System.out.println("fruits = " + immutableFruits);
+
+		List<String> mutableFruits = immutableFruits.stream().collect(Collectors.toList());
+		mutableFruits.add("Papaya");
+		System.out.println("mutableFruits = " + mutableFruits);
+		System.out.println("------------------------------------------------------------");
+	}
+
+	static void testToSet() {
+		System.out.println("\n\n===================== testToSet() =====================");
+		Set<String> immutableFruits = Set.of("Apple", "Banana", "Coconut", "Mango");
+		System.out.println("fruits = " + immutableFruits);
+
+		Set<String> mutableFruits = immutableFruits.stream().collect(Collectors.toSet());
+		mutableFruits.add("Papaya");
+		mutableFruits.add("Papaya");
+		mutableFruits.add("Guava");
+		System.out.println("mutableFruits = " + mutableFruits);
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		testAveragingDouble();
 		testAveragingInt();
@@ -735,5 +759,7 @@ public class CollectorsDemo {
 		testSummingInt();
 		testSummingLong();
 		testToCollection();
+		testToList();
+		testToSet();
 	}
 }
