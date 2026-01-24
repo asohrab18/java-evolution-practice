@@ -785,6 +785,71 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	static void testToMap_V1() {
+		System.out.println("\n\n===================== testToMap_V1() =====================");
+
+		Map<Integer, String> employeesMap = AppUtils.employees.stream()
+				.collect(Collectors.toMap(Employee::getId, Employee::getName));
+
+		System.out.println("Employees Map = " + employeesMap);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, Integer> namesMap = AppUtils.names.stream().collect(Collectors.toMap(name -> name, String::length));
+
+		System.out.println("Names Map = " + namesMap);
+		System.out.println("------------------------------------------------------------");
+	}
+
+	static void testToMap_V2() {
+		System.out.println("\n\n===================== testToMap_V2() =====================");
+
+		Map<String, Integer> wordsMap = AppUtils.words.stream()
+				.collect(Collectors.toMap(word -> word, String::length, (val1, val2) -> val1 + val2 * 0));
+
+		System.out.println("Words Map = " + wordsMap);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, Double> departmentSalaryMap = AppUtils.employees.stream().collect(
+				Collectors.toMap(Employee::getDept, Employee::getSalary, (sal1, sal2) -> sal1 >= sal2 ? sal1 : sal2));
+
+		System.out.println("Department-Salary Map = " + departmentSalaryMap);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, Integer> wordFrequencyMap = AppUtils.words.stream()
+				.collect(Collectors.toMap(word -> word, val -> 1, (val1, val2) -> val1 + val2));
+
+		System.out.println("Word Frequency Map = " + wordFrequencyMap);
+		System.out.println("------------------------------------------------------------");
+
+		Map<String, String> employeesMap = AppUtils.employees.stream().collect(
+				Collectors.toMap(Employee::getDept, Employee::getName, (name1, name2) -> name1 + " | " + name2));
+
+		System.out.println("Employees Map = " + employeesMap);
+		System.out.println("------------------------------------------------------------");
+	}
+
+	static void testToMap_V3() {
+		System.out.println("\n\n===================== testToMap_V3() =====================");
+
+		HashMap<String, Integer> wordsFrequencyMap = AppUtils.words.stream()
+				.collect(Collectors.toMap(w -> w, v -> 1, (val1, val2) -> val1 + val2, HashMap::new));
+
+		System.out.println("Words Frequency Map = " + wordsFrequencyMap);
+		System.out.println("------------------------------------------------------------");
+
+		LinkedHashMap<Integer, String> lengthNamesMap = AppUtils.names.stream().collect(Collectors.toMap(String::length,
+				name -> name, (val1, val2) -> val1 + " | " + val2, LinkedHashMap::new));
+
+		System.out.println("Length Names Map = " + lengthNamesMap);
+		System.out.println("------------------------------------------------------------");
+
+		TreeMap<String, Double> departmentMaximumSalaryMap = AppUtils.employees.stream().collect(Collectors.toMap(
+				Employee::getDept, Employee::getSalary, (sal1, sal2) -> sal1 >= sal2 ? sal1 : sal2, TreeMap::new));
+
+		System.out.println("Department's Maximum Salary Map = " + departmentMaximumSalaryMap);
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		testAveragingDouble();
 		testAveragingInt();
@@ -818,5 +883,8 @@ public class CollectorsDemo {
 		testToConcurrentMap_V1();
 		testToConcurrentMap_V2();
 		testToConcurrentMap_V3();
+		testToMap_V1();
+		testToMap_V2();
+		testToMap_V3();
 	}
 }
