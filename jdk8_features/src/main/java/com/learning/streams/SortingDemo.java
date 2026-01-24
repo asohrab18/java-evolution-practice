@@ -1,13 +1,10 @@
 package com.learning.streams;
 
 import java.util.Comparator;
-import java.util.List;
+import com.learning.model.AppUtils;
 import com.learning.model.Employee;
-import com.learning.model.EmployeeDto;
 
 public class SortingDemo {
-
-	private static List<Employee> employees = EmployeeDto.findEmployees();
 
 	static void sortEmployees(String field, String order) {
 		Comparator<Employee> comparator = null;
@@ -71,7 +68,7 @@ public class SortingDemo {
 			}
 		}
 
-		employees.stream().sorted(comparator).forEach(e -> System.out.println(e));
+		AppUtils.employees.stream().sorted(comparator).forEach(e -> System.out.println(e));
 	}
 
 	public static void main(String[] args) {
