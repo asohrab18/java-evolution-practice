@@ -731,6 +731,44 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	static void testToConcurrentMap_V1() {
+		System.out.println("\n\n===================== testToConcurrentMap_V1() =====================");
+
+		ConcurrentMap<Integer, String> employeesMap = employees.stream()
+				.collect(Collectors.toConcurrentMap(Employee::getId, Employee::getName));
+
+		System.out.println("Employees Map = " + employeesMap);
+		System.out.println("------------------------------------------------------------");
+
+		ConcurrentMap<String, Integer> namesMap = names.stream()
+				.collect(Collectors.toConcurrentMap(name -> name, String::length));
+
+		System.out.println("Names Map = " + namesMap);
+		System.out.println("------------------------------------------------------------");
+	}
+
+	static void testToConcurrentMap_V2() {
+		System.out.println("\n\n===================== testToConcurrentMap_V2() =====================");
+
+		ConcurrentMap<String, Integer> wordsMap = words.stream()
+				.collect(Collectors.toConcurrentMap(word -> word, String::length, (val1, val2) -> val1 + val2 * 0));
+
+		System.out.println("Words Map = " + wordsMap);
+		System.out.println("------------------------------------------------------------");
+
+		ConcurrentMap<String, Double> departmentSalaryMap = employees.stream().collect(Collectors
+				.toConcurrentMap(Employee::getDept, Employee::getSalary, (sal1, sal2) -> sal1 >= sal2 ? sal1 : sal2));
+
+		System.out.println("Department-Salary Map = " + departmentSalaryMap);
+		System.out.println("------------------------------------------------------------");
+
+		ConcurrentMap<String, Integer> wordFrequencyMap = words.stream()
+				.collect(Collectors.toConcurrentMap(word -> word, val -> 1, (val1, val2) -> val1 + val2));
+
+		System.out.println("Word Frequency Map = " + wordFrequencyMap);
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		testAveragingDouble();
 		testAveragingInt();
@@ -761,5 +799,7 @@ public class CollectorsDemo {
 		testToCollection();
 		testToList();
 		testToSet();
+		testToConcurrentMap_V1();
+		testToConcurrentMap_V2();
 	}
 }
