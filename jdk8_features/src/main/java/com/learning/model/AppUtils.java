@@ -29,7 +29,8 @@ public final class AppUtils {
 
 	public static final List<Long> numbersL = List.of(123456L, 2765432L, 3982376L);
 
-	public static final List<String> names = List.of("Ali", "Aman", "Bilal", "Simond", "Salman");
+	public static final List<String> names = List.of("Ali", "Adam", "Eves", "Celina", "Denis", "Menis", "Salman",
+			"Thompson");
 
 	public static final List<String> words = List.of("Apple", "Coconut", "Spoon", "Table", "Apple", "Coconut", "Cat",
 			"Cat", "Cat", "Banana", "Banana", "Microservices");

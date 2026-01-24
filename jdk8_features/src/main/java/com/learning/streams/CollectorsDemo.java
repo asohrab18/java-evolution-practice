@@ -19,6 +19,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -760,6 +761,30 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	static void testToConcurrentMap_V3() {
+		System.out.println("\n\n===================== testToConcurrentMap_V3() =====================");
+
+		ConcurrentHashMap<String, Integer> wordsFrequencyMap = AppUtils.words.stream().collect(
+				Collectors.toConcurrentMap(w -> w, v -> 1, (val1, val2) -> val1 + val2, ConcurrentHashMap::new));
+
+		System.out.println("Words Frequency Map = " + wordsFrequencyMap);
+		System.out.println("------------------------------------------------------------");
+
+		ConcurrentSkipListMap<Integer, String> lengthNamesMap = AppUtils.names.stream()
+				.collect(Collectors.toConcurrentMap(String::length, name -> name, (val1, val2) -> val1 + " | " + val2,
+						ConcurrentSkipListMap::new));
+
+		System.out.println("Length Names Map = " + lengthNamesMap);
+		System.out.println("------------------------------------------------------------");
+
+		ConcurrentHashMap<String, Double> departmentMaximumSalaryMap = AppUtils.employees.stream()
+				.collect(Collectors.toConcurrentMap(Employee::getDept, Employee::getSalary,
+						(sal1, sal2) -> sal1 >= sal2 ? sal1 : sal2, ConcurrentHashMap::new));
+
+		System.out.println("Department's Maximum Salary Map = " + departmentMaximumSalaryMap);
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		testAveragingDouble();
 		testAveragingInt();
@@ -792,5 +817,6 @@ public class CollectorsDemo {
 		testToSet();
 		testToConcurrentMap_V1();
 		testToConcurrentMap_V2();
+		testToConcurrentMap_V3();
 	}
 }
