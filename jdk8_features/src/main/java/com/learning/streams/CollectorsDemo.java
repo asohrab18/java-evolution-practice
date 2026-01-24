@@ -23,6 +23,7 @@ import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
 import com.learning.model.AppUtils;
 import com.learning.model.Candidate;
 import com.learning.model.Employee;
@@ -145,7 +146,8 @@ public class CollectorsDemo {
 		System.out.println(employeesMap);
 		System.out.println("------------------------------------------------------------");
 
-		Map<String, List<Person>> personsMap = AppUtils.persons.stream().collect(Collectors.groupingBy(Person::getCountry));
+		Map<String, List<Person>> personsMap = AppUtils.persons.stream()
+				.collect(Collectors.groupingBy(Person::getCountry));
 		System.out.println(personsMap);
 		System.out.println("------------------------------------------------------------");
 
@@ -156,7 +158,8 @@ public class CollectorsDemo {
 		System.out.println("Numbers: " + AppUtils.numbers);
 		Function<Integer, String> evenOddFunction = i -> i % 2 == 0 ? "EVEN" : "ODD";
 
-		Map<String, List<Integer>> evenOddMap = AppUtils.numbers.stream().collect(Collectors.groupingBy(evenOddFunction));
+		Map<String, List<Integer>> evenOddMap = AppUtils.numbers.stream()
+				.collect(Collectors.groupingBy(evenOddFunction));
 
 		System.out.println(evenOddMap);
 		System.out.println("------------------------------------------------------------");
@@ -167,7 +170,8 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 
 		Function<Student, String> ageStatusFunction = s -> s.getAge() >= 18 ? "ADULTS" : "MINORS";
-		Map<String, List<Student>> maturityMap = AppUtils.students.stream().collect(Collectors.groupingBy(ageStatusFunction));
+		Map<String, List<Student>> maturityMap = AppUtils.students.stream()
+				.collect(Collectors.groupingBy(ageStatusFunction));
 		System.out.println(maturityMap);
 		System.out.println("------------------------------------------------------------");
 	}
@@ -359,8 +363,9 @@ public class CollectorsDemo {
 		System.out.println(evenOddMap);
 		System.out.println("------------------------------------------------------------");
 
-		ConcurrentMap<String, Double> avgSalaryMap = AppUtils.employees.parallelStream().collect(Collectors.groupingByConcurrent(
-				Employee::getDept, ConcurrentHashMap::new, Collectors.averagingDouble(Employee::getSalary)));
+		ConcurrentMap<String, Double> avgSalaryMap = AppUtils.employees.parallelStream()
+				.collect(Collectors.groupingByConcurrent(Employee::getDept, ConcurrentHashMap::new,
+						Collectors.averagingDouble(Employee::getSalary)));
 
 		System.out.println(avgSalaryMap);
 		System.out.println("------------------------------------------------------------");
@@ -382,14 +387,16 @@ public class CollectorsDemo {
 		System.out.println(joinedWithDelimeter);
 		System.out.println("------------------------------------------------------------");
 
-		String joinedWithPrefixSuffix = AppUtils.names.stream().collect(Collectors.joining(", ", "<students>", "</students>"));
+		String joinedWithPrefixSuffix = AppUtils.names.stream()
+				.collect(Collectors.joining(", ", "<students>", "</students>"));
 		System.out.println(joinedWithPrefixSuffix);
 		System.out.println("------------------------------------------------------------");
 	}
 
 	static void testMapping() {
 		System.out.println("\n\n===================== testMapping() =====================");
-		List<String> data = AppUtils.words.stream().collect(Collectors.mapping(String::toUpperCase, Collectors.toList()));
+		List<String> data = AppUtils.words.stream()
+				.collect(Collectors.mapping(String::toUpperCase, Collectors.toList()));
 		System.out.println(data);
 		System.out.println("------------------------------------------------------------");
 
@@ -413,7 +420,8 @@ public class CollectorsDemo {
 		maxNumberOpt.ifPresent(System.out::println);
 		System.out.println("------------------------------------------------------------");
 
-		Optional<Integer> maxNumberOpt2 = AppUtils.numbers.stream().collect(Collectors.maxBy(Comparator.reverseOrder()));
+		Optional<Integer> maxNumberOpt2 = AppUtils.numbers.stream()
+				.collect(Collectors.maxBy(Comparator.reverseOrder()));
 		maxNumberOpt2.ifPresent(System.out::println);
 		System.out.println("------------------------------------------------------------");
 
@@ -453,7 +461,8 @@ public class CollectorsDemo {
 		minNumberOpt.ifPresent(System.out::println);
 		System.out.println("------------------------------------------------------------");
 
-		Optional<Integer> minNumberOpt2 = AppUtils.numbers.stream().collect(Collectors.minBy(Comparator.reverseOrder()));
+		Optional<Integer> minNumberOpt2 = AppUtils.numbers.stream()
+				.collect(Collectors.minBy(Comparator.reverseOrder()));
 		minNumberOpt2.ifPresent(System.out::println);
 		System.out.println("------------------------------------------------------------");
 
@@ -482,7 +491,8 @@ public class CollectorsDemo {
 		System.out.println("\n\n===================== testPartitioningBy_V1() =====================");
 		System.out.println("Numbers = " + AppUtils.numbers);
 
-		Map<Boolean, List<Integer>> numbersMap = AppUtils.numbers.stream().collect(Collectors.partitioningBy(n -> n % 2 == 0));
+		Map<Boolean, List<Integer>> numbersMap = AppUtils.numbers.stream()
+				.collect(Collectors.partitioningBy(n -> n % 2 == 0));
 
 		System.out.println("numbersMap = " + numbersMap);
 		System.out.println("Odd Numbers = " + numbersMap.get(false));
@@ -490,7 +500,8 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 
 		System.out.println("names = " + AppUtils.names);
-		Map<Boolean, List<String>> namesMap = AppUtils.names.stream().collect(Collectors.partitioningBy(s -> s.length() > 4));
+		Map<Boolean, List<String>> namesMap = AppUtils.names.stream()
+				.collect(Collectors.partitioningBy(s -> s.length() > 4));
 
 		System.out.println("namesMap = " + namesMap);
 		System.out.println("Names with less than or equal to 4 characters = " + namesMap.get(false));
@@ -624,7 +635,8 @@ public class CollectorsDemo {
 
 	static void testSummingDouble() {
 		System.out.println("\n\n===================== testSummingDouble() =====================");
-		Double totalSalaryOfEmployees = AppUtils.employees.stream().collect(Collectors.summingDouble(Employee::getSalary));
+		Double totalSalaryOfEmployees = AppUtils.employees.stream()
+				.collect(Collectors.summingDouble(Employee::getSalary));
 		System.out.println("Total Salary of all employees = " + totalSalaryOfEmployees);
 		System.out.println("------------------------------------------------------------");
 
@@ -739,6 +751,12 @@ public class CollectorsDemo {
 				.collect(Collectors.toConcurrentMap(word -> word, val -> 1, (val1, val2) -> val1 + val2));
 
 		System.out.println("Word Frequency Map = " + wordFrequencyMap);
+		System.out.println("------------------------------------------------------------");
+
+		ConcurrentMap<String, String> employeesMap = AppUtils.employees.stream().collect(Collectors
+				.toConcurrentMap(Employee::getDept, Employee::getName, (name1, name2) -> name1 + " | " + name2));
+
+		System.out.println("Employees Map = " + employeesMap);
 		System.out.println("------------------------------------------------------------");
 	}
 
