@@ -6,6 +6,7 @@ import java.util.function.IntPredicate;
 import java.util.function.LongPredicate;
 import java.util.function.Predicate;
 
+import com.learning.model.AppUtils;
 import com.learning.model.Employee;
 import com.learning.model.EmployeeDto;
 
@@ -71,7 +72,7 @@ public class PredicateDemo {
 	}
 
 	public static void usePredicateWithStream() {
-		List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+		List<Integer> numbers = AppUtils.NUMBERS;
 		System.out.println("\nGiven Numbers List: " + numbers);
 
 		System.out.println("Even Numbers in List:");

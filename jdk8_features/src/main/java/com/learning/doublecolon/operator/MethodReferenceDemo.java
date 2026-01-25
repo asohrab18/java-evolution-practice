@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.IntUnaryOperator;
 
 import com.learning.functionalInterfaces.customized.Greeting;
+import com.learning.model.AppUtils;
 import com.learning.model.Computer;
 import com.learning.model.EmployeeDto;
 
@@ -58,7 +59,7 @@ public class MethodReferenceDemo {
 	}
 
 	public static void testUsingStream() {
-		List<Integer> nums = List.of(1, 2, 3, 4, 5);
+		List<Integer> nums = AppUtils.NUMBERS;
 
 		nums.stream().forEach(System.out::println);
 	}

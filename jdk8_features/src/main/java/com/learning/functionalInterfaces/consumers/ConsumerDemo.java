@@ -6,6 +6,8 @@ import java.util.function.DoubleConsumer;
 import java.util.function.IntConsumer;
 import java.util.function.LongConsumer;
 
+import com.learning.model.AppUtils;
+
 public class ConsumerDemo {
 
 	static Consumer<String> loggerConsumer = s -> System.out.println("\n[INFO] " + s);
@@ -29,15 +31,15 @@ public class ConsumerDemo {
 
 	public static void printItems() {
 		loggerConsumer.accept("Consumer used to print List items:");
-		List<String> fruits = List.of("Apple", "Banana", "Coconut", "Guava");
-		fruits.forEach(printConsumer);
+		List<String> words = AppUtils.WORDS;
+		words.forEach(printConsumer);
 
 	}
 
 	public static void useInStream() {
 		loggerConsumer.accept("Consumer used in Stream:");
-		List<String> fruits = List.of("Apple", "Banana", "Coconut", "Guava");
-		fruits.stream().filter(s -> s.length() < 6).forEach(printConsumer);
+		List<String> words = AppUtils.WORDS;
+		words.stream().filter(s -> s.length() < 6).forEach(printConsumer);
 	}
 
 	public static void convertCurrency() {
