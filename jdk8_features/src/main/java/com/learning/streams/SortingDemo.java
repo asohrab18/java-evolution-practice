@@ -68,7 +68,7 @@ public class SortingDemo {
 			}
 		}
 
-		AppUtils.employees.stream().sorted(comparator).forEach(e -> System.out.println(e));
+		AppUtils.EMPLOYEES.stream().sorted(comparator).forEach(e -> System.out.println(e));
 	}
 
 	public static void main(String[] args) {

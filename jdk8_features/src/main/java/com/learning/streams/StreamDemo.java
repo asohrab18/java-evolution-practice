@@ -53,36 +53,36 @@ public class StreamDemo {
 	}
 
 	public static void testAllMatch() {
-		List<Integer> numbers1 = AppUtils.oddNumbers;
-		List<Integer> numbers2 = AppUtils.evenNumbers;
-		List<String> names = AppUtils.names;
+		List<Integer> numbers1 = AppUtils.ODD_NUMBERS;
+		List<Integer> numbers2 = AppUtils.EVEN_NUMBERS;
+		List<String> NAMES = AppUtils.NAMES;
 
 		Stream<Integer> numbersStream = numbers1.stream();
 		boolean allOdd = numbersStream.allMatch(i -> i % 2 != 0);
 
 		System.out.println("Numbers1 = " + numbers1);
-		System.out.println("Are all numbers Odd? ANS: " + allOdd);
+		System.out.println("Are all NUMBERS Odd? ANS: " + allOdd);
 		System.out.println("=========================================");
 
 		Stream<Integer> numbersStream2 = numbers2.stream();
 		boolean allEven = numbersStream2.allMatch(i -> i % 2 == 0);
 
 		System.out.println("Numbers2 = " + numbers2);
-		System.out.println("Are all numbers Even? ANS: " + allEven);
+		System.out.println("Are all NUMBERS Even? ANS: " + allEven);
 		System.out.println("=========================================");
 
-		Stream<String> namesStream = names.stream();
+		Stream<String> namesStream = NAMES.stream();
 		boolean allNamesStartWithA = namesStream.allMatch(s -> s.startsWith("A"));
 
-		System.out.println("Names = " + names);
-		System.out.println("Do all names start with A? ANS: " + allNamesStartWithA);
+		System.out.println("Names = " + NAMES);
+		System.out.println("Do all NAMES start with A? ANS: " + allNamesStartWithA);
 		System.out.println("=========================================");
 	}
 
 	public static void testAnyMatch() {
-		List<Integer> numbers1 = AppUtils.numbers;
-		List<Integer> numbers2 = AppUtils.evenNumbers;
-		List<String> names = AppUtils.names;
+		List<Integer> numbers1 = AppUtils.NUMBERS;
+		List<Integer> numbers2 = AppUtils.EVEN_NUMBERS;
+		List<String> NAMES = AppUtils.NAMES;
 
 		Stream<Integer> numbersStream = numbers1.stream();
 		boolean anyEven = numbersStream.anyMatch(i -> i % 2 == 0);
@@ -97,25 +97,25 @@ public class StreamDemo {
 		System.out.println("Is there any odd number? ANS: " + anyOdd);
 		System.out.println("=========================================");
 
-		Stream<String> namesStream = names.stream();
+		Stream<String> namesStream = NAMES.stream();
 		boolean anyNameStartsWithA = namesStream.anyMatch(s -> s.startsWith("A"));
 
-		System.out.println("Names = " + names);
+		System.out.println("Names = " + NAMES);
 		System.out.println("Is there any name starting with A? ANS: " + anyNameStartsWithA);
 		System.out.println("=========================================");
 	}
 
 	public static void testCollect() {
-		List<Integer> numbers = AppUtils.numbers;
-		List<Integer> evenNumbers = numbers.stream().filter(n -> n % 2 == 0).collect(Collectors.toList());
-		System.out.println("Numbers: " + numbers);
-		System.out.println("Even numbers: " + evenNumbers);
+		List<Integer> NUMBERS = AppUtils.NUMBERS;
+		List<Integer> EVEN_NUMBERS = NUMBERS.stream().filter(n -> n % 2 == 0).collect(Collectors.toList());
+		System.out.println("Numbers: " + NUMBERS);
+		System.out.println("Even NUMBERS: " + EVEN_NUMBERS);
 		System.out.println("=========================================");
 
-		List<Integer> numbers2 = AppUtils.duplicateNumbers;
+		List<Integer> numbers2 = AppUtils.DUPLICATE_NUMBERS;
 		Set<Integer> uniqueNumbers = numbers2.stream().collect(Collectors.toSet());
 		System.out.println("Numbers: " + numbers2);
-		System.out.println("unique numbers: " + uniqueNumbers);
+		System.out.println("unique NUMBERS: " + uniqueNumbers);
 		System.out.println("=========================================");
 	}
 
