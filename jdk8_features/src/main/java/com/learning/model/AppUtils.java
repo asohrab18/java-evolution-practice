@@ -19,6 +19,10 @@ public final class AppUtils {
 	public static final List<Order> orders = OrderDto.findOrders();
 
 	public static final List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
+	
+	public static final List<Integer> oddNumbers = List.of(1, 3, 5, 7, 9);
+	
+	public static final List<Integer> evenNumbers = List.of(2, 4, 6, 8, 9);
 
 	public static final List<Integer> duplicateNumbers = List.of(5, 5, 5, 1, 1, 1, 4, 4, 4, 2, 2, 2, 3, 3);
 

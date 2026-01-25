@@ -5,6 +5,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.learning.model.AppUtils;
+
 public class StreamDemo {
 
 	public static Stream<String> useStreamBuilder(String input) {
@@ -51,9 +53,9 @@ public class StreamDemo {
 	}
 
 	public static void testAllMatch() {
-		List<Integer> numbers1 = List.of(1, 3, 5, 7, 9);
-		List<Integer> numbers2 = List.of(2, 4, 6, 8, 9);
-		List<String> names = List.of("Adam", "Angelina", "Andrew");
+		List<Integer> numbers1 = AppUtils.oddNumbers;
+		List<Integer> numbers2 = AppUtils.evenNumbers;
+		List<String> names = AppUtils.names;
 
 		Stream<Integer> numbersStream = numbers1.stream();
 		boolean allOdd = numbersStream.allMatch(i -> i % 2 != 0);
@@ -78,9 +80,9 @@ public class StreamDemo {
 	}
 
 	public static void testAnyMatch() {
-		List<Integer> numbers1 = List.of(1, 3, 5, 7, 9, 10);
-		List<Integer> numbers2 = List.of(2, 4, 6, 8, 10, 12);
-		List<String> names = List.of("Boby", "Denis", "Andrew");
+		List<Integer> numbers1 = AppUtils.numbers;
+		List<Integer> numbers2 = AppUtils.evenNumbers;
+		List<String> names = AppUtils.names;
 
 		Stream<Integer> numbersStream = numbers1.stream();
 		boolean anyEven = numbersStream.anyMatch(i -> i % 2 == 0);
@@ -104,13 +106,13 @@ public class StreamDemo {
 	}
 
 	public static void testCollect() {
-		List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+		List<Integer> numbers = AppUtils.numbers;
 		List<Integer> evenNumbers = numbers.stream().filter(n -> n % 2 == 0).collect(Collectors.toList());
 		System.out.println("Numbers: " + numbers);
 		System.out.println("Even numbers: " + evenNumbers);
 		System.out.println("=========================================");
 
-		List<Integer> numbers2 = List.of(1, 2, 3, 1, 2, 3, 1, 2, 3);
+		List<Integer> numbers2 = AppUtils.duplicateNumbers;
 		Set<Integer> uniqueNumbers = numbers2.stream().collect(Collectors.toSet());
 		System.out.println("Numbers: " + numbers2);
 		System.out.println("unique numbers: " + uniqueNumbers);
