@@ -1,6 +1,8 @@
 package com.learning.streams;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -12,6 +14,7 @@ import com.learning.model.Animal;
 import com.learning.model.AppUtils;
 import com.learning.model.Cat;
 import com.learning.model.Dog;
+import com.learning.model.Order;
 
 public class StreamDemo {
 
@@ -206,6 +209,36 @@ public class StreamDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	public static void testDistinct() {
+		System.out.println("\n\n===================== testDistinct() =====================");
+		Stream<Integer> distinctNumbers = AppUtils.DUPLICATE_NUMBERS.stream().distinct();
+		distinctNumbers.forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+		
+		Stream<Integer> distinctParallelNumbers = AppUtils.DUPLICATE_NUMBERS.stream().parallel().distinct();
+		distinctParallelNumbers.forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Stream<String> distinctWords = AppUtils.WORDS.stream().distinct();
+		distinctWords.forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Order o1 = new Order(111, LocalDate.of(2023, 1, 18));
+		Order o2 = new Order(111, LocalDate.of(1995, 11, 21));
+		Order o3 = new Order(222, LocalDate.of(2025, 3, 8));
+		Order o4 = new Order(222, LocalDate.of(1990, 10, 11));
+		Order o5 = new Order(333, LocalDate.of(2021, 6, 9));
+		Order o6 = new Order(333, LocalDate.of(1999, 9, 16));
+		Order o7 = new Order(444, LocalDate.of(2026, 1, 12));
+		Order o8 = new Order(444, LocalDate.of(1993, 8, 10));
+
+		List<Order> orders = Arrays.asList(o1, o2, o3, o4, o5, o6, o7, o8);
+
+		Stream<Order> distinctOrders = orders.stream().distinct();
+		distinctOrders.forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		createStream();
 		testAllMatch();
@@ -214,6 +247,7 @@ public class StreamDemo {
 		testCollect_V2();
 		testConcat();
 		testCount();
+		testDistinct();
 	}
 
 }

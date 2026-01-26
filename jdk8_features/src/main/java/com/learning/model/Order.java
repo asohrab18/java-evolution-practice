@@ -1,6 +1,7 @@
 package com.learning.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Order {
 
@@ -36,4 +37,20 @@ public class Order {
 		return "{orderId = " + orderId + " has orderDate = " + orderDate + "}";
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (!(o instanceof Order)) {
+			return false;
+		}
+		Order e = (Order) o;
+		return orderId == e.orderId; // distinct based on id
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(orderId);
+	}
 }

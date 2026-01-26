@@ -34,5 +34,5 @@ public final class AppUtils {
 
 	public static final List<Student> STUDENTS = StudentDto.findStudents();
 
-	public static final List<String> WORDS = List.of("Coconut", "Spoon", "Table", "Apple", "Coconut", "Microservices");
+	public static final List<String> WORDS = List.of("Apple", "Coconut", "Spoon", "Table", "Coconut", "Microservices");
 }
