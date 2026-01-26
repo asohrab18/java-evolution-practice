@@ -7,8 +7,10 @@ import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
+import com.learning.model.Animal;
 import com.learning.model.AppUtils;
+import com.learning.model.Cat;
+import com.learning.model.Dog;
 
 public class StreamDemo {
 
@@ -140,6 +142,7 @@ public class StreamDemo {
 
 		StringBuilder nameBuilder = AppUtils.NAMES.stream().collect(StringBuilder::new, StringBuilder::append,
 				StringBuilder::append);
+
 		System.out.println("nameBuilder: " + nameBuilder);
 		System.out.println("------------------------------------------------------------");
 
@@ -155,12 +158,48 @@ public class StreamDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	public static void testConcat() {
+		System.out.println("\n\n===================== testConcat() =====================");
+		Stream<String> wordsStream = AppUtils.WORDS.stream();
+		Stream<String> namesStream = AppUtils.NAMES.stream();
+
+		Stream<String> concatedStream = Stream.concat(wordsStream, namesStream);
+		concatedStream.forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Stream<Dog> dogs = Stream.of(new Dog("Buddy"), new Dog("Rocky"));
+		Stream<Cat> cats = Stream.of(new Cat("Kitty"), new Cat("Mimi"));
+		Stream<Animal> animals = Stream.concat(dogs, cats);
+		animals.forEach(a -> System.out.println(a.getName()));
+		System.out.println("------------------------------------------------------------");
+
+		Stream<Integer> oddNumbersStream = AppUtils.ODD_NUMBERS.stream();
+		Stream<Integer> evenNumbersStream = AppUtils.EVEN_NUMBERS.stream();
+
+		Stream<Integer> oddEvenconcatedStream = Stream.concat(oddNumbersStream, evenNumbersStream);
+
+		oddEvenconcatedStream.forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Stream<Integer> parallelStream = AppUtils.NUMBERS.stream().parallel();
+		Stream<Integer> normalStream = AppUtils.DUPLICATE_NUMBERS.stream();
+
+		Stream<Integer> resultantStream = Stream.concat(parallelStream, normalStream);
+
+		System.out.println(resultantStream.isParallel()
+				? "A parallel stream concated with normal stream and the result stream is parallel stream."
+				: "The result stream is not Parallel Stream.");
+
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		createStream();
 		testAllMatch();
 		testAnyMatch();
 		testCollect_V1();
 		testCollect_V2();
+		testConcat();
 	}
 
 }
