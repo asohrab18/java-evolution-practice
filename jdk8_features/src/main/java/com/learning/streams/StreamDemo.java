@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
 import com.learning.model.Animal;
 import com.learning.model.AppUtils;
 import com.learning.model.Cat;
@@ -193,6 +194,18 @@ public class StreamDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	public static void testCount() {
+		System.out.println("\n\n===================== testCount() =====================");
+		long candidates = AppUtils.CANDIDATES.stream().count();
+		System.out.println("No. of candidates = " + candidates);
+
+		System.out.println("------------------------------------------------------------");
+
+		long employees = AppUtils.EMPLOYEES.stream().count();
+		System.out.println("No. of employees = " + employees);
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		createStream();
 		testAllMatch();
@@ -200,6 +213,7 @@ public class StreamDemo {
 		testCollect_V1();
 		testCollect_V2();
 		testConcat();
+		testCount();
 	}
 
 }
