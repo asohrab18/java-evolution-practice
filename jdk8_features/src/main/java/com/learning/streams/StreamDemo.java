@@ -247,9 +247,30 @@ public class StreamDemo {
 		Stream<String> strStream = AppUtils.getEmptyStream();
 		System.out.println("String Stream count = " + strStream.count());
 		System.out.println("------------------------------------------------------------");
-		
+
 		Stream<String> dataStream = AppUtils.getStream("OTHER");
 		System.out.println("String Stream count = " + dataStream.count());
+		System.out.println("------------------------------------------------------------");
+	}
+
+	public static void testFilter() {
+		System.out.println("\n\n===================== testFilter() =====================");
+		AppUtils.NUMBERS.stream().filter(num -> num % 2 == 0).forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.NAMES.stream().filter(name -> name.startsWith("A")).forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().filter(emp -> emp.getSalary() > 50000d)
+				.forEach(emp -> System.out.println(emp.getName() + " has salary = " + emp.getSalary()));
+
+		System.out.println("\n----------------------- filter & map together below -------------------------------------");
+
+		AppUtils.getStream("WORDS").filter(word -> word.length() <= 5).map(String::toUpperCase)
+				.forEach(System.out::println);
+
 		System.out.println("------------------------------------------------------------");
 	}
 
@@ -263,6 +284,7 @@ public class StreamDemo {
 		testCount();
 		testDistinct();
 		testEmpty();
+		testFilter();
 	}
 
 }
