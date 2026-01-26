@@ -2,6 +2,7 @@ package com.learning.model;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public final class AppUtils {
 
@@ -35,4 +36,24 @@ public final class AppUtils {
 	public static final List<Student> STUDENTS = StudentDto.findStudents();
 
 	public static final List<String> WORDS = List.of("Apple", "Coconut", "Spoon", "Table", "Coconut", "Microservices");
+
+	public static <T> Stream<T> getEmptyStream() {
+		return Stream.empty();
+	}
+
+	/** We return Stream.empty(); to avoid NullPointerException. */
+	public static Stream<String> getStream(String key) {
+		Stream<String> resultStream = Stream.empty();
+		if (key == null || key.isBlank() || key.isEmpty()) {
+			return resultStream;
+		}
+		if (key.equalsIgnoreCase("WORDS")) {
+			resultStream = WORDS.stream();
+		}
+		if (key.equalsIgnoreCase("NAMES")) {
+			resultStream = NAMES.stream();
+		}
+		return resultStream;
+	}
+
 }

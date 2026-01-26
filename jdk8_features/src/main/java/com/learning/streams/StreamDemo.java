@@ -214,7 +214,7 @@ public class StreamDemo {
 		Stream<Integer> distinctNumbers = AppUtils.DUPLICATE_NUMBERS.stream().distinct();
 		distinctNumbers.forEach(System.out::println);
 		System.out.println("------------------------------------------------------------");
-		
+
 		Stream<Integer> distinctParallelNumbers = AppUtils.DUPLICATE_NUMBERS.stream().parallel().distinct();
 		distinctParallelNumbers.forEach(System.out::println);
 		System.out.println("------------------------------------------------------------");
@@ -239,6 +239,20 @@ public class StreamDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	public static void testEmpty() {
+		System.out.println("\n\n===================== testEmpty() =====================");
+		Stream<Integer> intStream = AppUtils.getEmptyStream();
+		System.out.println("Integer Stream count = " + intStream.count());
+
+		Stream<String> strStream = AppUtils.getEmptyStream();
+		System.out.println("String Stream count = " + strStream.count());
+		System.out.println("------------------------------------------------------------");
+		
+		Stream<String> dataStream = AppUtils.getStream("OTHER");
+		System.out.println("String Stream count = " + dataStream.count());
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		createStream();
 		testAllMatch();
@@ -248,6 +262,7 @@ public class StreamDemo {
 		testConcat();
 		testCount();
 		testDistinct();
+		testEmpty();
 	}
 
 }
