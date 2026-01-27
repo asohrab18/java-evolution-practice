@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
@@ -266,11 +267,25 @@ public class StreamDemo {
 		AppUtils.EMPLOYEES.stream().filter(emp -> emp.getSalary() > 50000d)
 				.forEach(emp -> System.out.println(emp.getName() + " has salary = " + emp.getSalary()));
 
-		System.out.println("\n----------------------- filter & map together below -------------------------------------");
+		System.out
+				.println("\n----------------------- filter & map together below -------------------------------------");
 
 		AppUtils.getStream("WORDS").filter(word -> word.length() <= 5).map(String::toUpperCase)
 				.forEach(System.out::println);
 
+		System.out.println("------------------------------------------------------------");
+	}
+
+	public static void testFindAny() {
+		System.out.println("\n\n===================== testFindAny() =====================");
+		Optional<String> wordsOpt = AppUtils.getStream("WORDS").findAny();
+
+		wordsOpt.ifPresent(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Optional<Integer> evenNumbersOpt = AppUtils.getIntStream("NUMBERS").filter(n -> n % 2 == 0).findAny();
+
+		evenNumbersOpt.ifPresent(System.out::println);
 		System.out.println("------------------------------------------------------------");
 	}
 
@@ -285,6 +300,7 @@ public class StreamDemo {
 		testDistinct();
 		testEmpty();
 		testFilter();
+		testFindAny();
 	}
 
 }

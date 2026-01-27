@@ -49,11 +49,28 @@ public final class AppUtils {
 		}
 		if (key.equalsIgnoreCase("WORDS")) {
 			resultStream = WORDS.stream();
-		}
-		if (key.equalsIgnoreCase("NAMES")) {
+		} else if (key.equalsIgnoreCase("NAMES")) {
 			resultStream = NAMES.stream();
 		}
 		return resultStream;
 	}
 
+	public static Stream<Integer> getIntStream(String key) {
+		Stream<Integer> resultStream = Stream.empty();
+		if (key == null || key.isBlank() || key.isEmpty()) {
+			return resultStream;
+		}
+		if (key.equalsIgnoreCase("DUPLICATE")) {
+			resultStream = DUPLICATE_NUMBERS.stream();
+		} else if (key.equalsIgnoreCase("EVEN")) {
+			resultStream = EVEN_NUMBERS.stream();
+		} else if (key.equalsIgnoreCase("NUMBERS")) {
+			resultStream = NUMBERS.stream();
+		} else if (key.equalsIgnoreCase("NUMBERS_INCLUDING_NULL")) {
+			resultStream = NUMBERS_INCLUDING_NULL.stream();
+		} else if (key.equalsIgnoreCase("ODD")) {
+			resultStream = ODD_NUMBERS.stream();
+		}
+		return resultStream;
+	}
 }
