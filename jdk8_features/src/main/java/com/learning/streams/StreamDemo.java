@@ -280,6 +280,19 @@ public class StreamDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	public static void testFindFirst() {
+		System.out.println("\n\n===================== testFindFirst() =====================");
+		Optional<String> wordsOpt = AppUtils.getStringStream("WORDS").findFirst();
+
+		wordsOpt.ifPresent(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Optional<Integer> evenNumbersOpt = AppUtils.getIntStream("NUMBERS").filter(n -> n % 2 == 0).findFirst();
+
+		evenNumbersOpt.ifPresent(System.out::println);
+		System.out.println("------------------------------------------------------------");
+	}
+	
 	public static void main(String[] args) {
 		createStream();
 		testAllMatch();
@@ -292,6 +305,7 @@ public class StreamDemo {
 		testEmpty();
 		testFilter();
 		testFindAny();
+		testFindFirst();
 	}
 
 }
