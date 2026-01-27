@@ -36,8 +36,8 @@ public class CollectorsDemo {
 
 	static void testAveragingDouble() {
 		System.out.println("===================== testAveragingDouble() =====================");
-		System.out.println("Numbers = " + AppUtils.NUMBERS);
-		Double average = AppUtils.NUMBERS.stream().collect(Collectors.averagingDouble(n -> n));
+		System.out.println("\nNumbers = " + AppUtils.NUMBERS);
+		Double average = AppUtils.getIntStream("NUMBERS").collect(Collectors.averagingDouble(n -> n));
 		System.out.println("Average = " + average);
 		System.out.println("------------------------------------------------------------");
 
@@ -66,9 +66,9 @@ public class CollectorsDemo {
 
 	static void testAveragingInt() {
 		System.out.println("\n\n===================== testAveragingInt() =====================");
-		System.out.println("Numbers = " + AppUtils.NUMBERS);
+		System.out.println("\nNumbers = " + AppUtils.NUMBERS);
 
-		Double average = AppUtils.NUMBERS.stream().collect(Collectors.averagingInt(n -> n));
+		Double average = AppUtils.getIntStream("NUMBERS").collect(Collectors.averagingInt(n -> n));
 		System.out.println("Average = " + average);
 		System.out.println("------------------------------------------------------------");
 
@@ -82,7 +82,7 @@ public class CollectorsDemo {
 
 	static void testAveragingLong() {
 		System.out.println("\n\n===================== testAveragingLong() =====================");
-		System.out.println("Numbers = " + AppUtils.NUMBERS_L);
+		System.out.println("\nNumbers = " + AppUtils.NUMBERS_L);
 
 		Double average = AppUtils.NUMBERS_L.stream().collect(Collectors.averagingLong(n -> n));
 		System.out.println("Average = " + average);
@@ -92,7 +92,7 @@ public class CollectorsDemo {
 	static void testCollectingAndThen() {
 		System.out.println("\n\n===================== testCollectingAndThen() =====================");
 		List<String> mutableNames = AppUtils.STUDENTS.stream().map(s -> s.getName()).collect(Collectors.toList());
-		System.out.println("Mutable Names = " + mutableNames);
+		System.out.println("\nMutable Names = " + mutableNames);
 
 		mutableNames.add("Zeeshan");
 		System.out.println("\nUpdated Mutable Names = " + mutableNames);
@@ -111,13 +111,13 @@ public class CollectorsDemo {
 
 		System.out.println("Duplicate Numbers = " + AppUtils.DUPLICATE_NUMBERS);
 
-		int howManyUniqueNumbers = AppUtils.DUPLICATE_NUMBERS.stream()
+		int howManyUniqueNumbers = AppUtils.getIntStream("DUPLICATE_NUMBERS")
 				.collect(Collectors.collectingAndThen(Collectors.toSet(), Set::size));
 
 		System.out.println("How many unique Numbers are available?\nANS: " + howManyUniqueNumbers);
 		System.out.println("------------------------------------------------------------");
 
-		List<Integer> sortedNumbers = AppUtils.NUMBERS.stream()
+		List<Integer> sortedNumbers = AppUtils.getIntStream("NUMBERS")
 				.collect(Collectors.collectingAndThen(Collectors.toSet(), set -> set.stream().sorted().toList()));
 
 		System.out.println("Sorted unique Numbers = " + sortedNumbers);
@@ -128,7 +128,7 @@ public class CollectorsDemo {
 		System.out.println("\n\n===================== testCounting() =====================");
 		List<Integer> ages = AppUtils.EMPLOYEES.stream().map(e -> e.getAge())
 				.collect(Collectors.collectingAndThen(Collectors.toList(), list -> list.stream().sorted().toList()));
-		System.out.println("Ages = " + ages);
+		System.out.println("\nAges = " + ages);
 
 		Long minors = AppUtils.EMPLOYEES.stream().filter(e -> e.getAge() < 18).collect(Collectors.counting());
 		System.out.println("No. of Minors = " + minors);
@@ -144,7 +144,7 @@ public class CollectorsDemo {
 		Map<String, List<Employee>> employeesMap = AppUtils.EMPLOYEES.stream()
 				.collect(Collectors.groupingBy(departmentFunction));
 
-		System.out.println(employeesMap);
+		System.out.println("\n"+employeesMap);
 		System.out.println("------------------------------------------------------------");
 
 		Map<String, List<Person>> personsMap = AppUtils.PERSONS.stream()
@@ -152,27 +152,30 @@ public class CollectorsDemo {
 		System.out.println(personsMap);
 		System.out.println("------------------------------------------------------------");
 
-		Map<Integer, List<String>> wordsMap = AppUtils.WORDS.stream().collect(Collectors.groupingBy(String::length));
+		Map<Integer, List<String>> wordsMap = AppUtils.getStringStream("WORDS")
+				.collect(Collectors.groupingBy(String::length));
 		System.out.println(wordsMap);
 		System.out.println("------------------------------------------------------------");
 
 		System.out.println("Numbers: " + AppUtils.NUMBERS);
 		Function<Integer, String> evenOddFunction = i -> i % 2 == 0 ? "EVEN" : "ODD";
 
-		Map<String, List<Integer>> evenOddMap = AppUtils.NUMBERS.stream()
+		Map<String, List<Integer>> evenOddMap = AppUtils.getIntStream("NUMBERS")
 				.collect(Collectors.groupingBy(evenOddFunction));
 
 		System.out.println(evenOddMap);
 		System.out.println("------------------------------------------------------------");
 
 		Function<String, Character> charFunction = s -> s.charAt(0);
-		Map<Character, List<String>> namesMap = AppUtils.NAMES.stream().collect(Collectors.groupingBy(charFunction));
+		Map<Character, List<String>> namesMap = AppUtils.getStringStream("NAMES")
+				.collect(Collectors.groupingBy(charFunction));
 		System.out.println(namesMap);
 		System.out.println("------------------------------------------------------------");
 
 		Function<Student, String> ageStatusFunction = s -> s.getAge() >= 18 ? "ADULTS" : "MINORS";
 		Map<String, List<Student>> maturityMap = AppUtils.STUDENTS.stream()
 				.collect(Collectors.groupingBy(ageStatusFunction));
+
 		System.out.println(maturityMap);
 		System.out.println("------------------------------------------------------------");
 	}
@@ -182,7 +185,7 @@ public class CollectorsDemo {
 		Map<String, List<Person>> personsMap = AppUtils.PERSONS.stream()
 				.collect(Collectors.groupingBy(Person::getCountry, Collectors.toList()));
 
-		System.out.println(personsMap);
+		System.out.println("\n"+personsMap);
 		System.out.println("------------------------------------------------------------");
 
 		Map<String, Long> personsCountingMap = AppUtils.PERSONS.stream()
@@ -224,7 +227,7 @@ public class CollectorsDemo {
 		Map<String, List<Candidate>> candidatesMap = AppUtils.CANDIDATES.stream()
 				.collect(Collectors.groupingBy(Candidate::getDepartment, HashMap::new, Collectors.toList()));
 
-		System.out.println(candidatesMap);
+		System.out.println("\n"+candidatesMap);
 		System.out.println("------------------------------------------------------------");
 
 		Map<String, Long> candidatesCountMap = AppUtils.CANDIDATES.stream()
@@ -271,7 +274,7 @@ public class CollectorsDemo {
 	 */
 	static void testGroupingByConcurrent_V1() {
 		System.out.println("\n\n===================== testGroupingByConcurrent_V1() =====================");
-		System.out.println("Words = " + AppUtils.WORDS);
+		System.out.println("\nWords = " + AppUtils.WORDS);
 
 		ConcurrentMap<Integer, List<String>> wordsGroupMap = AppUtils.WORDS.parallelStream()
 				.collect(Collectors.groupingByConcurrent(String::length));
@@ -315,7 +318,7 @@ public class CollectorsDemo {
 		ConcurrentMap<String, Long> candidatesMap = AppUtils.CANDIDATES.parallelStream()
 				.collect(Collectors.groupingByConcurrent(Candidate::getDepartment, Collectors.counting()));
 
-		System.out.println(candidatesMap);
+		System.out.println("\n"+candidatesMap);
 		System.out.println("------------------------------------------------------------");
 
 		ConcurrentMap<String, List<String>> candidatesNamesMap = AppUtils.CANDIDATES.parallelStream()
@@ -355,7 +358,7 @@ public class CollectorsDemo {
 
 		);
 
-		System.out.println(candidatesMap);
+		System.out.println("\n"+candidatesMap);
 		System.out.println("------------------------------------------------------------");
 
 		ConcurrentMap<String, List<Integer>> evenOddMap = AppUtils.NUMBERS.parallelStream().collect(Collectors
@@ -380,15 +383,15 @@ public class CollectorsDemo {
 
 	static void testJoining() {
 		System.out.println("\n\n===================== testJoining() =====================");
-		String joined = AppUtils.NAMES.stream().collect(Collectors.joining());
-		System.out.println(joined);
+		String joined = AppUtils.getStringStream("NAMES").collect(Collectors.joining());
+		System.out.println("\n"+joined);
 		System.out.println("------------------------------------------------------------");
 
-		String joinedWithDelimeter = AppUtils.NAMES.stream().collect(Collectors.joining(", "));
+		String joinedWithDelimeter = AppUtils.getStringStream("NAMES").collect(Collectors.joining(", "));
 		System.out.println(joinedWithDelimeter);
 		System.out.println("------------------------------------------------------------");
 
-		String joinedWithPrefixSuffix = AppUtils.NAMES.stream()
+		String joinedWithPrefixSuffix = AppUtils.getStringStream("NAMES")
 				.collect(Collectors.joining(", ", "<STUDENTS>", "</STUDENTS>"));
 		System.out.println(joinedWithPrefixSuffix);
 		System.out.println("------------------------------------------------------------");
@@ -396,9 +399,10 @@ public class CollectorsDemo {
 
 	static void testMapping() {
 		System.out.println("\n\n===================== testMapping() =====================");
-		List<String> data = AppUtils.WORDS.stream()
+		List<String> data = AppUtils.getStringStream("WORDS")
 				.collect(Collectors.mapping(String::toUpperCase, Collectors.toList()));
-		System.out.println(data);
+		
+		System.out.println("\n"+data);
 		System.out.println("------------------------------------------------------------");
 
 		Map<String, List<String>> employeesMap = AppUtils.EMPLOYEES.stream().collect(
@@ -407,7 +411,7 @@ public class CollectorsDemo {
 		System.out.println(employeesMap);
 		System.out.println("------------------------------------------------------------");
 
-		Map<Integer, Set<String>> wordLengthMap = AppUtils.WORDS.stream().collect(
+		Map<Integer, Set<String>> wordLengthMap = AppUtils.getStringStream("WORDS").collect(
 				Collectors.groupingBy(String::length, Collectors.mapping(String::toUpperCase, Collectors.toSet())));
 
 		System.out.println(wordLengthMap);
@@ -416,12 +420,13 @@ public class CollectorsDemo {
 
 	static void testMaxBy() {
 		System.out.println("\n\n===================== testMaxBy() =====================");
-		System.out.println("Numbers = " + AppUtils.NUMBERS);
-		Optional<Integer> maxNumberOpt = AppUtils.NUMBERS.stream().collect(Collectors.maxBy(Comparator.naturalOrder()));
+		System.out.println("\nNumbers = " + AppUtils.NUMBERS);
+		Optional<Integer> maxNumberOpt = AppUtils.getIntStream("NUMBERS")
+				.collect(Collectors.maxBy(Comparator.naturalOrder()));
 		maxNumberOpt.ifPresent(System.out::println);
 		System.out.println("------------------------------------------------------------");
 
-		Optional<Integer> maxNumberOpt2 = AppUtils.NUMBERS.stream()
+		Optional<Integer> maxNumberOpt2 = AppUtils.getIntStream("NUMBERS")
 				.collect(Collectors.maxBy(Comparator.reverseOrder()));
 		maxNumberOpt2.ifPresent(System.out::println);
 		System.out.println("------------------------------------------------------------");
@@ -457,12 +462,13 @@ public class CollectorsDemo {
 
 	static void testMinBy() {
 		System.out.println("\n\n===================== testMinBy() =====================");
-		System.out.println("Numbers = " + AppUtils.NUMBERS);
-		Optional<Integer> minNumberOpt = AppUtils.NUMBERS.stream().collect(Collectors.minBy(Comparator.naturalOrder()));
+		System.out.println("\nNumbers = " + AppUtils.NUMBERS);
+		Optional<Integer> minNumberOpt = AppUtils.getIntStream("NUMBERS")
+				.collect(Collectors.minBy(Comparator.naturalOrder()));
 		minNumberOpt.ifPresent(System.out::println);
 		System.out.println("------------------------------------------------------------");
 
-		Optional<Integer> minNumberOpt2 = AppUtils.NUMBERS.stream()
+		Optional<Integer> minNumberOpt2 = AppUtils.getIntStream("NUMBERS")
 				.collect(Collectors.minBy(Comparator.reverseOrder()));
 		minNumberOpt2.ifPresent(System.out::println);
 		System.out.println("------------------------------------------------------------");
@@ -490,9 +496,9 @@ public class CollectorsDemo {
 
 	static void testPartitioningBy_V1() {
 		System.out.println("\n\n===================== testPartitioningBy_V1() =====================");
-		System.out.println("Numbers = " + AppUtils.NUMBERS);
+		System.out.println("\nNumbers = " + AppUtils.NUMBERS);
 
-		Map<Boolean, List<Integer>> numbersMap = AppUtils.NUMBERS.stream()
+		Map<Boolean, List<Integer>> numbersMap = AppUtils.getIntStream("NUMBERS")
 				.collect(Collectors.partitioningBy(n -> n % 2 == 0));
 
 		System.out.println("numbersMap = " + numbersMap);
@@ -501,7 +507,7 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 
 		System.out.println("NAMES = " + AppUtils.NAMES);
-		Map<Boolean, List<String>> namesMap = AppUtils.NAMES.stream()
+		Map<Boolean, List<String>> namesMap = AppUtils.getStringStream("NAMES")
 				.collect(Collectors.partitioningBy(s -> s.length() > 4));
 
 		System.out.println("namesMap = " + namesMap);
@@ -531,9 +537,9 @@ public class CollectorsDemo {
 
 	static void testPartitioningBy_V2() {
 		System.out.println("\n\n===================== testPartitioningBy_V2() =====================");
-		System.out.println("Numbers = " + AppUtils.NUMBERS);
+		System.out.println("\nNumbers = " + AppUtils.NUMBERS);
 
-		Map<Boolean, Long> numbersMap = AppUtils.NUMBERS.stream()
+		Map<Boolean, Long> numbersMap = AppUtils.getIntStream("NUMBERS")
 				.collect(Collectors.partitioningBy(n -> n % 2 == 0, Collectors.counting()));
 
 		System.out.println("Total available Odd Numbers = " + numbersMap.get(false));
@@ -541,7 +547,7 @@ public class CollectorsDemo {
 		System.out.println("------------------------------------------------------------");
 
 		System.out.println("NAMES = " + AppUtils.NAMES);
-		Map<Boolean, String> namesMap = AppUtils.NAMES.stream()
+		Map<Boolean, String> namesMap = AppUtils.getStringStream("NAMES")
 				.collect(Collectors.partitioningBy(s -> s.length() > 4, Collectors.joining(", ")));
 
 		System.out.println("Names with less than or equal to 4 characters = " + namesMap.get(false));
@@ -563,10 +569,11 @@ public class CollectorsDemo {
 
 	static void testReducing_V1() {
 		System.out.println("\n\n===================== testReducing_V1() =====================");
-		System.out.println("WORDS = " + AppUtils.WORDS + "\n");
+		System.out.println("\nWORDS = " + AppUtils.WORDS + "\n");
 
 		BinaryOperator<String> longStringBo = (s1, s2) -> s1.length() >= s2.length() ? s1 : s2;
-		Optional<String> longestStringOpt = AppUtils.WORDS.stream().collect(Collectors.reducing(longStringBo));
+		Optional<String> longestStringOpt = AppUtils.getStringStream("WORDS")
+				.collect(Collectors.reducing(longStringBo));
 
 		System.out.println("Longest String is '" + longestStringOpt.get() + "'\n");
 		System.out.println("------------------------------------------------------------");
@@ -581,9 +588,9 @@ public class CollectorsDemo {
 	static void testReducing_V2() {
 		System.out.println("\n\n===================== testReducing_V2() =====================");
 		BinaryOperator<String> longStringBo = (s1, s2) -> s1.length() >= s2.length() ? s1 : s2;
-		String longestString = AppUtils.WORDS.stream().collect(Collectors.reducing("", longStringBo));
+		String longestString = AppUtils.getStringStream("WORDS").collect(Collectors.reducing("", longStringBo));
 
-		System.out.println("Longest String is '" + longestString + "'\n");
+		System.out.println("\nLongest String is '" + longestString + "'\n");
 		System.out.println("------------------------------------------------------------");
 
 		BinaryOperator<Employee> highestSalaryBo = (emp1, emp2) -> emp1.getSalary() >= emp2.getSalary() ? emp1 : emp2;
@@ -599,7 +606,7 @@ public class CollectorsDemo {
 
 		BinaryOperator<Integer> ageBo = (a1, a2) -> a1 >= a2 ? a1 : a2;
 		Integer age = AppUtils.STUDENTS.stream().collect(Collectors.reducing(0, Student::getAge, ageBo));
-		System.out.println("Oldest Student's age is: " + age + "\n");
+		System.out.println("\nOldest Student's age is: " + age + "\n");
 		System.out.println("------------------------------------------------------------");
 
 		BinaryOperator<Double> salaryBo = (sal1, sal2) -> sal1 >= sal2 ? sal1 : sal2;
@@ -613,7 +620,7 @@ public class CollectorsDemo {
 		DoubleSummaryStatistics employeesSalaryStatistics = AppUtils.EMPLOYEES.stream()
 				.collect(Collectors.summarizingDouble(Employee::getSalary));
 
-		System.out.println(employeesSalaryStatistics);
+		System.out.println("\n"+employeesSalaryStatistics);
 		System.out.println("------------------------------------------------------------");
 	}
 
@@ -622,7 +629,7 @@ public class CollectorsDemo {
 		IntSummaryStatistics employessAgeStatistics = AppUtils.EMPLOYEES.stream()
 				.collect(Collectors.summarizingInt(Employee::getAge));
 
-		System.out.println(employessAgeStatistics);
+		System.out.println("\n"+employessAgeStatistics);
 		System.out.println("------------------------------------------------------------");
 	}
 
@@ -630,7 +637,7 @@ public class CollectorsDemo {
 		System.out.println("\n\n===================== testSummarizingLong() =====================");
 		LongSummaryStatistics numbersSummaryStatistics = AppUtils.NUMBERS_L.stream()
 				.collect(Collectors.summarizingLong(num -> num));
-		System.out.println(numbersSummaryStatistics);
+		System.out.println("\n"+numbersSummaryStatistics);
 		System.out.println("------------------------------------------------------------");
 	}
 
@@ -638,7 +645,8 @@ public class CollectorsDemo {
 		System.out.println("\n\n===================== testSummingDouble() =====================");
 		Double totalSalaryOfEmployees = AppUtils.EMPLOYEES.stream()
 				.collect(Collectors.summingDouble(Employee::getSalary));
-		System.out.println("Total Salary of all EMPLOYEES = " + totalSalaryOfEmployees);
+		
+		System.out.println("\nTotal Salary of all EMPLOYEES = " + totalSalaryOfEmployees);
 		System.out.println("------------------------------------------------------------");
 
 		Map<String, Double> employeesSalaryMap = AppUtils.EMPLOYEES.stream()
@@ -651,15 +659,15 @@ public class CollectorsDemo {
 
 	static void testSummingInt() {
 		System.out.println("\n\n===================== testSummingInt() =====================");
-		System.out.println("NUMBERS = " + AppUtils.NUMBERS);
-		Integer sum = AppUtils.NUMBERS.stream().collect(Collectors.summingInt(n -> n));
+		System.out.println("\nNUMBERS = " + AppUtils.NUMBERS);
+		Integer sum = AppUtils.getIntStream("NUMBERS").collect(Collectors.summingInt(n -> n));
 		System.out.println("Total Sum = " + sum);
 		System.out.println("------------------------------------------------------------");
 	}
 
 	static void testSummingLong() {
 		System.out.println("\n\n===================== testSummingLong() =====================");
-		System.out.println("NUMBERS = " + AppUtils.NUMBERS_L);
+		System.out.println("\nNUMBERS = " + AppUtils.NUMBERS_L);
 		Long sum = AppUtils.NUMBERS_L.stream().collect(Collectors.summingLong(n -> n));
 		System.out.println("Total Sum = " + sum);
 		System.out.println("------------------------------------------------------------");
@@ -669,7 +677,7 @@ public class CollectorsDemo {
 		System.out.println("\n\n===================== testToCollection() =====================");
 		List<String> fruits = List.of("Apple", "Banana", "Coconut", "Mango");
 		ArrayList<String> fruitsArrayList = fruits.stream().collect(Collectors.toCollection(ArrayList::new));
-		System.out.println("fruitsArrayList = " + fruitsArrayList);
+		System.out.println("\nfruitsArrayList = " + fruitsArrayList);
 		System.out.println("------------------------------------------------------------");
 
 		List<Integer> ranks = List.of(10, 20, 30, 40, 50);
@@ -696,7 +704,7 @@ public class CollectorsDemo {
 	static void testToList() {
 		System.out.println("\n\n===================== testToList() =====================");
 		List<String> immutableFruits = List.of("Apple", "Banana", "Coconut", "Mango");
-		System.out.println("fruits = " + immutableFruits);
+		System.out.println("\nfruits = " + immutableFruits);
 
 		List<String> mutableFruits = immutableFruits.stream().collect(Collectors.toList());
 		mutableFruits.add("Papaya");
@@ -707,7 +715,7 @@ public class CollectorsDemo {
 	static void testToSet() {
 		System.out.println("\n\n===================== testToSet() =====================");
 		Set<String> immutableFruits = Set.of("Apple", "Banana", "Coconut", "Mango");
-		System.out.println("fruits = " + immutableFruits);
+		System.out.println("\nfruits = " + immutableFruits);
 
 		Set<String> mutableFruits = immutableFruits.stream().collect(Collectors.toSet());
 		mutableFruits.add("Papaya");
@@ -723,10 +731,10 @@ public class CollectorsDemo {
 		ConcurrentMap<Integer, String> employeesMap = AppUtils.EMPLOYEES.stream()
 				.collect(Collectors.toConcurrentMap(Employee::getId, Employee::getName));
 
-		System.out.println("Employees Map = " + employeesMap);
+		System.out.println("\nEmployees Map = " + employeesMap);
 		System.out.println("------------------------------------------------------------");
 
-		ConcurrentMap<String, Integer> namesMap = AppUtils.NAMES.stream()
+		ConcurrentMap<String, Integer> namesMap = AppUtils.getStringStream("NAMES")
 				.collect(Collectors.toConcurrentMap(name -> name, String::length));
 
 		System.out.println("Names Map = " + namesMap);
@@ -736,10 +744,10 @@ public class CollectorsDemo {
 	static void testToConcurrentMap_V2() {
 		System.out.println("\n\n===================== testToConcurrentMap_V2() =====================");
 
-		ConcurrentMap<String, Integer> wordsMap = AppUtils.WORDS.stream()
+		ConcurrentMap<String, Integer> wordsMap = AppUtils.getStringStream("WORDS")
 				.collect(Collectors.toConcurrentMap(word -> word, String::length, (val1, val2) -> val1 + val2 * 0));
 
-		System.out.println("Words Map = " + wordsMap);
+		System.out.println("\nWords Map = " + wordsMap);
 		System.out.println("------------------------------------------------------------");
 
 		ConcurrentMap<String, Double> departmentSalaryMap = AppUtils.EMPLOYEES.stream().collect(Collectors
@@ -748,7 +756,7 @@ public class CollectorsDemo {
 		System.out.println("Department-Salary Map = " + departmentSalaryMap);
 		System.out.println("------------------------------------------------------------");
 
-		ConcurrentMap<String, Integer> wordFrequencyMap = AppUtils.WORDS.stream()
+		ConcurrentMap<String, Integer> wordFrequencyMap = AppUtils.getStringStream("WORDS")
 				.collect(Collectors.toConcurrentMap(word -> word, val -> 1, (val1, val2) -> val1 + val2));
 
 		System.out.println("Word Frequency Map = " + wordFrequencyMap);
@@ -764,13 +772,13 @@ public class CollectorsDemo {
 	static void testToConcurrentMap_V3() {
 		System.out.println("\n\n===================== testToConcurrentMap_V3() =====================");
 
-		ConcurrentHashMap<String, Integer> wordsFrequencyMap = AppUtils.WORDS.stream().collect(
+		ConcurrentHashMap<String, Integer> wordsFrequencyMap = AppUtils.getStringStream("WORDS").collect(
 				Collectors.toConcurrentMap(w -> w, v -> 1, (val1, val2) -> val1 + val2, ConcurrentHashMap::new));
 
-		System.out.println("Words Frequency Map = " + wordsFrequencyMap);
+		System.out.println("\nWords Frequency Map = " + wordsFrequencyMap);
 		System.out.println("------------------------------------------------------------");
 
-		ConcurrentSkipListMap<Integer, String> lengthNamesMap = AppUtils.NAMES.stream()
+		ConcurrentSkipListMap<Integer, String> lengthNamesMap = AppUtils.getStringStream("NAMES")
 				.collect(Collectors.toConcurrentMap(String::length, name -> name, (val1, val2) -> val1 + " | " + val2,
 						ConcurrentSkipListMap::new));
 
@@ -791,10 +799,11 @@ public class CollectorsDemo {
 		Map<Integer, String> employeesMap = AppUtils.EMPLOYEES.stream()
 				.collect(Collectors.toMap(Employee::getId, Employee::getName));
 
-		System.out.println("Employees Map = " + employeesMap);
+		System.out.println("\nEmployees Map = " + employeesMap);
 		System.out.println("------------------------------------------------------------");
 
-		Map<String, Integer> namesMap = AppUtils.NAMES.stream().collect(Collectors.toMap(name -> name, String::length));
+		Map<String, Integer> namesMap = AppUtils.getStringStream("NAMES")
+				.collect(Collectors.toMap(name -> name, String::length));
 
 		System.out.println("Names Map = " + namesMap);
 		System.out.println("------------------------------------------------------------");
@@ -803,10 +812,10 @@ public class CollectorsDemo {
 	static void testToMap_V2() {
 		System.out.println("\n\n===================== testToMap_V2() =====================");
 
-		Map<String, Integer> wordsMap = AppUtils.WORDS.stream()
+		Map<String, Integer> wordsMap = AppUtils.getStringStream("WORDS")
 				.collect(Collectors.toMap(word -> word, String::length, (val1, val2) -> val1 + val2 * 0));
 
-		System.out.println("Words Map = " + wordsMap);
+		System.out.println("\nWords Map = " + wordsMap);
 		System.out.println("------------------------------------------------------------");
 
 		Map<String, Double> departmentSalaryMap = AppUtils.EMPLOYEES.stream().collect(
@@ -815,7 +824,7 @@ public class CollectorsDemo {
 		System.out.println("Department-Salary Map = " + departmentSalaryMap);
 		System.out.println("------------------------------------------------------------");
 
-		Map<String, Integer> wordFrequencyMap = AppUtils.WORDS.stream()
+		Map<String, Integer> wordFrequencyMap = AppUtils.getStringStream("WORDS")
 				.collect(Collectors.toMap(word -> word, val -> 1, (val1, val2) -> val1 + val2));
 
 		System.out.println("Word Frequency Map = " + wordFrequencyMap);
@@ -831,14 +840,14 @@ public class CollectorsDemo {
 	static void testToMap_V3() {
 		System.out.println("\n\n===================== testToMap_V3() =====================");
 
-		HashMap<String, Integer> wordsFrequencyMap = AppUtils.WORDS.stream()
+		HashMap<String, Integer> wordsFrequencyMap = AppUtils.getStringStream("WORDS")
 				.collect(Collectors.toMap(w -> w, v -> 1, (val1, val2) -> val1 + val2, HashMap::new));
 
-		System.out.println("Words Frequency Map = " + wordsFrequencyMap);
+		System.out.println("\nWords Frequency Map = " + wordsFrequencyMap);
 		System.out.println("------------------------------------------------------------");
 
-		LinkedHashMap<Integer, String> lengthNamesMap = AppUtils.NAMES.stream().collect(Collectors.toMap(String::length,
-				name -> name, (val1, val2) -> val1 + " | " + val2, LinkedHashMap::new));
+		LinkedHashMap<Integer, String> lengthNamesMap = AppUtils.getStringStream("NAMES").collect(Collectors
+				.toMap(String::length, name -> name, (val1, val2) -> val1 + " | " + val2, LinkedHashMap::new));
 
 		System.out.println("Length Names Map = " + lengthNamesMap);
 		System.out.println("------------------------------------------------------------");
