@@ -1,8 +1,11 @@
 package com.learning.model;
 
+import java.util.List;
+
 public class Candidate {
 	private String name;
 	private String department;
+	private List<String> skills;
 
 	public Candidate() {
 	}
@@ -10,6 +13,12 @@ public class Candidate {
 	public Candidate(String name, String department) {
 		this.name = name;
 		this.department = department;
+	}
+
+	public Candidate(String name, String department, List<String> skills) {
+		this.name = name;
+		this.department = department;
+		this.skills = skills;
 	}
 
 	public String getName() {
@@ -26,6 +35,14 @@ public class Candidate {
 
 	public void setDepartment(String department) {
 		this.department = department;
+	}
+
+	public List<String> getSkills() {
+		return skills;
+	}
+
+	public void setSkills(List<String> skills) {
+		this.skills = skills;
 	}
 
 	@Override

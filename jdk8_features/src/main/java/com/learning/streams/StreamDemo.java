@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 
 import com.learning.model.Animal;
 import com.learning.model.AppUtils;
+import com.learning.model.Candidate;
 import com.learning.model.Cat;
 import com.learning.model.Dog;
 import com.learning.model.Order;
@@ -122,7 +123,8 @@ public class StreamDemo {
 
 	public static void testCollect_V2() {
 		System.out.println("\n\n===================== testCollect_V2() =====================");
-		List<String> words = AppUtils.getStringStream("WORDS").collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+		List<String> words = AppUtils.getStringStream("WORDS").collect(ArrayList::new, ArrayList::add,
+				ArrayList::addAll);
 
 		System.out.println("words: " + words);
 		System.out.println("------------------------------------------------------------");
@@ -292,7 +294,35 @@ public class StreamDemo {
 		evenNumbersOpt.ifPresent(System.out::println);
 		System.out.println("------------------------------------------------------------");
 	}
-	
+
+	public static void testFlatMap() {
+		System.out.println("\n\n===================== testFlatMap() =====================");
+		List<String> sentences = List.of("Java is powerful", "Streams are cool");
+
+		Stream<String> resultStream = sentences.stream().flatMap(s -> {
+			String[] words = s.split(" ");
+			Stream<String> stringStream = Arrays.stream(words);
+			return stringStream;
+		});
+
+		resultStream.forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		List<Candidate> candidates = List.of(new Candidate("Ali", "Finance", List.of("Java", "Spring")),
+				new Candidate("Rahim", "Human Resource", List.of("SQL", "Docker")),
+				new Candidate("John", "Science", List.of("Java", "AWS")));
+
+		Stream<String> skillsStream = candidates.stream().flatMap(c -> {
+			List<String> skills = c.getSkills();
+			return skills.stream();
+		});
+
+		skillsStream.forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		createStream();
 		testAllMatch();
@@ -306,6 +336,7 @@ public class StreamDemo {
 		testFilter();
 		testFindAny();
 		testFindFirst();
+		testFlatMap();
 	}
 
 }
