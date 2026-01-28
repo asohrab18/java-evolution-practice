@@ -21,8 +21,13 @@ public final class AppUtils {
 	public static final List<Person> PERSONS = PersonDto.findPersons();
 
 	public static final List<Student> STUDENTS = StudentDto.findStudents();
-	
+
 	public static final List<Student> STUDENTS_WITH_MARKS = StudentDto.findStudentsWithMarks();
+
+	public static final List<Student> STUDENTS_WITH_SUBJECTS_CODES = StudentDto.findStudentsWithSubjectsCodes();
+
+	public static final List<Student> STUDENTS_WITH_QUESTION_PAPERS_CODES = StudentDto
+			.findStudentsWithQuestionPapersCodes();
 
 	/**
 	 * ============== List of some data types: ===============

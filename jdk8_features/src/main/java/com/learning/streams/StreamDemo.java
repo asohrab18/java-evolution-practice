@@ -10,6 +10,8 @@ import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 import com.learning.model.Animal;
@@ -333,7 +335,40 @@ public class StreamDemo {
 		});
 
 		studentsMarksStream.forEach(System.out::println);
-		
+
+		System.out.println("------------------------------------------------------------");
+	}
+
+	public static void testFlatMapToInt() {
+		System.out.println("\n\n===================== testFlatMapToInt() =====================");
+
+		IntStream subjectsCodesStream = AppUtils.STUDENTS_WITH_SUBJECTS_CODES.stream().flatMapToInt(student -> {
+			IntStream is = Arrays.stream(student.getSubjectsCodes());
+			return is;
+		});
+
+		subjectsCodesStream.forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		IntStream resultStream = AppUtils.STUDENTS_WITH_SUBJECTS_CODES.stream()
+				.flatMapToInt(student -> student.getName().chars());
+
+		resultStream.forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+	}
+
+	public static void testFlatMapToLong() {
+		System.out.println("\n\n===================== testFlatMapToLong() =====================");
+
+		LongStream questionPapersCodesStream = AppUtils.STUDENTS_WITH_QUESTION_PAPERS_CODES.stream()
+				.flatMapToLong(student -> {
+					LongStream ls = Arrays.stream(student.getQuestionPapersCodes());
+					return ls;
+				});
+
+		questionPapersCodesStream.forEach(System.out::println);
+
 		System.out.println("------------------------------------------------------------");
 	}
 
@@ -352,6 +387,8 @@ public class StreamDemo {
 		testFindFirst();
 		testFlatMap();
 		testFlatMapToDouble();
+		testFlatMapToInt();
+		testFlatMapToLong();
 	}
 
 }
