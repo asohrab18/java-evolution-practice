@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
 import com.learning.model.Animal;
@@ -323,6 +324,19 @@ public class StreamDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	public static void testFlatMapToDouble() {
+		System.out.println("\n\n===================== testFlatMapToDouble() =====================");
+
+		DoubleStream studentsMarksStream = AppUtils.STUDENTS_WITH_MARKS.stream().flatMapToDouble(student -> {
+			DoubleStream ds = Arrays.stream(student.getMarks());
+			return ds;
+		});
+
+		studentsMarksStream.forEach(System.out::println);
+		
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		createStream();
 		testAllMatch();
@@ -337,6 +351,7 @@ public class StreamDemo {
 		testFindAny();
 		testFindFirst();
 		testFlatMap();
+		testFlatMapToDouble();
 	}
 
 }
