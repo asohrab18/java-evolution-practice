@@ -422,32 +422,62 @@ public class StreamDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
-	public static void testGenerate() {
-		System.out.println("\n\n===================== testGenerate() =====================");
+	public static void testGenerateWithLimit() {
+		int limit = AppUtils.LIMIT;
+		System.out.println("\n\n===================== testGenerateWithLimit() =====================");
 
 		Stream<String> greetingsStream = Stream.generate(() -> "Hello");
-		greetingsStream.limit(3).forEach(System.out::println);
+		greetingsStream.limit(limit).forEach(System.out::println);
 
 		System.out.println("------------------------------------------------------------");
 
 		Stream<Integer> randomNumbersStream = Stream.generate(() -> (int) (Math.random() * 100));
 
-		randomNumbersStream.limit(3).forEach(System.out::println);
+		randomNumbersStream.limit(limit).forEach(System.out::println);
 		System.out.println("------------------------------------------------------------");
 
 		Stream<LocalDateTime> currentDateTimeStream = Stream.generate(() -> LocalDateTime.now());
 
-		currentDateTimeStream.limit(3).forEach(System.out::println);
+		currentDateTimeStream.limit(limit).forEach(System.out::println);
 		System.out.println("------------------------------------------------------------");
 
 		Stream<String> uuidStream = Stream.generate(() -> UUID.randomUUID().toString());
 
-		uuidStream.limit(3).forEach(System.out::println);
+		uuidStream.limit(limit).forEach(System.out::println);
 		System.out.println("------------------------------------------------------------");
 
 		Stream<Candidate> candidateStream = Stream.generate(() -> new Candidate("Jack", "Science"));
 
-		candidateStream.limit(3).forEach(System.out::println);
+		candidateStream.limit(limit).forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+	}
+
+	public static void testIterateWithLimit() {
+		int limit = AppUtils.LIMIT;
+		System.out.println("\n\n===================== testIterateWithLimit() =====================");
+		Stream<Integer> numbersStream = Stream.iterate(1, n -> n + 1);
+
+		numbersStream.limit(limit).forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Stream<Integer> numbersDecrementStream = Stream.iterate(50, n -> n - 1);
+
+		numbersDecrementStream.limit(limit).forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Stream<Integer> evenNumbersStream = Stream.iterate(0, n -> n + 2);
+
+		evenNumbersStream.limit(limit).forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Stream<Integer> powerOfTwoStream = Stream.iterate(2, num -> (int) (Math.pow(num, 2)));
+
+		powerOfTwoStream.limit(limit).forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Stream<LocalDateTime> daysStream = Stream.iterate(LocalDateTime.now(), ldt -> ldt.plusDays(1));
+
+		daysStream.limit(limit).forEach(System.out::println);
 		System.out.println("------------------------------------------------------------");
 	}
 
@@ -470,7 +500,8 @@ public class StreamDemo {
 		testFlatMapToLong();
 		testForEach();
 		testForEachOrdered();
-		testGenerate();
+		testGenerateWithLimit();
+		testIterateWithLimit();
 	}
 
 }

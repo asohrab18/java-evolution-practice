@@ -10,6 +10,11 @@ public final class AppUtils {
 	}
 
 	/**
+	 * ============== Some useful properties: ==============
+	 */
+	public static final int LIMIT = 5;
+
+	/**
 	 * ============== List of some custom classes: ==============
 	 */
 	public static final List<Candidate> CANDIDATES = CandidateDto.findCandidates();
