@@ -1,12 +1,14 @@
 package com.learning.streams;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
@@ -420,6 +422,35 @@ public class StreamDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	public static void testGenerate() {
+		System.out.println("\n\n===================== testGenerate() =====================");
+
+		Stream<String> greetingsStream = Stream.generate(() -> "Hello");
+		greetingsStream.limit(3).forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		Stream<Integer> randomNumbersStream = Stream.generate(() -> (int) (Math.random() * 100));
+
+		randomNumbersStream.limit(3).forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Stream<LocalDateTime> currentDateTimeStream = Stream.generate(() -> LocalDateTime.now());
+
+		currentDateTimeStream.limit(3).forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Stream<String> uuidStream = Stream.generate(() -> UUID.randomUUID().toString());
+
+		uuidStream.limit(3).forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Stream<Candidate> candidateStream = Stream.generate(() -> new Candidate("Jack", "Science"));
+
+		candidateStream.limit(3).forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		createStream();
 		testAllMatch();
@@ -439,6 +470,7 @@ public class StreamDemo {
 		testFlatMapToLong();
 		testForEach();
 		testForEachOrdered();
+		testGenerate();
 	}
 
 }
