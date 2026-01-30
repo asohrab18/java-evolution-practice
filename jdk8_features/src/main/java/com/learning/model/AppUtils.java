@@ -54,6 +54,8 @@ public final class AppUtils {
 
 	public static final List<String> NAMES = List.of("Ali", "Adam", "Eves", "Celina", "Denis", "Menis");
 
+	public static final List<String> NUMBERS_STRING = List.of("10", "20", "30", "40", "50", "60");
+
 	public static final List<String> WORDS = List.of("Apple", "Coconut", "Spoon", "Table", "Coconut", "Microservices");
 
 	/**
@@ -92,6 +94,8 @@ public final class AppUtils {
 			resultStream = WORDS.stream();
 		} else if (key.equalsIgnoreCase("NAMES")) {
 			resultStream = NAMES.stream();
+		} else if (key.equalsIgnoreCase("NUMBERS_STRING")) {
+			resultStream = NUMBERS_STRING.stream();
 		}
 		return resultStream;
 	}

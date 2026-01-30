@@ -21,6 +21,7 @@ import com.learning.model.AppUtils;
 import com.learning.model.Candidate;
 import com.learning.model.Cat;
 import com.learning.model.Dog;
+import com.learning.model.Employee;
 import com.learning.model.Order;
 
 public class StreamDemo {
@@ -481,6 +482,53 @@ public class StreamDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	public static void testMaps() {
+		System.out.println("\n\n===================== testMaps() =====================");
+		AppUtils.getStringStream("WORDS").map(String::toUpperCase).forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.getIntStream("NUMBERS").map(num -> num * num).forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.getStringStream("WORDS").map(word -> word + " has length = " + word.length())
+				.forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().map(Employee::getName).forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().map(emp -> emp.getSalary() + 1000d).forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.getStringStream("NUMBERS_STRING").map(Integer::parseInt).forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		DoubleStream salaryIncrementStream = AppUtils.EMPLOYEES.stream()
+				.mapToDouble(emp -> emp.getSalary() + emp.getSalary() * 0.1d);
+
+		salaryIncrementStream.forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		IntStream oddNumbersStream = AppUtils.getIntStream("ODD_NUMBERS").mapToInt(num -> num * 3);
+
+		oddNumbersStream.forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		LongStream numbersLongStream = AppUtils.NUMBERS_L.stream().mapToLong(num -> num * 10l);
+
+		numbersLongStream.forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		createStream();
 		testAllMatch();
@@ -502,6 +550,7 @@ public class StreamDemo {
 		testForEachOrdered();
 		testGenerateWithLimit();
 		testIterateWithLimit();
+		testMaps();
 	}
 
 }
