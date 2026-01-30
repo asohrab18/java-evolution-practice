@@ -372,6 +372,54 @@ public class StreamDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	public static void testForEach() {
+		System.out.println("\n\n===================== testForEach() =====================");
+		AppUtils.CANDIDATES.stream().forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.ORDERS.stream().forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.PERSONS.stream().forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.STUDENTS.stream().forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.getStringStream("WORDS").forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.getIntStream("NUMBERS").forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+	}
+
+	public static void testForEachOrdered() {
+		System.out.println("\n\n===================== testForEachOrdered() =====================");
+		AppUtils.CANDIDATES.stream().forEachOrdered(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().forEachOrdered(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.ORDERS.stream().forEachOrdered(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.PERSONS.stream().forEachOrdered(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.STUDENTS.stream().forEachOrdered(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.getStringStream("WORDS").forEachOrdered(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.getIntStream("NUMBERS").forEachOrdered(System.out::println);
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		createStream();
 		testAllMatch();
@@ -389,6 +437,8 @@ public class StreamDemo {
 		testFlatMapToDouble();
 		testFlatMapToInt();
 		testFlatMapToLong();
+		testForEach();
+		testForEachOrdered();
 	}
 
 }
