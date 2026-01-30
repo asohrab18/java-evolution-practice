@@ -52,11 +52,13 @@ public final class AppUtils {
 
 	public static final List<Double> PRICES = List.of(100.18d, 200.86d, 300.56d);
 
-	public static final List<String> NAMES = List.of("Ali", "Adam", "Eves", "Celina", "Denis", "Menis");
+	public static final List<String> NAMES = List.of("Bob", "Adam", "Zeeshan", "Tanya", "Menis", "Eves", "Celina",
+			"Denis");
 
 	public static final List<String> NUMBERS_STRING = List.of("10", "20", "30", "40", "50", "60");
 
-	public static final List<String> WORDS = List.of("Apple", "Coconut", "Spoon", "Table", "Coconut", "Microservices");
+	public static final List<String> WORDS = List.of("Ant", "Apple", "Coconut", "Spoon", "Table", "Coconut",
+			"Microservices");
 
 	/**
 	 * =============== Some methods are below: ================

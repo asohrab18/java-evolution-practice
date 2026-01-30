@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -529,6 +530,75 @@ public class StreamDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	public static void testMax() {
+		System.out.println("\n\n===================== testMax() =====================");
+		Optional<Integer> maximumNumber = AppUtils.getIntStream("NUMBERS").max(Comparator.naturalOrder());
+
+		System.out.println(maximumNumber.orElse(0));
+		System.out.println("------------------------------------------------------------");
+
+		Optional<Integer> reverseMaximumNumber = AppUtils.getIntStream("NUMBERS").max(Comparator.reverseOrder());
+
+		System.out.println(reverseMaximumNumber.orElse(0));
+		System.out.println("------------------------------------------------------------");
+
+		Optional<String> maximumName = AppUtils.getStringStream("NAMES").max(Comparator.naturalOrder());
+
+		System.out.println(maximumName.orElse("NONE"));
+		System.out.println("------------------------------------------------------------");
+
+		Optional<String> maximumReverseName = AppUtils.getStringStream("NAMES").max(Comparator.reverseOrder());
+
+		System.out.println(maximumReverseName.orElse("NONE"));
+		System.out.println("------------------------------------------------------------");
+
+		Optional<Employee> maximumSalaryEmployee = AppUtils.EMPLOYEES.stream()
+				.max(Comparator.comparingDouble(Employee::getSalary));
+
+		System.out.println(maximumSalaryEmployee.orElse(new Employee()));
+		System.out.println("------------------------------------------------------------");
+
+		Optional<String> maximumLengthWord = AppUtils.getStringStream("WORDS")
+				.max(Comparator.comparing(String::length));
+
+		System.out.println(maximumLengthWord.orElse(""));
+		System.out.println("------------------------------------------------------------");
+	}
+
+	public static void testMin() {
+		System.out.println("\n\n===================== testMin() =====================");
+		Optional<Integer> minimumNumber = AppUtils.getIntStream("NUMBERS").min(Comparator.naturalOrder());
+
+		System.out.println(minimumNumber.orElse(0));
+		System.out.println("------------------------------------------------------------");
+
+		Optional<Integer> reverseMinimumNumber = AppUtils.getIntStream("NUMBERS").min(Comparator.reverseOrder());
+
+		System.out.println(reverseMinimumNumber.orElse(0));
+		System.out.println("------------------------------------------------------------");
+
+		Optional<String> minimumName = AppUtils.getStringStream("NAMES").min(Comparator.naturalOrder());
+
+		System.out.println(minimumName.orElse("NONE"));
+		System.out.println("------------------------------------------------------------");
+
+		Optional<String> minimumReverseName = AppUtils.getStringStream("NAMES").min(Comparator.reverseOrder());
+
+		System.out.println(minimumReverseName.orElse("NONE"));
+		System.out.println("------------------------------------------------------------");
+
+		Optional<Employee> minimumSalaryEmployee = AppUtils.EMPLOYEES.stream()
+				.min(Comparator.comparingDouble(Employee::getSalary));
+
+		System.out.println(minimumSalaryEmployee.orElse(new Employee()));
+		System.out.println("------------------------------------------------------------");
+
+		Optional<String> minimumLengthWord = AppUtils.getStringStream("WORDS")
+				.min(Comparator.comparing(String::length));
+
+		System.out.println(minimumLengthWord.orElse(""));
+		System.out.println("------------------------------------------------------------");
+	}
 	public static void main(String[] args) {
 		createStream();
 		testAllMatch();
@@ -551,6 +621,8 @@ public class StreamDemo {
 		testGenerateWithLimit();
 		testIterateWithLimit();
 		testMaps();
+		testMax();
+		testMin();
 	}
 
 }
