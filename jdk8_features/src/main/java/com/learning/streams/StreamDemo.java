@@ -690,6 +690,28 @@ public class StreamDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	public static void testPeek() {
+		System.out.println("===================== testPeek() =====================");
+		AppUtils.getStringStream("NAMES").peek(s -> System.out.println("Before Filter, name: " + s))
+				.filter(s -> s.length() >= 5).map(String::toUpperCase)
+				.forEach(s -> System.out.println("After filtering and mapping, name of 5 or more characters: " + s));
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.getIntStream("NUMBERS").peek(n -> System.out.println("Before filter, number = " + n))
+				.filter(n -> n % 2 == 0).forEach(n -> System.out.println("After filter, even number = " + n));
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().peek(
+				emp -> System.out.println("Before Mapping, " + emp.getName() + " has salary = " + emp.getSalary()))
+				.map(emp -> {
+					emp.setSalary(emp.getSalary() + 1000d);
+					return emp;
+				}).forEach(emp -> System.out.println("After Mapping (Increment = INR 1000/-), " + emp.getName()
+						+ " has salary = " + emp.getSalary() + "\n"));
+	}
+
 	public static void main(String[] args) {
 		createStream();
 		testAllMatch();
@@ -716,6 +738,7 @@ public class StreamDemo {
 		testMin();
 		testNoneMatch();
 		testOf_VS_ArraysStream();
+		testPeek();
 	}
 
 }
