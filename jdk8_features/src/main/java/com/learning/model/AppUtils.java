@@ -40,7 +40,7 @@ public final class AppUtils {
 
 	public static final List<Integer> DUPLICATE_NUMBERS = List.of(5, 5, 5, 1, 1, 1, 4, 4, 4, 2, 2, 2, 3, 3);
 
-	public static final List<Integer> EVEN_NUMBERS = List.of(2, 4, 6, 8, 9);
+	public static final List<Integer> EVEN_NUMBERS = List.of(2, 4, 6, 8, 10);
 
 	public static final List<Integer> NUMBERS = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
 

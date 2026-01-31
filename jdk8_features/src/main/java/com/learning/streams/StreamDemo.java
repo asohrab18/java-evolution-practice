@@ -599,6 +599,47 @@ public class StreamDemo {
 		System.out.println(minimumLengthWord.orElse(""));
 		System.out.println("------------------------------------------------------------");
 	}
+
+	public static void testNoneMatch() {
+		System.out.println("\n\n===================== testNoneMatch() =====================");
+		boolean allPositiveNumbers = AppUtils.getIntStream("NUMBERS").noneMatch(n -> n < 0);
+
+		System.out.println("All numbers are positive? Ans: " + allPositiveNumbers);
+		System.out.println("------------------------------------------------------------");
+
+		boolean noNumberGreaterThanTen = AppUtils.getIntStream("NUMBERS").noneMatch(n -> n >= 10);
+
+		System.out.println("All numbers are less than 10? Ans: " + noNumberGreaterThanTen);
+		System.out.println("------------------------------------------------------------");
+
+		boolean noWordIsEmpty = AppUtils.getStringStream("WORDS").noneMatch(String::isEmpty);
+
+		System.out.println("There is no empty word? Ans: " + noWordIsEmpty);
+		System.out.println("------------------------------------------------------------");
+
+		boolean noEmployeeWithHigherSalary = AppUtils.EMPLOYEES.stream().noneMatch(e -> e.getSalary() >= 500000);
+
+		System.out.println("There is no employee with salary >= 500000? Ans: " + noEmployeeWithHigherSalary);
+		System.out.println("------------------------------------------------------------");
+
+		boolean noNumberGreaterThanFive = AppUtils.getIntStream("NUMBERS").noneMatch(n -> {
+			System.out.println("Checking: " + n);
+			return n >= 5;
+		});
+
+		System.out.println("All numbers are less than 5? Ans: " + noNumberGreaterThanFive);
+		System.out.println("------------------------------------------------------------");
+
+		boolean allOddNumbers = AppUtils.getIntStream("EVEN_NUMBERS").noneMatch(n -> n % 2 == 0);
+		System.out.println("All numbers are odd? Ans: " + allOddNumbers);
+		System.out.println("------------------------------------------------------------");
+
+		boolean allEvenNumbers = AppUtils.getIntStream("EVEN_NUMBERS").noneMatch(n -> n % 2 != 0);
+		System.out.println("All numbers are even? Ans: " + allEvenNumbers);
+		System.out.println("------------------------------------------------------------");
+
+	}
+
 	public static void main(String[] args) {
 		createStream();
 		testAllMatch();
@@ -623,6 +664,7 @@ public class StreamDemo {
 		testMaps();
 		testMax();
 		testMin();
+		testNoneMatch();
 	}
 
 }
