@@ -713,8 +713,8 @@ public class StreamDemo {
 						+ " has salary = " + emp.getSalary() + "\n"));
 	}
 
-	public static void testReduce() {
-		System.out.println("===================== testReduce() =====================");
+	public static void testReduce_V1() {
+		System.out.println("===================== testReduce_V1() =====================");
 		OptionalInt sumOpt = Arrays.stream(AppUtils.NUMBERS_ARRAY).reduce((num1, num2) -> num1 + num2);
 
 		sumOpt.ifPresent(sum -> System.out.println("Sum of numbers = " + sum));
@@ -772,7 +772,7 @@ public class StreamDemo {
 		testNoneMatch();
 		testOf_VS_ArraysStream();
 		testPeek();
-		testReduce();
+		testReduce_V1();
 	}
 
 }
