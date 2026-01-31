@@ -8,6 +8,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.Set;
 import java.util.UUID;
 import java.util.function.BiConsumer;
@@ -712,6 +713,38 @@ public class StreamDemo {
 						+ " has salary = " + emp.getSalary() + "\n"));
 	}
 
+	public static void testReduce() {
+		System.out.println("===================== testReduce() =====================");
+		OptionalInt sumOpt = Arrays.stream(AppUtils.NUMBERS_ARRAY).reduce((num1, num2) -> num1 + num2);
+
+		sumOpt.ifPresent(sum -> System.out.println("Sum of numbers = " + sum));
+
+		System.out.println("------------------------------------------------------------");
+
+		OptionalInt productOpt = Arrays.stream(AppUtils.NUMBERS_ARRAY).reduce((num1, num2) -> num1 * num2);
+
+		productOpt.ifPresent(product -> System.out.println("Product of numbers = " + product));
+
+		System.out.println("------------------------------------------------------------");
+
+		Optional<Integer> minOpt = AppUtils.getIntStream("NUMBERS").reduce((num1, num2) -> num1 < num2 ? num1 : num2);
+
+		minOpt.ifPresent(min -> System.out.println("Minimum number = " + min));
+
+		System.out.println("------------------------------------------------------------");
+
+		Optional<Integer> maxOpt = AppUtils.getIntStream("NUMBERS").reduce((num1, num2) -> num1 > num2 ? num1 : num2);
+
+		maxOpt.ifPresent(max -> System.out.println("Maximum number = " + max));
+
+		System.out.println("------------------------------------------------------------");
+
+		Optional<String> concatenatedOpt = Arrays.stream(AppUtils.ALPHABETS_ARRAY).reduce((s1, s2) -> s1 + s2);
+		concatenatedOpt.ifPresent(s -> System.out.println("Concatenated Output = " + s));
+
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		createStream();
 		testAllMatch();
@@ -739,6 +772,7 @@ public class StreamDemo {
 		testNoneMatch();
 		testOf_VS_ArraysStream();
 		testPeek();
+		testReduce();
 	}
 
 }
