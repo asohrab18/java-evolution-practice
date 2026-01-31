@@ -640,8 +640,8 @@ public class StreamDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
-	public static void testOf() {
-		System.out.println("\n\n===================== testOf() =====================");
+	public static void testOf_VS_ArraysStream() {
+		System.out.println("\n\n===================== testOf_VS_ArraysStream() =====================");
 		Stream<Integer> numbersStream = Stream.of(1, 2, 3, 4, 5);
 		numbersStream.forEach(System.out::println);
 		System.out.println("------------------------------------------------------------");
@@ -688,7 +688,6 @@ public class StreamDemo {
 		DoubleStream numbersDArrayStream = Arrays.stream(AppUtils.NUMBERS_ARRAY_D);
 		numbersDArrayStream.forEach(System.out::println);
 		System.out.println("------------------------------------------------------------");
-
 	}
 
 	public static void main(String[] args) {
@@ -716,7 +715,7 @@ public class StreamDemo {
 		testMax();
 		testMin();
 		testNoneMatch();
-		testOf();
+		testOf_VS_ArraysStream();
 	}
 
 }
