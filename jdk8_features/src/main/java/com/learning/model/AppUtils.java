@@ -14,6 +14,14 @@ public final class AppUtils {
 	 */
 	public static final int LIMIT = 5;
 
+	public static final String[] ALPHABETS_ARRAY = { "A", "B", "C", "D" };
+
+	public static final int[] NUMBERS_ARRAY = { 1, 2, 3, 4 };
+
+	public static final long[] NUMBERS_ARRAY_L = { 123456l, 223456l, 398765l, 498787l };
+
+	public static final double[] NUMBERS_ARRAY_D = { 1.24d, 23.45d, 345.76d, 49.87d };
+
 	/**
 	 * ============== List of some custom classes: ==============
 	 */

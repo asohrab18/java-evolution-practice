@@ -24,6 +24,7 @@ import com.learning.model.Cat;
 import com.learning.model.Dog;
 import com.learning.model.Employee;
 import com.learning.model.Order;
+import com.learning.model.Student;
 
 public class StreamDemo {
 
@@ -637,6 +638,56 @@ public class StreamDemo {
 		boolean allEvenNumbers = AppUtils.getIntStream("EVEN_NUMBERS").noneMatch(n -> n % 2 != 0);
 		System.out.println("All numbers are even? Ans: " + allEvenNumbers);
 		System.out.println("------------------------------------------------------------");
+	}
+
+	public static void testOf() {
+		System.out.println("\n\n===================== testOf() =====================");
+		Stream<Integer> numbersStream = Stream.of(1, 2, 3, 4, 5);
+		numbersStream.forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Stream<String> namesStream = Stream.of("Adam", "Baby", "Celina", "Don", "Elizabeth");
+		namesStream.forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Stream<String> alphabetsStream = Stream.of(AppUtils.ALPHABETS_ARRAY);
+		alphabetsStream.forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Stream<String> alphabetsStream2 = Arrays.stream(AppUtils.ALPHABETS_ARRAY);
+		alphabetsStream2.forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Stream<int[]> numbersArrayStream = Stream.of(AppUtils.NUMBERS_ARRAY);
+		System.out.println("Number of elements = " + numbersArrayStream.count());
+
+		Stream<int[]> numbersArrayStream2 = Stream.of(AppUtils.NUMBERS_ARRAY);
+		numbersArrayStream2.forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		IntStream numbersArrayStream3 = Arrays.stream(AppUtils.NUMBERS_ARRAY);
+		System.out.println("Number of elements = " + numbersArrayStream3.count());
+
+		IntStream numbersArrayStream4 = Arrays.stream(AppUtils.NUMBERS_ARRAY);
+		numbersArrayStream4.forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Stream<Student> studentStream = Stream.of(new Student("Ali", 10), new Student("Baby", 9),
+				new Student("Celina", 20));
+
+		studentStream.forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		Stream.of(AppUtils.LIMIT).forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		LongStream numbersLArrayStream = Arrays.stream(AppUtils.NUMBERS_ARRAY_L);
+		numbersLArrayStream.forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
+
+		DoubleStream numbersDArrayStream = Arrays.stream(AppUtils.NUMBERS_ARRAY_D);
+		numbersDArrayStream.forEach(System.out::println);
+		System.out.println("------------------------------------------------------------");
 
 	}
 
@@ -665,6 +716,7 @@ public class StreamDemo {
 		testMax();
 		testMin();
 		testNoneMatch();
+		testOf();
 	}
 
 }
