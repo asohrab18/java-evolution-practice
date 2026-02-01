@@ -17,7 +17,6 @@ import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
-
 import com.learning.model.Animal;
 import com.learning.model.AppUtils;
 import com.learning.model.Candidate;
@@ -873,6 +872,77 @@ public class StreamDemo {
 
 	}
 
+	public static void testToArray_V1() {
+		System.out.println("\n\n===================== testToArray_V1() =====================");
+		Object[] numbersArray = AppUtils.getIntStream("NUMBERS").toArray();
+		for (Object num : numbersArray) {
+			System.out.println(num);
+		}
+
+		System.out.println("------------------------------------------------------------");
+
+		Object[] namesArray = AppUtils.getStringStream("NAMES").toArray();
+		for (Object name : namesArray) {
+			System.out.println(name);
+		}
+
+		System.out.println("------------------------------------------------------------");
+
+		Object[] employeesArray = AppUtils.EMPLOYEES.stream().toArray();
+		for (Object employee : employeesArray) {
+			System.out.println(employee);
+		}
+
+		System.out.println("------------------------------------------------------------");
+
+		Object[] studentsArray = AppUtils.STUDENTS.stream().toArray();
+		for (Object student : studentsArray) {
+			System.out.println(student);
+		}
+
+		System.out.println("------------------------------------------------------------");
+	}
+
+	public static void testToArray_V2() {
+		System.out.println("\n\n===================== testToArray_V2() =====================");
+		Integer[] numbersArray = AppUtils.getIntStream("NUMBERS").toArray(Integer[]::new);
+		for (Integer num : numbersArray) {
+			System.out.println(num);
+		}
+
+		System.out.println("------------------------------------------------------------");
+
+		String[] namesArray = AppUtils.getStringStream("NAMES").toArray(String[]::new);
+		for (String name : namesArray) {
+			System.out.println(name);
+		}
+
+		System.out.println("------------------------------------------------------------");
+
+		Employee[] employeesArray = AppUtils.EMPLOYEES.stream().toArray(Employee[]::new);
+		for (Employee employee : employeesArray) {
+			System.out.println(employee);
+		}
+
+		System.out.println("------------------------------------------------------------");
+
+		Student[] studentsArray = AppUtils.STUDENTS.stream().toArray(Student[]::new);
+		for (Student student : studentsArray) {
+			System.out.println(student);
+		}
+
+		System.out.println("------------------------------------------------------------");
+
+		Student[] sortedStudentsArray = AppUtils.STUDENTS.stream().filter(s -> s.getAge() > 20)
+				.sorted(Comparator.comparing(Student::getName)).toArray(Student[]::new);
+
+		for (Student student : sortedStudentsArray) {
+			System.out.println(student);
+		}
+
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		createStream();
 		testAllMatch();
@@ -906,5 +976,7 @@ public class StreamDemo {
 		testSkip_Limit();
 		testSorted_V1();
 		testSorted_V2();
+		testToArray_V1();
+		testToArray_V2();
 	}
 }
