@@ -804,6 +804,22 @@ public class StreamDemo {
 		System.out.println("------------------------------------------------------------");
 	}
 
+	public static void testSkip_Limit() {
+		System.out.println("\n\n===================== testSkip_Limit() =====================");
+
+		AppUtils.getIntStream("NUMBERS").skip(5).forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.getStringStream("WORDS").skip(3).limit(2).forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+		
+		AppUtils.EMPLOYEES.stream().skip(5).forEach(System.out::println);
+		
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void main(String[] args) {
 		createStream();
 		testAllMatch();
@@ -834,5 +850,6 @@ public class StreamDemo {
 		testReduce_V1();
 		testReduce_V2();
 		testReduce_V3();
+		testSkip_Limit();
 	}
 }
