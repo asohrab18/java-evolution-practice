@@ -692,7 +692,7 @@ public class StreamDemo {
 	}
 
 	public static void testPeek() {
-		System.out.println("===================== testPeek() =====================");
+		System.out.println("\n\n===================== testPeek() =====================");
 		AppUtils.getStringStream("NAMES").peek(s -> System.out.println("Before Filter, name: " + s))
 				.filter(s -> s.length() >= 5).map(String::toUpperCase)
 				.forEach(s -> System.out.println("After filtering and mapping, name of 5 or more characters: " + s));
@@ -714,7 +714,7 @@ public class StreamDemo {
 	}
 
 	public static void testReduce_V1() {
-		System.out.println("===================== testReduce_V1() =====================");
+		System.out.println("\n\n===================== testReduce_V1() =====================");
 		OptionalInt sumOpt = Arrays.stream(AppUtils.NUMBERS_ARRAY).reduce((num1, num2) -> num1 + num2);
 
 		sumOpt.ifPresent(sum -> System.out.println("Sum of numbers = " + sum));
@@ -742,6 +742,65 @@ public class StreamDemo {
 		Optional<String> concatenatedOpt = Arrays.stream(AppUtils.ALPHABETS_ARRAY).reduce((s1, s2) -> s1 + s2);
 		concatenatedOpt.ifPresent(s -> System.out.println("Concatenated Output = " + s));
 
+		System.out.println("------------------------------------------------------------");
+	}
+
+	public static void testReduce_V2() {
+		System.out.println("\n\n===================== testReduce_V2() =====================");
+		int sum = Arrays.stream(AppUtils.NUMBERS_ARRAY).reduce(10, (num1, num2) -> num1 + num2);
+
+		System.out.println("Sum of numbers = " + sum);
+
+		System.out.println("------------------------------------------------------------");
+
+		int product = Arrays.stream(AppUtils.NUMBERS_ARRAY).reduce(100, (num1, num2) -> num1 * num2);
+
+		System.out.println("Product of numbers = " + product);
+
+		System.out.println("------------------------------------------------------------");
+
+		int min = AppUtils.getIntStream("NUMBERS").reduce(1, (num1, num2) -> num1 < num2 ? num1 : num2);
+
+		System.out.println("Minimum number = " + min);
+
+		System.out.println("------------------------------------------------------------");
+
+		int max = AppUtils.getIntStream("NUMBERS").reduce(500, (num1, num2) -> num1 > num2 ? num1 : num2);
+
+		System.out.println("Maximum number = " + max);
+
+		System.out.println("------------------------------------------------------------");
+
+		String concatenatedOutput = Arrays.stream(AppUtils.ALPHABETS_ARRAY).reduce("ACRONYM -> ", (s1, s2) -> s1 + s2);
+		System.out.println("Concatenated Output = " + concatenatedOutput);
+
+		System.out.println("------------------------------------------------------------");
+	}
+
+	public static void testReduce_V3() {
+		System.out.println("\n\n===================== testReduce_V3() =====================");
+		Double sum = AppUtils.getIntStream("ODD_NUMBERS").reduce(0.0, (subtotal, element) -> subtotal + element,
+				(a, b) -> a + b);
+
+		System.out.println("Sum = " + sum);
+		System.out.println("------------------------------------------------------------");
+
+		String concatenated = AppUtils.getStringStream("NAMES").reduce("", (partial, name) -> partial + name + " ",
+				(s1, s2) -> s1 + s2);
+
+		System.out.println("Concatenated names: " + concatenated);
+		System.out.println("------------------------------------------------------------");
+
+		Integer sumOfSquares = AppUtils.getIntStream("EVEN_NUMBERS").reduce(0,
+				(subtotal, element) -> subtotal + element * element, (a, b) -> a + b);
+
+		System.out.println("Sum of squares = " + sumOfSquares);
+		System.out.println("------------------------------------------------------------");
+
+		String namesOfAllEmployees = AppUtils.EMPLOYEES.stream().reduce("",
+				(partial, person) -> partial + person.getName() + " ", (s1, s2) -> s1 + s2);
+
+		System.out.println("Names of all Employees: " + namesOfAllEmployees);
 		System.out.println("------------------------------------------------------------");
 	}
 
@@ -773,6 +832,7 @@ public class StreamDemo {
 		testOf_VS_ArraysStream();
 		testPeek();
 		testReduce_V1();
+		testReduce_V2();
+		testReduce_V3();
 	}
-
 }
