@@ -814,10 +814,63 @@ public class StreamDemo {
 		AppUtils.getStringStream("WORDS").skip(3).limit(2).forEach(System.out::println);
 
 		System.out.println("------------------------------------------------------------");
-		
+
 		AppUtils.EMPLOYEES.stream().skip(5).forEach(System.out::println);
-		
+
 		System.out.println("------------------------------------------------------------");
+	}
+
+	public static void testSorted_V1() {
+		System.out.println("\n\n===================== testSorted_V1() =====================");
+
+		AppUtils.getIntStream("DUPLICATE_NUMBERS").sorted().forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.getStringStream("WORDS").sorted().forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().map(Employee::getName).sorted().forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+	}
+
+	public static void testSorted_V2() {
+		System.out.println("\n\n===================== testSorted_V2() =====================");
+
+		AppUtils.getIntStream("DUPLICATE_NUMBERS").sorted(Comparator.reverseOrder()).forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.getStringStream("WORDS").sorted(Comparator.reverseOrder()).forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().map(Employee::getName).sorted(Comparator.reverseOrder())
+				.forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.getStringStream("WORDS").sorted(Comparator.comparingInt(String::length)).forEach(System.out::println);
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().sorted(Comparator.comparingDouble(Employee::getSalary))
+				.forEach(e -> System.out.println(e.getName() + " | Salary = " + e.getSalary()));
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().sorted(Comparator.comparingDouble(Employee::getSalary).reversed())
+				.forEach(e -> System.out.println(e.getName() + " | Salary = " + e.getSalary()));
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().sorted(Comparator.comparingInt(Employee::getAge).thenComparing(Employee::getName))
+				.forEach(e -> System.out.println("Age = " + e.getAge() + " | Name: " + e.getName()));
+
+		System.out.println("------------------------------------------------------------");
+
 	}
 
 	public static void main(String[] args) {
@@ -851,5 +904,7 @@ public class StreamDemo {
 		testReduce_V2();
 		testReduce_V3();
 		testSkip_Limit();
+		testSorted_V1();
+		testSorted_V2();
 	}
 }
