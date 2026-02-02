@@ -3,22 +3,21 @@ package com.learning.doublecolon.operator;
 import java.util.List;
 import java.util.function.IntUnaryOperator;
 import com.learning.functionalInterfaces.customized.Greeting;
-import com.learning.model.Computer;
 import com.learning.model.dto.EmployeeDto;
 import com.learning.utils.AppUtils;
 
 public class MethodReferenceDemo {
 
-	static Runnable firstRunnable = Computer::show;
+	static Runnable firstRunnable = AppUtils::show;
 
-	static Computer comp = new Computer();
+	static AppUtils comp = new AppUtils();
 	static Runnable secondRunnable = comp::display;
 
 	static Runnable thirdRunnable = EmployeeDto::printEmployees;
 
 	static Greeting greeting = EmployeeDto::printEmployees;
 
-	static IntUnaryOperator factorialOperator = Computer::getFactorial;
+	static IntUnaryOperator factorialOperator = AppUtils::getFactorial;
 
 	public static void testEmployees() {
 		Thread t = new Thread(thirdRunnable);

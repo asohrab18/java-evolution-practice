@@ -16,7 +16,7 @@ import com.learning.model.dto.StudentDto;
 
 public final class AppUtils {
 
-	private AppUtils() {
+	public AppUtils() {
 	}
 
 	/**
@@ -118,5 +118,32 @@ public final class AppUtils {
 			resultStream = NUMBERS_STRING.stream();
 		}
 		return resultStream;
+	}
+
+	public static void show() {
+		for (int i = 1; i <= 5; i++) {
+			System.out.println(i + ": Hello from show()");
+		}
+	}
+
+	public void display() {
+		for (int i = 1; i <= 5; i++) {
+			System.out.println(i + ": Welcome to display()");
+		}
+	}
+
+	public static int getFactorial(int num) {
+		System.out.println("\nIn Class: com.learning.utils.AppUtils, Method: getFactorial");
+		if (num < 0) {
+			return 0;
+		}
+		int fact = 1;
+		if (num == 0) {
+			return fact;
+		}
+		for (int i = num; i > 0; i--) {
+			fact = fact * i;
+		}
+		return fact;
 	}
 }
