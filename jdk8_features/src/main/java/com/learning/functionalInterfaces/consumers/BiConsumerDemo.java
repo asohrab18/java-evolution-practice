@@ -41,11 +41,11 @@ public class BiConsumerDemo {
 	public static void displayEmployeeInfo() {
 		ConsumerDemo.loggerConsumer.accept("In displayEmployeeInfo:");
 		
-		nameSalaryDisplayConsumer.accept(AppConstants.NAME, 150410d);
+		nameSalaryDisplayConsumer.accept(AppConstants.JOHN, 150410d);
 
-		nameAgeDisplayConsumer.accept(AppConstants.NAME, AppConstants.THIRTY_SEVEN);
+		nameAgeDisplayConsumer.accept(AppConstants.TOM, AppConstants.THIRTY_SEVEN);
 
-		nameIdDisplayConsumer.accept(AppConstants.NAME, 123456789L);
+		nameIdDisplayConsumer.accept(AppConstants.JOHN, 123456789L);
 	}
 
 	public static void displayData() {

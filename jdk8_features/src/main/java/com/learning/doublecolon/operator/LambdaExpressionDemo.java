@@ -1,10 +1,12 @@
 package com.learning.doublecolon.operator;
 
+import com.learning.utils.AppConstants;
+
 public class LambdaExpressionDemo {
 
 	static Runnable r = () -> {
-		for (int i = 1; i <= 15; i++) {
-			System.out.println("Child-Thread");
+		for (int i = AppConstants.ONE; i <= AppConstants.FIFTEEN; i++) {
+			System.out.println(AppConstants.CHILD_THREAD);
 		}
 	};
 
@@ -12,8 +14,8 @@ public class LambdaExpressionDemo {
 		Thread t = new Thread(r);
 		t.start();
 
-		for (int i = 1; i <= 15; i++) {
-			System.out.println("Main-Thread");
+		for (int i = AppConstants.ONE; i <= AppConstants.FIFTEEN; i++) {
+			System.out.println(AppConstants.MAIN_THREAD);
 		}
 	}
 }

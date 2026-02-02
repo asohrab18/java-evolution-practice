@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.IntUnaryOperator;
 import com.learning.functionalInterfaces.customized.Greeting;
 import com.learning.model.dto.EmployeeDto;
+import com.learning.utils.AppConstants;
 import com.learning.utils.AppUtils;
 
 public class MethodReferenceDemo {
@@ -24,7 +25,7 @@ public class MethodReferenceDemo {
 		t.start();
 
 		for (int i = 1; i <= 3; i++) {
-			System.out.println(i + ": Main-Thread");
+			System.out.println(i + AppConstants.COLON + AppConstants.SPACE + AppConstants.MAIN_THREAD);
 		}
 	}
 
@@ -33,7 +34,7 @@ public class MethodReferenceDemo {
 		t.start();
 
 		for (int i = 1; i <= 5; i++) {
-			System.out.println(i + ": Main-Thread");
+			System.out.println(i + AppConstants.COLON + AppConstants.SPACE + AppConstants.MAIN_THREAD);
 		}
 	}
 
@@ -42,7 +43,7 @@ public class MethodReferenceDemo {
 		t.start();
 
 		for (int i = 1; i <= 5; i++) {
-			System.out.println(i + ": Main-Thread");
+			System.out.println(i + AppConstants.COLON + AppConstants.SPACE + AppConstants.MAIN_THREAD);
 		}
 	}
 
