@@ -5,9 +5,8 @@ import java.util.function.BiFunction;
 import java.util.function.ToDoubleBiFunction;
 import java.util.function.ToIntBiFunction;
 import java.util.function.ToLongBiFunction;
-
 import com.learning.model.Employee;
-import com.learning.model.EmployeeDto;
+import com.learning.model.dto.EmployeeDto;
 
 public class BiFunctionDemo {
 

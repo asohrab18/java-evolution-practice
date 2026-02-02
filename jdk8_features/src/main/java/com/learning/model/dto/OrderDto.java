@@ -1,7 +1,8 @@
-package com.learning.model;
+package com.learning.model.dto;
 
 import java.time.LocalDate;
 import java.util.List;
+import com.learning.model.Order;
 
 public class OrderDto {
 

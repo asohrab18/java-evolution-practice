@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.IntUnaryOperator;
 import com.learning.functionalInterfaces.customized.Greeting;
 import com.learning.model.Computer;
-import com.learning.model.EmployeeDto;
+import com.learning.model.dto.EmployeeDto;
 import com.learning.utils.AppUtils;
 
 public class MethodReferenceDemo {

@@ -1,6 +1,7 @@
-package com.learning.model;
+package com.learning.model.dto;
 
 import java.util.List;
+import com.learning.model.Student;
 
 public class StudentDto {
 
@@ -27,7 +28,7 @@ public class StudentDto {
 
 		return List.of(s1, s2);
 	}
-	
+
 	public static List<Student> findStudentsWithQuestionPapersCodes() {
 		Student s1 = new Student("AB", 48, new long[] { 123458l, 563458l, 456458l });
 		Student s2 = new Student("CD", 20, new long[] { 983458l, 763458l, 893458l });

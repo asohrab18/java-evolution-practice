@@ -1,6 +1,7 @@
-package com.learning.model;
+package com.learning.model.dto;
 
 import java.util.List;
+import com.learning.model.Employee;
 
 public class EmployeeDto {
 
