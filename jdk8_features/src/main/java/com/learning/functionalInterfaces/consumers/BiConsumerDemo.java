@@ -5,6 +5,8 @@ import java.util.function.ObjDoubleConsumer;
 import java.util.function.ObjIntConsumer;
 import java.util.function.ObjLongConsumer;
 
+import com.learning.utils.AppConstants;
+
 public class BiConsumerDemo {
 
 	static BiConsumer<String, String> biconsumer = (s1, s2) -> {
@@ -38,12 +40,12 @@ public class BiConsumerDemo {
 
 	public static void displayEmployeeInfo() {
 		ConsumerDemo.loggerConsumer.accept("In displayEmployeeInfo:");
-		String name = "John Cena";
-		nameSalaryDisplayConsumer.accept(name, 150410d);
+		
+		nameSalaryDisplayConsumer.accept(AppConstants.NAME, 150410d);
 
-		nameAgeDisplayConsumer.accept(name, 37);
+		nameAgeDisplayConsumer.accept(AppConstants.NAME, AppConstants.THIRTY_SEVEN);
 
-		nameIdDisplayConsumer.accept(name, 123456789L);
+		nameIdDisplayConsumer.accept(AppConstants.NAME, 123456789L);
 	}
 
 	public static void displayData() {

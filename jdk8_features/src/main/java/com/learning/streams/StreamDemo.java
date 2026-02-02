@@ -469,7 +469,7 @@ public class StreamDemo {
 	}
 
 	public static void testGenerateWithLimit() {
-		int limit = AppConstants.LIMIT;
+		int limit = AppConstants.FIVE;
 		System.out.println("\n\n===================== testGenerateWithLimit() =====================");
 
 		Stream<String> greetingsStream = Stream.generate(() -> "Hello");
@@ -499,7 +499,7 @@ public class StreamDemo {
 	}
 
 	public static void testIterateWithLimit() {
-		int limit = AppConstants.LIMIT;
+		int limit = AppConstants.FIVE;
 		System.out.println("\n\n===================== testIterateWithLimit() =====================");
 		Stream<Integer> numbersStream = Stream.iterate(1, n -> n + 1);
 
@@ -721,7 +721,7 @@ public class StreamDemo {
 		studentStream.forEach(System.out::println);
 		System.out.println("------------------------------------------------------------");
 
-		Stream.of(AppConstants.LIMIT).forEach(System.out::println);
+		Stream.of(AppConstants.FIVE).forEach(System.out::println);
 		System.out.println("------------------------------------------------------------");
 
 		LongStream numbersLArrayStream = Arrays.stream(AppUtils.NUMBERS_ARRAY_L);
