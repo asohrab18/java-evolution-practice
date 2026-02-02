@@ -7,6 +7,7 @@ import com.learning.functionalInterfaces.customized.StudentProvider;
 import com.learning.model.Bank;
 import com.learning.model.Employee;
 import com.learning.model.Student;
+import com.learning.utils.AppConstants;
 
 public class ConstructorReferenceDemo {
 
@@ -24,17 +25,19 @@ public class ConstructorReferenceDemo {
 	}
 
 	public static void testEmployeeData() {
-		Employee employee = employeeDataProvider.get(100, "Jesica", 48, "CS", 120000, true);
+		Employee employee = employeeDataProvider.get(AppConstants.HUNDRED, AppConstants.JOHN, AppConstants.FOURTY_EIGHT,
+				AppConstants.CS, AppConstants.DOUBLE_120000, AppConstants.TRUE);
+
 		System.out.println(employee);
 	}
 
 	public static void testStudent() {
-		Student student = studentProvider.find("Tom", 12);
+		Student student = studentProvider.find(AppConstants.TOM, AppConstants.TWELVE);
 		System.out.println(student);
 	}
 
 	public static void testBank() {
-		Bank bank = bankInformation.of("HDFC", "MEERUT", "UP", "INDIA");
+		Bank bank = bankInformation.of(AppConstants.HDFC, AppConstants.MEERUT, AppConstants.UP, AppConstants.INDIA);
 		System.out.println(bank);
 	}
 
