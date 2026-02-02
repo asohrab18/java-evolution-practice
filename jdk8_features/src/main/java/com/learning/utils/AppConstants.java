@@ -40,14 +40,25 @@ public final class AppConstants {
 	public static final double DOUBLE_1 = 1d;
 	public static final double DOUBLE_4_DOT_5 = 4.5d;
 	public static final double DOUBLE_9_DOT_3 = 9.3d;
+	public static final double DOUBLE_30 = 30d;
+	public static final double DOUBLE_50 = 50d;
+	public static final double DOUBLE_70 = 70d;
 	public static final double DOUBLE_78_DOT_5 = 78.5d;
+	public static final double DOUBLE_80 = 80d;
 	public static final double DOUBLE_80_DOT_25 = 80.25;
 	public static final double DOUBLE_90_DOT_85 = 90.85d;
+	public static final double DOUBLE_100 = 100d;
 	public static final double DOUBLE_1000 = 1000d;
 	public static final double DOUBLE_5000 = 5000d;
+	public static final double DOUBLE_30000 = 30000d;
+	public static final double DOUBLE_40000 = 40000d;
+	public static final double DOUBLE_50000 = 50000d;
+	public static final double DOUBLE_100000 = 100000d;
 	public static final double DOUBLE_120000 = 120000d;
 	public static final double DOUBLE_150410 = 150410d;
 	public static final double DOUBLE_160000 = 160000d;
+	public static final double DOUBLE_300000 = 300000d;
+	
 
 	/** String constants. */
 	public static final String ADAM = "ADAM";

@@ -15,12 +15,13 @@ import java.util.function.LongToIntFunction;
 import java.util.function.ToDoubleFunction;
 import java.util.function.ToIntFunction;
 import java.util.function.ToLongFunction;
+import com.learning.utils.AppConstants;
 
 public class FunctionDemo {
 
 	static Function<String, Integer> strLengthFunction = s -> {
 		if (s == null) {
-			return 0;
+			return AppConstants.ZERO;
 		}
 		return s.length();
 	};
@@ -34,71 +35,71 @@ public class FunctionDemo {
 
 	static Function<String, String> trimFunction = s -> {
 		if (s == null) {
-			return "";
+			return AppConstants.EMPTY;
 		}
 		return s.trim();
 	};
 
 	static Function<Integer, Integer> squareFunction = i -> {
 		if (i == null) {
-			return 0;
+			return AppConstants.ZERO;
 		}
 		return i * i;
 	};
 
 	static Function<Integer, Integer> cubeFunction = i -> {
 		if (i == null) {
-			return 0;
+			return AppConstants.ZERO;
 		}
 		return i * i * i;
 	};
 
 	static Function<Integer, Integer> multiplyBy2 = i -> {
 		if (i == null) {
-			return 0;
+			return AppConstants.ZERO;
 		}
-		return i * 2;
+		return i * AppConstants.TWO;
 	};
 
 	static Function<Integer, Integer> add10 = i -> {
 		if (i == null) {
-			return 0;
+			return AppConstants.ZERO;
 		}
-		return i + 10;
+		return i + AppConstants.TEN;
 	};
 
 	// Function.identity() – Returns the Input as-is. Useful in Streams.
 	static Function<String, String> identityFunction = Function.identity();
 
 	static DoubleFunction<String> designationFunction = salary -> {
-		if (salary <= 0d) {
+		if (salary <= AppConstants.DOUBLE_0) {
 			return "NONE";
-		} else if (salary >= 5000d && salary <= 30000d) {
+		} else if (salary >= AppConstants.DOUBLE_5000 && salary <= AppConstants.DOUBLE_30000) {
 			return "Software Engineer Trainee";
-		} else if (salary > 30000d && salary <= 40000d) {
+		} else if (salary > AppConstants.DOUBLE_30000 && salary <= AppConstants.DOUBLE_40000) {
 			return "Software Engineer";
-		} else if (salary > 40000d && salary <= 50000d) {
+		} else if (salary > AppConstants.DOUBLE_40000 && salary <= AppConstants.DOUBLE_50000) {
 			return "Senior Software Engineer";
-		} else if (salary > 50000d && salary <= 100000d) {
+		} else if (salary > AppConstants.DOUBLE_50000 && salary <= AppConstants.DOUBLE_100000) {
 			return "Team Lead";
-		} else if (salary > 100000d && salary <= 300000d) {
+		} else if (salary > AppConstants.DOUBLE_100000 && salary <= AppConstants.DOUBLE_300000) {
 			return "Manager";
 		}
 		return "OTHERS";
 	};
 
 	static DoubleToIntFunction cgpaFunction = marks -> {
-		int cgpa = 0;
-		if (marks > 0d && marks <= 30d) {
-			cgpa = 1;
-		} else if (marks > 30d && marks <= 50d) {
-			cgpa = 2;
-		} else if (marks > 50d && marks <= 70d) {
-			cgpa = 3;
-		} else if (marks > 70d && marks <= 80d) {
-			cgpa = 4;
-		} else if (marks > 80d && marks <= 100d) {
-			cgpa = 5;
+		int cgpa = AppConstants.ZERO;
+		if (marks > AppConstants.DOUBLE_0 && marks <= AppConstants.DOUBLE_30) {
+			cgpa = AppConstants.ONE;
+		} else if (marks > AppConstants.DOUBLE_30 && marks <= AppConstants.DOUBLE_50) {
+			cgpa = AppConstants.TWO;
+		} else if (marks > AppConstants.DOUBLE_50 && marks <= AppConstants.DOUBLE_70) {
+			cgpa = AppConstants.THREE;
+		} else if (marks > AppConstants.DOUBLE_70 && marks <= AppConstants.DOUBLE_80) {
+			cgpa = AppConstants.FOUR;
+		} else if (marks > AppConstants.DOUBLE_80 && marks <= AppConstants.DOUBLE_100) {
+			cgpa = AppConstants.FIVE;
 		}
 		return cgpa;
 	};
@@ -107,31 +108,31 @@ public class FunctionDemo {
 
 	static IntFunction<String> remarksFunction = rank -> {
 		String remarks = "POOR PERFORMANCE!";
-		if (rank <= 0) {
+		if (rank <= AppConstants.ZERO) {
 			remarks = "FAILED";
-		} else if (rank == 1) {
+		} else if (rank == AppConstants.ONE) {
 			remarks = "EXCELLENT PERFORMANCE!";
-		} else if (rank == 2) {
+		} else if (rank == AppConstants.TWO) {
 			remarks = "BETTER PERFORMANCE!";
-		} else if (rank == 3) {
+		} else if (rank == AppConstants.THREE) {
 			remarks = "GOOD PERFORMANCE!";
-		} else if (rank == 4) {
+		} else if (rank == AppConstants.FOUR) {
 			remarks = "PERFORMANCE IS FINE.";
-		} else if (rank == 5) {
+		} else if (rank == AppConstants.FIVE) {
 			remarks = "WORK HARD";
 		}
 		return remarks;
 	};
 
 	static IntToDoubleFunction factorialFunction = num -> {
-		double fact = 1d;
-		if (num < 0) {
-			return 0d;
+		double fact = AppConstants.DOUBLE_0;
+		if (num < AppConstants.ZERO) {
+			return AppConstants.DOUBLE_0;
 		}
-		if (num == 0) {
+		if (num == AppConstants.ZERO) {
 			return fact;
 		}
-		for (int i = num; i > 0; i--) {
+		for (int i = num; i > AppConstants.ZERO; i--) {
 			fact = fact * i;
 		}
 		return fact;
