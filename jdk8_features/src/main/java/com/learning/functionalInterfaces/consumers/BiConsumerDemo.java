@@ -17,11 +17,11 @@ public class BiConsumerDemo {
 				System.out.println(s1);
 			} else {
 				String[] infoArray = s1.split(s2);
-				System.out.println("Name: " + infoArray[0]);
-				System.out.println("Company: " + infoArray[1]);
-				System.out.println("Department: " + infoArray[2]);
-				System.out.println("City: " + infoArray[3]);
-				System.out.println("Country: " + infoArray[4]);
+				System.out.println("Name: " + infoArray[AppConstants.ZERO]);
+				System.out.println("Company: " + infoArray[AppConstants.ONE]);
+				System.out.println("Department: " + infoArray[AppConstants.TWO]);
+				System.out.println("City: " + infoArray[AppConstants.THREE]);
+				System.out.println("Country: " + infoArray[AppConstants.FOUR]);
 			}
 		}
 	};
@@ -41,11 +41,11 @@ public class BiConsumerDemo {
 	public static void displayEmployeeInfo() {
 		ConsumerDemo.loggerConsumer.accept("In displayEmployeeInfo:");
 		
-		nameSalaryDisplayConsumer.accept(AppConstants.JOHN, 150410d);
+		nameSalaryDisplayConsumer.accept(AppConstants.JOHN, AppConstants.DOUBLE_150410);
 
 		nameAgeDisplayConsumer.accept(AppConstants.TOM, AppConstants.THIRTY_SEVEN);
 
-		nameIdDisplayConsumer.accept(AppConstants.JOHN, 123456789L);
+		nameIdDisplayConsumer.accept(AppConstants.JOHN, AppConstants.LONG_123456789);
 	}
 
 	public static void displayData() {
