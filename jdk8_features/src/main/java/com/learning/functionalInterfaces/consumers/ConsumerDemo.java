@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import java.util.function.DoubleConsumer;
 import java.util.function.IntConsumer;
 import java.util.function.LongConsumer;
+import com.learning.utils.AppConstants;
 import com.learning.utils.AppUtils;
 
 public class ConsumerDemo {
@@ -14,14 +15,14 @@ public class ConsumerDemo {
 	static Consumer<String> printConsumer = s -> System.out.println(s);
 
 	static DoubleConsumer printRupeesInDollarConsumer = r -> System.out
-			.println("INR " + r + " = USD " + (r * 0.01113d));
+			.println("INR " + r + " = USD " + (r * AppConstants.DOUBLE_DOT_01113));
 
 	static DoubleConsumer printDollarInRupeesConsumer = r -> System.out
-			.println("USD " + r + " = INR " + (r / 0.01113d));
+			.println("USD " + r + " = INR " + (r / AppConstants.DOUBLE_DOT_01113));
 
-	static LongConsumer printRupeesInPaisaConsumer = r -> System.out.println("INR " + r + " = " + (r * 100) + " paisa");
+	static LongConsumer printRupeesInPaisaConsumer = r -> System.out.println("INR " + r + " = " + (r * AppConstants.HUNDRED) + " paisa");
 
-	static IntConsumer printDollarInCentsConsumer = r -> System.out.println("USD " + r + " = " + (r * 100) + " cents");
+	static IntConsumer printDollarInCentsConsumer = r -> System.out.println("USD " + r + " = " + (r * AppConstants.HUNDRED) + " cents");
 
 	public static void printMessage(String message) {
 		loggerConsumer.accept("Inside printMessage:");
@@ -38,21 +39,21 @@ public class ConsumerDemo {
 	public static void useInStream() {
 		loggerConsumer.accept("Consumer used in Stream:");
 		List<String> words = AppUtils.WORDS;
-		words.stream().filter(s -> s.length() < 6).forEach(printConsumer);
+		words.stream().filter(s -> s.length() < AppConstants.SIX).forEach(printConsumer);
 	}
 
 	public static void convertCurrency() {
 		loggerConsumer.accept("Currency Conversion:");
-		double rupees = 1000d;
+		double rupees = AppConstants.DOUBLE_1000;
 		printRupeesInDollarConsumer.accept(rupees);
 
-		double dollar = 1d;
+		double dollar = AppConstants.DOUBLE_1;
 		printDollarInRupeesConsumer.accept(dollar);
 
-		long rupeesL = 1l;
+		long rupeesL = AppConstants.LONG_1;
 		printRupeesInPaisaConsumer.accept(rupeesL);
 
-		int dollarI = 1;
+		int dollarI = AppConstants.ONE;
 		printDollarInCentsConsumer.accept(dollarI);
 	}
 
@@ -62,5 +63,4 @@ public class ConsumerDemo {
 		useInStream();
 		convertCurrency();
 	}
-
 }
