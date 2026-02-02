@@ -22,8 +22,6 @@ public final class AppUtils {
 	/**
 	 * ============== Some useful properties: ==============
 	 */
-	public static final int LIMIT = 5;
-
 	public static final String[] ALPHABETS_ARRAY = { "A", "B", "C", "D" };
 
 	public static final int[] NUMBERS_ARRAY = { 1, 2, 3, 4 };
