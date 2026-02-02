@@ -5,10 +5,9 @@ import java.util.function.DoublePredicate;
 import java.util.function.IntPredicate;
 import java.util.function.LongPredicate;
 import java.util.function.Predicate;
-
-import com.learning.model.AppUtils;
 import com.learning.model.Employee;
 import com.learning.model.EmployeeDto;
+import com.learning.utils.AppUtils;
 
 public class PredicateDemo {
 

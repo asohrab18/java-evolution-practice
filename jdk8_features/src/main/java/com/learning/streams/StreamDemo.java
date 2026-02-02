@@ -17,15 +17,14 @@ import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
-
 import com.learning.model.Animal;
-import com.learning.model.AppUtils;
 import com.learning.model.Candidate;
 import com.learning.model.Cat;
 import com.learning.model.Dog;
 import com.learning.model.Employee;
 import com.learning.model.Order;
 import com.learning.model.Student;
+import com.learning.utils.AppUtils;
 
 public class StreamDemo {
 

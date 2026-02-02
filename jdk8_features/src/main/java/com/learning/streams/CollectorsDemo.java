@@ -24,13 +24,12 @@ import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import com.learning.model.AppUtils;
 import com.learning.model.Candidate;
 import com.learning.model.Employee;
 import com.learning.model.Order;
 import com.learning.model.Person;
 import com.learning.model.Student;
+import com.learning.utils.AppUtils;
 
 public class CollectorsDemo {
 
@@ -144,7 +143,7 @@ public class CollectorsDemo {
 		Map<String, List<Employee>> employeesMap = AppUtils.EMPLOYEES.stream()
 				.collect(Collectors.groupingBy(departmentFunction));
 
-		System.out.println("\n"+employeesMap);
+		System.out.println("\n" + employeesMap);
 		System.out.println("------------------------------------------------------------");
 
 		Map<String, List<Person>> personsMap = AppUtils.PERSONS.stream()
@@ -185,7 +184,7 @@ public class CollectorsDemo {
 		Map<String, List<Person>> personsMap = AppUtils.PERSONS.stream()
 				.collect(Collectors.groupingBy(Person::getCountry, Collectors.toList()));
 
-		System.out.println("\n"+personsMap);
+		System.out.println("\n" + personsMap);
 		System.out.println("------------------------------------------------------------");
 
 		Map<String, Long> personsCountingMap = AppUtils.PERSONS.stream()
@@ -227,7 +226,7 @@ public class CollectorsDemo {
 		Map<String, List<Candidate>> candidatesMap = AppUtils.CANDIDATES.stream()
 				.collect(Collectors.groupingBy(Candidate::getDepartment, HashMap::new, Collectors.toList()));
 
-		System.out.println("\n"+candidatesMap);
+		System.out.println("\n" + candidatesMap);
 		System.out.println("------------------------------------------------------------");
 
 		Map<String, Long> candidatesCountMap = AppUtils.CANDIDATES.stream()
@@ -318,7 +317,7 @@ public class CollectorsDemo {
 		ConcurrentMap<String, Long> candidatesMap = AppUtils.CANDIDATES.parallelStream()
 				.collect(Collectors.groupingByConcurrent(Candidate::getDepartment, Collectors.counting()));
 
-		System.out.println("\n"+candidatesMap);
+		System.out.println("\n" + candidatesMap);
 		System.out.println("------------------------------------------------------------");
 
 		ConcurrentMap<String, List<String>> candidatesNamesMap = AppUtils.CANDIDATES.parallelStream()
@@ -358,7 +357,7 @@ public class CollectorsDemo {
 
 		);
 
-		System.out.println("\n"+candidatesMap);
+		System.out.println("\n" + candidatesMap);
 		System.out.println("------------------------------------------------------------");
 
 		ConcurrentMap<String, List<Integer>> evenOddMap = AppUtils.NUMBERS.parallelStream().collect(Collectors
@@ -384,7 +383,7 @@ public class CollectorsDemo {
 	static void testJoining() {
 		System.out.println("\n\n===================== testJoining() =====================");
 		String joined = AppUtils.getStringStream("NAMES").collect(Collectors.joining());
-		System.out.println("\n"+joined);
+		System.out.println("\n" + joined);
 		System.out.println("------------------------------------------------------------");
 
 		String joinedWithDelimeter = AppUtils.getStringStream("NAMES").collect(Collectors.joining(", "));
@@ -401,8 +400,8 @@ public class CollectorsDemo {
 		System.out.println("\n\n===================== testMapping() =====================");
 		List<String> data = AppUtils.getStringStream("WORDS")
 				.collect(Collectors.mapping(String::toUpperCase, Collectors.toList()));
-		
-		System.out.println("\n"+data);
+
+		System.out.println("\n" + data);
 		System.out.println("------------------------------------------------------------");
 
 		Map<String, List<String>> employeesMap = AppUtils.EMPLOYEES.stream().collect(
@@ -620,7 +619,7 @@ public class CollectorsDemo {
 		DoubleSummaryStatistics employeesSalaryStatistics = AppUtils.EMPLOYEES.stream()
 				.collect(Collectors.summarizingDouble(Employee::getSalary));
 
-		System.out.println("\n"+employeesSalaryStatistics);
+		System.out.println("\n" + employeesSalaryStatistics);
 		System.out.println("------------------------------------------------------------");
 	}
 
@@ -629,7 +628,7 @@ public class CollectorsDemo {
 		IntSummaryStatistics employessAgeStatistics = AppUtils.EMPLOYEES.stream()
 				.collect(Collectors.summarizingInt(Employee::getAge));
 
-		System.out.println("\n"+employessAgeStatistics);
+		System.out.println("\n" + employessAgeStatistics);
 		System.out.println("------------------------------------------------------------");
 	}
 
@@ -637,7 +636,7 @@ public class CollectorsDemo {
 		System.out.println("\n\n===================== testSummarizingLong() =====================");
 		LongSummaryStatistics numbersSummaryStatistics = AppUtils.NUMBERS_L.stream()
 				.collect(Collectors.summarizingLong(num -> num));
-		System.out.println("\n"+numbersSummaryStatistics);
+		System.out.println("\n" + numbersSummaryStatistics);
 		System.out.println("------------------------------------------------------------");
 	}
 
@@ -645,7 +644,7 @@ public class CollectorsDemo {
 		System.out.println("\n\n===================== testSummingDouble() =====================");
 		Double totalSalaryOfEmployees = AppUtils.EMPLOYEES.stream()
 				.collect(Collectors.summingDouble(Employee::getSalary));
-		
+
 		System.out.println("\nTotal Salary of all EMPLOYEES = " + totalSalaryOfEmployees);
 		System.out.println("------------------------------------------------------------");
 

@@ -1,8 +1,18 @@
-package com.learning.model;
+package com.learning.utils;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
+import com.learning.model.Candidate;
+import com.learning.model.CandidateDto;
+import com.learning.model.Employee;
+import com.learning.model.EmployeeDto;
+import com.learning.model.Order;
+import com.learning.model.OrderDto;
+import com.learning.model.Person;
+import com.learning.model.PersonDto;
+import com.learning.model.Student;
+import com.learning.model.StudentDto;
 
 public final class AppUtils {
 

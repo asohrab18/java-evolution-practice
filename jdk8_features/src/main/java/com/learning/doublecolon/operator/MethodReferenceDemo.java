@@ -2,11 +2,10 @@ package com.learning.doublecolon.operator;
 
 import java.util.List;
 import java.util.function.IntUnaryOperator;
-
 import com.learning.functionalInterfaces.customized.Greeting;
-import com.learning.model.AppUtils;
 import com.learning.model.Computer;
 import com.learning.model.EmployeeDto;
+import com.learning.utils.AppUtils;
 
 public class MethodReferenceDemo {
 
