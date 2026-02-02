@@ -17,6 +17,7 @@ import java.util.stream.DoubleStream;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
+
 import com.learning.model.Animal;
 import com.learning.model.AppUtils;
 import com.learning.model.Candidate;
@@ -872,6 +873,74 @@ public class StreamDemo {
 
 	}
 
+	static void sortEmployees(String field, String order) {
+		System.out.println("\n\n===================== sortEmployees =====================");
+		Comparator<Employee> comparator = null;
+
+		if (field.equals("id")) {
+			if (order.equalsIgnoreCase("DESC")) {
+				// DESCENDING ORDER
+				comparator = (e1, e2) -> (e1.getId() > e2.getId()) ? -1 : (e1.getId() < e2.getId()) ? 1 : 0;
+			} else {
+				// ASCENDING ORDER
+				comparator = (e1, e2) -> (e1.getId() > e2.getId()) ? 1 : (e1.getId() < e2.getId()) ? -1 : 0;
+			}
+		} else if (field.equals("name")) {
+			if (order.equalsIgnoreCase("DESC")) {
+				// DESCENDING ORDER
+				comparator = (e1, e2) -> e2.getName().compareTo(e1.getName());
+			} else {
+				// ASCENDING ORDER
+				comparator = (e1, e2) -> e1.getName().compareTo(e2.getName());
+			}
+		} else if (field.equals("age")) {
+			if (order.equalsIgnoreCase("DESC")) {
+				// DESCENDING ORDER
+				comparator = (e1, e2) -> (e1.getAge() > e2.getAge()) ? -1 : (e1.getAge() < e2.getAge()) ? 1 : 0;
+			} else {
+				// ASCENDING ORDER
+				comparator = (e1, e2) -> (e1.getAge() > e2.getAge()) ? 1 : (e1.getAge() < e2.getAge()) ? -1 : 0;
+			}
+		}
+
+		else if (field.equals("dept")) {
+			if (order.equalsIgnoreCase("DESC")) {
+				// DESCENDING ORDER
+				comparator = (e1, e2) -> e2.getDept().compareTo(e1.getDept());
+			} else {
+				// ASCENDING ORDER
+				comparator = (e1, e2) -> e1.getDept().compareTo(e2.getDept());
+			}
+		} else if (field.equals("salary")) {
+			if (order.equalsIgnoreCase("DESC")) {
+				// DESCENDING ORDER
+				comparator = (e1, e2) -> (e1.getSalary() > e2.getSalary()) ? -1
+						: (e1.getSalary() < e2.getSalary()) ? 1 : 0;
+			} else {
+				// ASCENDING ORDER
+				comparator = (e1, e2) -> (e1.getSalary() > e2.getSalary()) ? 1
+						: (e1.getSalary() < e2.getSalary()) ? -1 : 0;
+			}
+		} else if (field.equals("active")) {
+			if (order.equalsIgnoreCase("DESC")) {
+				// DESCENDING ORDER (First display all true and then false)
+				comparator = (e1, e2) -> Boolean.valueOf(e2.isActive()).compareTo(Boolean.valueOf(e1.isActive()));
+				// Method-2: comparator = (e1, e2) -> Boolean.compare(e2.isActive(),
+				// e1.isActive());
+
+			} else {
+				// ASCENDING ORDER (First display all false and then true)
+				comparator = (e1, e2) -> Boolean.valueOf(e1.isActive()).compareTo(Boolean.valueOf(e2.isActive()));
+				// Method-2: comparator = (e1, e2) -> Boolean.compare(e1.isActive(),
+				// e2.isActive());
+			}
+		}
+
+		AppUtils.EMPLOYEES.stream().sorted(comparator).forEach(e -> System.out.println(e));
+
+		System.out.println("------------------------------------------------------------");
+	}
+
 	public static void testToArray_V1() {
 		System.out.println("\n\n===================== testToArray_V1() =====================");
 		Object[] numbersArray = AppUtils.getIntStream("NUMBERS").toArray();
@@ -976,6 +1045,7 @@ public class StreamDemo {
 		testSkip_Limit();
 		testSorted_V1();
 		testSorted_V2();
+		sortEmployees("age", "DESC");
 		testToArray_V1();
 		testToArray_V2();
 	}
