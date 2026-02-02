@@ -19,6 +19,7 @@ public final class AppConstants {
 	public static final int SIX = 6;
 	public static final int TWELVE = 12;
 	public static final int FIFTEEN = 15;
+	public static final int EIGHTEEN = 18;
 	public static final int THIRTY_SEVEN = 37;
 	public static final int FOURTY_EIGHT = 48;
 	public static final int HUNDRED = 100;
@@ -34,6 +35,7 @@ public final class AppConstants {
 	public static final double DOUBLE_5000 = 5000d;
 	public static final double DOUBLE_120000 = 120000d;
 	public static final double DOUBLE_150410 = 150410d;
+	public static final double DOUBLE_160000 = 160000d;
 
 	/** String constants. */
 	public static final String CHILD_THREAD = "Child-Thread";

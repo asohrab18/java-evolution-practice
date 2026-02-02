@@ -1,12 +1,14 @@
 package com.learning.functionalInterfaces.customized;
 
+import com.learning.utils.AppConstants;
+
 public class TaxCalculatorMain {
 
 	public static void main(String[] args) {
-		TaxCalculator gstCalc = amount -> amount * 18 / 100;
-		TaxCalculator serviceTaxCalc = amount -> amount * 15 / 100;
+		TaxCalculator gstCalc = amount -> amount * AppConstants.EIGHTEEN / AppConstants.HUNDRED;
+		TaxCalculator serviceTaxCalc = amount -> amount * AppConstants.FIFTEEN / AppConstants.HUNDRED;
 
-		double basicPrice = 160000d;
+		double basicPrice = AppConstants.DOUBLE_160000;
 		double gst = gstCalc.calculate(basicPrice);
 		double serviceTax = serviceTaxCalc.calculate(basicPrice);
 		double totalTax = gst + serviceTax;
