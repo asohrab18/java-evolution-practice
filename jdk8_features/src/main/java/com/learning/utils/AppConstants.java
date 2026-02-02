@@ -26,6 +26,7 @@ public final class AppConstants {
 	public static final long LONG_123456789 = 123456789L;
 	
 	/** Double constants. */
+	public static final double DOUBLE_5000 = 5000d;
 	public static final double DOUBLE_120000 = 120000d;
 	public static final double DOUBLE_150410 = 150410d;
 

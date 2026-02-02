@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import com.learning.model.Employee;
 import com.learning.model.dto.EmployeeDto;
+import com.learning.utils.AppConstants;
 
 public class ConsumerAndThenExample {
 
@@ -11,7 +12,7 @@ public class ConsumerAndThenExample {
 
 	static Consumer<String> printStringLengthConsumer = s -> {
 		if (s == null) {
-			System.out.println("Length of String = " + 0);
+			System.out.println("Length of String = " + AppConstants.ZERO);
 		} else {
 			System.out.println("Length of String = " + s.length());
 		}
@@ -20,7 +21,7 @@ public class ConsumerAndThenExample {
 	static Consumer<Employee> printEmployeeConsumer = e -> System.out
 			.println("Name:" + e.getName() + "\tSalary:" + e.getSalary());
 
-	static Consumer<Employee> hike5000SalaryConsumer = e -> e.setSalary(e.getSalary() + 5000d);
+	static Consumer<Employee> hike5000SalaryConsumer = e -> e.setSalary(e.getSalary() + AppConstants.DOUBLE_5000);
 
 	public static void printStringAndItsLength(String input) {
 		printStringConsumer.andThen(printStringLengthConsumer).accept(input);

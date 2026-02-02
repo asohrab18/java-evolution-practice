@@ -4,7 +4,6 @@ import java.util.function.BiConsumer;
 import java.util.function.ObjDoubleConsumer;
 import java.util.function.ObjIntConsumer;
 import java.util.function.ObjLongConsumer;
-
 import com.learning.utils.AppConstants;
 
 public class BiConsumerDemo {
