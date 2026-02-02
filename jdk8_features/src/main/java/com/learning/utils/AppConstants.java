@@ -30,12 +30,16 @@ public final class AppConstants {
 
 	/** Long constants. */
 	public static final long LONG_1 = 1L;
+	public static final long LONG_10 = 10L;
+	public static final long LONG_12 = 12L;
 	public static final long LONG_123456789 = 123456789L;
 	
 	/** Double constants. */
 	public static final double DOUBLE_DOT_01113 = 0.01113d;
 	public static final double DOUBLE_0 = 0d;
 	public static final double DOUBLE_1 = 1d;
+	public static final double DOUBLE_4_DOT_5 = 4.5d;
+	public static final double DOUBLE_9_DOT_3 = 9.3d;
 	public static final double DOUBLE_78_DOT_5 = 78.5d;
 	public static final double DOUBLE_80_DOT_25 = 80.25;
 	public static final double DOUBLE_90_DOT_85 = 90.85d;
