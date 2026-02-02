@@ -276,6 +276,48 @@ public class StreamDemo {
 				.forEach(System.out::println);
 
 		System.out.println("------------------------------------------------------------");
+		double input = 15000d;
+		String department = "Health";
+
+		AppUtils.EMPLOYEES.stream().forEach(e -> System.out.println(e));
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().filter(e -> e.isActive()).forEach(e -> System.out.println(e));
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().filter(e -> !e.isActive()).forEach(e -> System.out.println(e));
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().filter(e -> e.getSalary() > input).forEach(e -> System.out.println(e));
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().filter(e -> e.isActive()).filter(e -> e.getSalary() > input)
+				.forEach(e -> System.out.println(e));
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().filter(e -> e.getSalary() < input).forEach(e -> System.out.println(e));
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().filter(e -> e.isActive()).filter(e -> e.getSalary() < input)
+				.forEach(e -> System.out.println(e));
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().filter(e -> e.isActive()).filter(e -> e.getDept().equalsIgnoreCase(department))
+				.filter(e -> e.getSalary() > input).forEach(e -> System.out.println(e));
+
+		System.out.println("------------------------------------------------------------");
+
+		AppUtils.EMPLOYEES.stream().filter(e -> e.isActive()).filter(e -> e.getDept().equalsIgnoreCase(department))
+				.filter(e -> e.getSalary() < input).forEach(e -> System.out.println(e));
+
+		System.out.println("------------------------------------------------------------");
 	}
 
 	public static void testFindAny() {
