@@ -12,6 +12,7 @@ public class Main {
 		return switch (obj) {
 		case Integer i -> "Integer: " + i;
 		case String s -> "String: " + s;
+		case Double f -> "Double: " + f;
 		default -> "Unknown";
 		};
 	}
@@ -19,6 +20,7 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println(getType("Geeks"));
 		System.out.println(getType(100));
-		System.out.println(getType(6.45f));
+		System.out.println(getType(6.45d));
+		System.out.println(getType(new Fun()));
 	}
 }
